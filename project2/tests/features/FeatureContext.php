@@ -1,5 +1,6 @@
 <?php
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
@@ -48,6 +49,30 @@ class FeatureContext implements Context
      * @Then I should have the ability to choose the paper
      */
     public function iShouldHaveTheAbilityToChooseThePaper()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given there is a input in the textbox in the homePage
+     */
+    public function thereIsAInputInTheTextboxInTheHomepage()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given I haven't clicked the user yet
+     */
+    public function iHavenTClickedTheUserYet()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then there should be a drop down box
+     */
+    public function thereShouldBeADropDownBox()
     {
         throw new PendingException();
     }

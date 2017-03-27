@@ -8,3 +8,8 @@ Feature: Author Search
 		When I add "Halfond" into the textbox
 		Then I should see suggestions in the dropdown box
 		And I should have the ability to choose the paper
+
+	Scenario: Trying to test the drop down box
+		Given there is a input in the textbox in the homePage
+		And I haven't clicked the user yet
+		Then there should be a drop down box
