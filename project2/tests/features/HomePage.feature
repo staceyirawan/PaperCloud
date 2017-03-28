@@ -17,7 +17,7 @@ Feature: Author Search
 	//Written by Jason	
 
 
-	Scenario: Wordcloud generation progrss bar
+	Scenario: Wordcloud generation progress bar
 		Given a keyword or author is being searched
 		Then when the button is clicked
 		Then a progress bar will show the status of the cloud generation
@@ -27,12 +27,19 @@ Feature: Author Search
 		And that I have previously searched last names or keyterms
 		Then there should be a list of previous searches below the search bar
 
-
 	Scenario: Top pages displayed
 		Given that a word is searched on the search bar
 		Then the top papers are papers that are most searched in the form of a word cloud
 
-	
+	Scenario: Searching for invalid author
+		Given that an invalid author is input in the search box
+		And the search button for author is pressed
+		Then a pop up box will display an error message
+
+	Scenario: Searching for invalid keyword
+		Given that an invalid keyword is input in the search box
+		And the search button for author is pressed
+		Then a pop up box will display an error message
 
 
 
