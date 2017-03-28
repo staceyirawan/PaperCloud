@@ -1,4 +1,4 @@
-Feature: Author Search
+Feature: HomePage Author Search
 	When User first enters the page
 	the User has the ability to access
 	all functionalities.
@@ -13,8 +13,6 @@ Feature: Author Search
 		Given there is a textbox in the homePage web page
 		When I add "Computer Science" into the textbox
 		And I should have the ability to choose the paper from the cloud
-	
-	//Written by Jason	
 
 
 	Scenario: Wordcloud generation progrss bar

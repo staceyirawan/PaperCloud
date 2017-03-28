@@ -8,11 +8,6 @@ Feature: Paper Page Options
 		Then I should see a page with lists of papers
 		And column headers appropriately listed
 
-	Scenario: Downloading a paper
-		Given I am on the paperlist page
-		When I click on the download link of a paper
-		Then a file is downloaded
-
 	Scenario: Accessing the bibtex
 
 	Scenario: Downloading paperlist in PDF 
@@ -25,7 +20,7 @@ Feature: Paper Page Options
 		When I click export to plain text
 		Then a plain text will be downloaded with the paperlist
 
-	Scenario: When on paper page clicking new author
+	Scenario: When on paperlist page clicking new author
 		Given I am on the paperlist page
 		When I click on another authors name
 		Then a new search is initiated on that author
@@ -53,12 +48,7 @@ Feature: Paper Page Options
 		And click on a button generate a new wordcloud
 		Then a new word cloud should generate with these selected papers
 
-	Scenario: Downloading highlighted paper
-		Given that I am on the paper list page
-		When I click to download a paper
-		Then I should have a PDF file with the specified word highlighted
-
-	Scenario: Back buttons
-		Given that I am on the paperlist page
+	Scenario: Using Back buttons
+		Given that I am at the paperlist page
 		When I click on the back button
 		Then I should go back to the previous page with the wordcloud
