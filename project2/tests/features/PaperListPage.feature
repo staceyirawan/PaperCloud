@@ -15,10 +15,15 @@ Feature: Paper Page Options
 
 	Scenario: Accessing the bibtex
 
-	Scenario: Downloading paperlist in PDF and Plain Text
+	Scenario: Downloading paperlist in PDF 
 		Given I am on the paperlist page
-		When I click export
-		Then a plain text and PDF file will be downloaded with the paperlist
+		When I click export to PDF
+		Then a PDF file will be downloaded with the paperlist
+
+	Scenario: Downloading paperlist in plain text
+		Given I am on the paperlist page
+		When I click export to plain text
+		Then a plain text will be downloaded with the paperlist
 
 	Scenario: When on paper page clicking new author
 		Given I am on the paperlist page
