@@ -41,11 +41,26 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then I should see :suggestions in the dropdown box
+     * @Then I should see :suggestions in the :dropdown box
      */
-    public function iShouldSeeSuggestionsInTheDropdownBox()
+    public function iShouldSeeSuggestionsInTheDropdownBox($suggestions, $dropdown)
     {
-        throw new PendingException();
+        $allSuggestionsAreHere = true;
+        for ($k = 0; $k< sizeof($suggestions); $k++) 
+        {   
+            $suggestionIsHere = false;
+            for ($j = 0; $j <sizeof($dropdown); $j++)
+            {
+                if($suggestions[$k] == $dropdown[$j])
+                {
+                    $suggestionIsHere = true;
+                }
+            }
+            if(!$suggestionIsHere)
+            {
+                $allSuggestionsAreHere = false;
+            }
+        }
     }
 
     /**
@@ -57,19 +72,22 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given a keyword or author is being searched
+     * @Given a :keyword or :author is being searched
      */
-    public function aKeywordOrAuthorIsBeingSearched()
+    public function aKeywordOrAuthorIsBeingSearched($keyword, $author)
     {
-        throw new PendingException();
+        if ($keyword == NULL and $author == NULL)
+        {
+            return false;
+        }
     }
 
     /**
-     * @Then when the button is clicked
+     * @Then when the :button is clicked
      */
-    public function whenTheButtonIsClicked()
+    public function whenTheButtonIsClicked($button)
     {
-        throw new PendingException();
+        
     }
 
     /**
