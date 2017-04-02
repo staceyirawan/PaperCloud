@@ -34,7 +34,6 @@ class PaperController extends Controller
     
 
     public function show($name) {
-
     	// $paper = PaperController::getPapersFromAuthor($name);
     	// return $paper;
     	$paperJSON = PaperController::getPapersFromKeywords($name);
@@ -43,6 +42,13 @@ class PaperController extends Controller
     	for($i = 0; $i < count($papers); $i++) {
     		$paperTitle = $papers[$i]['title'];
     		echo $i . ' ' . $paperTitle;
+		//var_dump($papers[$i]);
+		$pdfString = $papers[$i]['pdf'];
+		//$parser = new \Smalot\PdfParser\Parser();
+		//$pdf = $parser->parseFile(file_get_contents($pdfString));
+		//echo file_get_contents($pdfString);
+		//$text = $pdf->getText();
+		//echo $text;
     		echo '<br/>';
     	}
     	//return $paper;
