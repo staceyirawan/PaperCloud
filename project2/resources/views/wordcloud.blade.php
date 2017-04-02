@@ -5,19 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title><?php echo $artistName ?></title>
-
-	<button onclick = "goToSearch()">Go Back to Homepage</button>
+        <title>PaperCloud</title>
 	<br>
         <script type = "text/javascript">
 	  function loadCloud(){
             var wordCloudString =  "<?php echo $wordCloudString?>";
 	    document.getElementById("wordcloud").innerHTML= wordCloudString;
           }
-
-	function goToSearch(){
-		window.location.href = "http://localhost:8000";
-	}
         </script>
 
 <style>
@@ -117,8 +111,6 @@ pageTitle {
           <br>
 
       </form>
-<button onclick="">Search</button>
-<button onclick="">Add</button>
 <button onclick="">Share</button>
 </div>
 </body>
