@@ -5,5 +5,8 @@
     "require": {
         "behat/mink-extension": "^2.2",
         "behat/mink-goutte-driver": "^1.2"
-    }
+    },
+    "autoload": {
+    "psr-0": { "Behat\\MinkExtension": "vendor/behat/mink-extension/src/" }
+	}
 }
