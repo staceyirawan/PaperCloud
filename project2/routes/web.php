@@ -18,3 +18,8 @@ Route::get('papers/scholar/{lastName}', 'PaperController@showWordCloudFromName')
 
 
 Route::get('papers/keyword/{keyword}', 'PaperController@showWordCloudFromKeyword')->name('paperbykeyword.get');
+
+
+Route::get('list/scholar/{lastName}/{word}', 'PaperController@showPaperListFromName')->name('listbyname.get');
+
+Route::get('list/keyword/{keyword}/{word}', 'PaperCotnroller@showPaperListFromKeyword')->name('listbykeywrd.get');
