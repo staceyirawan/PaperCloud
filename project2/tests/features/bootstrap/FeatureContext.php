@@ -5,7 +5,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Mink\Driver\Selenium3Driver;
+use Behat\Mink\Driver\Selenium2Driver;
 use Behat\MinkExtension\Context\MinkContext;
 
 /**
@@ -46,6 +46,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function thereIsATextboxInTheHomepageWebPage()
     {
         $driver = new \Behat\Mink\Driver\GoutteDriver();
+        //$driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
         $session = new \Behat\Mink\Session($driver);
         $session->start();
         $session->visit('http://127.0.0.1:8000/');
@@ -57,11 +58,22 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
-     * @When I add :arg1 into the :textbox
+     * @When I add :arg1 into the textbox
      */
-    public function iAddIntoTheTextbox($arg1, $textbox)
+    public function iAddIntoTheTextbox()
     {
-        if( $textbox->checkCurrentSearch($arg1)) return true;
+        $driver = new \Behat\Mink\Driver\GoutteDriver();
+        //$driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        if($textbox->getValue() != "Halfond"){
+            throw new Exception('The insertion was unsuccessful');
+        }
+        
     }
 
     /**
@@ -111,15 +123,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function whenTheButtonIsClicked($button)
     {
-        $driver = new \Behat\Mink\Driver\GoutteDriver();
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://127.0.0.1:8000/');
-        $page = $session->getPage();
-        $button = $page->findButton('scholarButton');
-        if(null === $button){
-            throw new Exception('The element is not found');
-        }
+        // $driver = new \Behat\Mink\Driver\GoutteDriver();
+        // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        // $session = new \Behat\Mink\Session($driver);
+        // $session->start();
+        // $session->visit('http://127.0.0.1:8000/');
+        // $page = $session->getPage();
+        // $button = $page->findButton('scholarButton');
+        // if(null === $button){
+        //     throw new Exception('The element is not found');
+        // }
 
     }
 
@@ -480,14 +493,14 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIAmAtThePaperlistPage2()
     {
-        $driver = new \Behat\Mink\Driver\GoutteDriver();
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://127.0.0.1:8000/');
-        $page = $session->getPage();
-        if(null === $page){
-            throw new Exception('The element is not found');
-        }
+        // $driver = new \Behat\Mink\Driver\GoutteDriver();
+        // $session = new \Behat\Mink\Session($driver);
+        // $session->start();
+        // $session->visit('http://127.0.0.1:8000/');
+        // $page = $session->getPage();
+        // if(null === $page){
+        //     throw new Exception('The element is not found');
+        // }
     }
 
     /**

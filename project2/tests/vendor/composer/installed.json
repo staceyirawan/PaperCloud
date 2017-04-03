@@ -1789,5 +1789,45 @@
             "testing",
             "webdriver"
         ]
+    },
+    {
+        "name": "enm1989/chromedriver",
+        "version": "2.28",
+        "version_normalized": "2.28.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ENM1989/chromedriver.git",
+            "reference": "5be390b5a7ab2fa89f71745ef8d6f8995e478b01"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ENM1989/chromedriver/zipball/5be390b5a7ab2fa89f71745ef8d6f8995e478b01",
+            "reference": "5be390b5a7ab2fa89f71745ef8d6f8995e478b01",
+            "shasum": ""
+        },
+        "time": "2017-03-09T14:01:15+00:00",
+        "bin": [
+            "bin/chromedriver"
+        ],
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache License Version 2.0"
+        ],
+        "authors": [
+            {
+                "name": "Nico Müller",
+                "email": "nico.mueller.1989@googlemail.com"
+            }
+        ],
+        "description": "Composer distribution of Chromedriver. Adds a executable to your composer bin directory.",
+        "homepage": "https://github.com/ENM1989/chromedriver",
+        "keywords": [
+            "Chromedriver",
+            "chrome",
+            "selenium",
+            "webdriver"
+        ]
     }
 ]
