@@ -480,7 +480,14 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIAmAtThePaperlistPage2()
     {
-        throw new PendingException();
+        $driver = new \Behat\Mink\Driver\GoutteDriver();
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        if(null === $page){
+            throw new Exception('The element is not found');
+        }
     }
 
     /**
