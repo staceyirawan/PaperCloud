@@ -270,7 +270,7 @@ class PaperController extends Controller
 
 			$abstract = $papers['abstract'];
 
-			return view('paperpage', ['abstract' => $abstract, 'word' => $word, 'title' => $title);
+			return view('paperpage', ['abstract' => $abstract, 'word' => $word, 'title' => $title]);
 
 		}
 
@@ -286,6 +286,15 @@ class PaperController extends Controller
 
 	//CONFERNECE STUFF
 		public function getPaperListFromConference($conferenceName){
+
+			$titles = array();
+			$authors = array();
+
+			//Get list of ACM papers
+
+			//Get list of IEEE papers
+
+//			$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/'
 
 		}
 
