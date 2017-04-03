@@ -88,7 +88,6 @@ class PaperController extends Controller
 			$paperJSON = PaperController::getPapersFromKeywords($keyword);
 			$papers = $paperJSON['document'];
 
-
 			$papersThatContainWord = array();
 			$frequencyArr = array();
 
@@ -101,6 +100,9 @@ class PaperController extends Controller
 					array_push($papersThatContainWord, $papers[$i]);
 					array_push($frequencyArr, $count);
 				} 
+			}
+
+			var_dump($papersThatContainWord);
 			
 			$titleArr = $this->getPaperTitles($papersThatContainWord);
 			$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
@@ -108,8 +110,6 @@ class PaperController extends Controller
 			$downloadArr = $this->getDownloadLinks($papersThatContainWord);
 
 			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
-			}
-
 		}
 
 
