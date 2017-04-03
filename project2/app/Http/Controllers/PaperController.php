@@ -48,7 +48,7 @@ class PaperController extends Controller
 			$wordList = array_filter($wordList);
 			$wordList = array_count_values($wordList);
 			arsort($wordList);
-			$wordList = array_slice($wordList, 0, 250, true);
+			$wordList = array_slice($wordList, 0, 100, true);
 
 			return $wordList;
 		}
