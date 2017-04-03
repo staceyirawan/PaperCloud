@@ -31,7 +31,28 @@ class PaperController extends Controller
     	$json = PaperController::getJSONFromXML($xml);
     	return $json;
     }
-    
+   
+
+		public function combineAbstractsFromIEEEPapers($papers){
+			$allAbstractsText = "";
+
+			for ($i=0; $i < count($papers); $i++){
+				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
+			}
+			return $allAbstractsText;
+		} 
+
+
+		public function createWordListFromText($allText){
+			$wordList = explode(" ", $allText);
+			$wordList = array_filter($wordList);
+			$wordList = array_count_values($wordList);
+			arsort($wordList);
+			$wordList = array_slice($wordList, 0, 250, true);
+
+			return $wordList;
+		}
+
 
     public function show($name) {
     	// $paper = PaperController::getPapersFromAuthor($name);
@@ -39,18 +60,26 @@ class PaperController extends Controller
     	$paperJSON = PaperController::getPapersFromKeywords($name);
     	$papers = $paperJSON['document'];
 
-    	for($i = 0; $i < count($papers); $i++) {
-    		$paperTitle = $papers[$i]['title'];
-    		echo $i . ' ' . $paperTitle;
+    	//for($i = 0; $i < count($papers); $i++) {
+    	//	$paperTitle = $papers[$i]['title'];
+    	//	echo $i . ' ' . $paperTitle;
 		//var_dump($papers[$i]);
-		$pdfString = $papers[$i]['pdf'];
+		//$pdfString = $papers[$i]['pdf'];
 		//$parser = new \Smalot\PdfParser\Parser();
 		//$pdf = $parser->parseFile(file_get_contents($pdfString));
 		//echo file_get_contents($pdfString);
 		//$text = $pdf->getText();
 		//echo $text;
-    		echo '<br/>';
-    	}
+    	//	echo '<br/>';
+    	//}
+			$allAbstracts = $this->combineAbstractsFromIEEEPapers($papers);
+			$wordList = $this->createWordListFromText($allAbstracts);
+
+			$wcc = new WordCloudController();
+			$wordCloudString = $wcc->createWordCloudString($wordList, 1);
+
+	    return view('wordcloud', ['wordCloudString' => $wordCloudString]);
+
     	//return $paper;
 
 
