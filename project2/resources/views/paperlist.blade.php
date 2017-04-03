@@ -14,11 +14,8 @@
         <body> 
         <?php      
 
-            $frequencies = json_decode($frequencies, true);
-            $conferences = json_decode($conferences, true);
-            $authors = json_decode($authors, true);
-            $titles = json_decode($titles, true);
-            
+            echo $titles[0];
+                        
             /*
             for($i = 0; $i < sizeOf($songs); $i++) {
                if($songs[$tracks[$i]['track']['track_name']] > 0) {
