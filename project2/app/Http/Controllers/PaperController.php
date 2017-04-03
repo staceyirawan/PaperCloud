@@ -109,7 +109,13 @@ class PaperController extends Controller
 			$conferenceArr = $this->getPaperConferences($papersThatContainWord);
 			$downloadArr = $this->getDownloadLinks($papersThatContainWord);
 
+<<<<<<< HEAD
+			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr]);
+			}
+
+=======
 			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
+>>>>>>> 075fccb9675ba2851f7a8b04b71508daa5d64b46
 		}
 
 
