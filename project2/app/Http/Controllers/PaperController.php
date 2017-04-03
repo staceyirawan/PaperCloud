@@ -260,4 +260,38 @@ class PaperController extends Controller
     }
 
 
+
+	//ABSTRACT STUFF
+		public function showAbstract($title, $word){
+			//NOTE: once we implement ACM stuff, need to search both databases for the paper
+			
+			$paperJSON = PaperController::getIEEEPaperFromTitle($title);
+			$papers = $paperJSON['document'];
+
+			$abstract = $papers['abstract'];
+
+			return view('paperpage', ['abstract' => $abstract, 'word' => $word, 'title' => $title);
+
+		}
+
+
+		public function getIEEEPaperFromTitle($title) {
+    	$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 5.0]);
+    	$xml = $client->get('ipsSearch.jsp?ti=' . $title);
+    	$json = PaperController::getJSONFromXML($xml);
+    	return $json;
+    }
+
+
+
+	//CONFERNECE STUFF
+		public function getPaperListFromConference($conferenceName){
+
+		}
+
+
+
+
+
+
 } 
