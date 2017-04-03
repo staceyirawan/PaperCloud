@@ -31,8 +31,8 @@
 
 #searchCloud {
     position: fixed;
-    left: 35%;
-    top: 70%;
+    left: 10%;
+    top: 10%;
 
 }
 
@@ -98,19 +98,16 @@ pageTitle {
 }
 </style>
 </head>
-<body onload = "loadCloud()">
 
-<div id = "squishit">
-    <p id="wordcloud"> </p>
-</div>
 
+
+ <body onload = "loadCloud()">
     <div id = "searchCloud">
-      <form action="/word_cloud.php">
-          <br>
-          <br>
-          <br>
 
-      </form>
-<button onclick="">Share</button>
+    <p id="wordcloud"> </p>
+
+         
+
+ 
 </div>
 </body>

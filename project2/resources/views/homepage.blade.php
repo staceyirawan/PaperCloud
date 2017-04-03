@@ -16,18 +16,21 @@
                 var baseURL = "http://localhost:8000/papers/scholar/";
                 searchWord = document.getElementById("myText").value;
                 var url = baseURL.concat(searchWord);
-                if (artistID!=""){
-                window.location.href = "http://localhost:8000/papers/asdf"
+
+                if (searchWord!=""){
+                window.location.href = "http://localhost:8000/papers/asdf";
                 //window.location.href = url;} FIX THIS!!!!!!!
                 }
+            };
             function goToCloudWithKeyword(){
                 var baseURL = "http://localhost:8000/papers/keyword/";
                 searchWord = document.getElementById("myText").value;
                 var url = baseURL.concat(searchWord);
+
                 if (searchWord != "") {
                     window.location.href = url;
                 }
-            }
+            };
 
 
         </script>
