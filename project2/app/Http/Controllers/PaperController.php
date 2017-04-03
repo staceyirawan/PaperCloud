@@ -305,7 +305,7 @@ class PaperController extends Controller
 				$authors[$i] = $papers[$i]['authors'];
 			}
 
-
+			$authors = str_replace(";", ",", $authors);
 			return view('conferencepage', ['titles' => $titles, 'authors' => $authors]);
 		}
 
