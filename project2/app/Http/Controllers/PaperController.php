@@ -190,7 +190,6 @@ class PaperController extends Controller
 
     /* Get an array of pdf links from ACM library with given author name(s) */
     public function getACMPapersFromAuthor($author) {
-    	echo getcwd();
          // Run python script on terminal and retrieve csv content file
         $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --author=' . $author);
         $array = array_map("str_getcsv", explode("\n", $execution));
