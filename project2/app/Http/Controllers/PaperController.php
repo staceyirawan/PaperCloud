@@ -42,6 +42,7 @@ class PaperController extends Controller
 			for ($i=0; $i < count($papers); $i++){
 				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
 			}
+			$allAbstractsText = strtolower($allAbstractsText);
 			return $allAbstractsText;
 		} 
 
@@ -117,7 +118,7 @@ class PaperController extends Controller
 
 
 		public function showPaperListFromName($lastName, $word){
-			$paperJSON = PaperController::getPapersFromName($lastName);
+			$paperJSON = $this->getPapersFromAuthor($lastName);
 			$papers = $paperJSON['document'];
 
 			$papersThatContainWord = array();
