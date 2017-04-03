@@ -36,9 +36,6 @@
 
 }
 
-
-}
-
 a{
   text-decoration: none;
 }
