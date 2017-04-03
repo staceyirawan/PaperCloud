@@ -40,7 +40,7 @@
                     echo "</td>";
 
                     echo "<td>";
-                    for ($n = 0; $n < sizeof($authors); $n++){
+                    for ($n = 0; $n < sizeof($authors[$i]); $n++){
                     echo $authors[$i][$n];
                     echo ", ";
                     }
