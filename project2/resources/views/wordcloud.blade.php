@@ -8,6 +8,7 @@
         <title>PaperCloud</title>
 	<br>
         <script type = "text/javascript">
+        
 	  function loadCloud(){
             var wordCloudString =  "<?php echo $wordCloudString?>";
 	    document.getElementById("wordcloud").innerHTML= wordCloudString;
@@ -100,7 +101,6 @@ pageTitle {
 <body onload = "loadCloud()">
 
 <div id = "squishit">
-    <font size= "+2"> <?php echo $artistName?> </font>
     <p id="wordcloud"> </p>
 </div>
 
