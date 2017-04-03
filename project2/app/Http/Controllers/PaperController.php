@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
+include '../vendor/autoload.php';
+include_once 'simple_html_dom.php';
+
 class PaperController extends Controller
 {
 	/* Convert XML data to JSON */
@@ -183,6 +186,73 @@ class PaperController extends Controller
             $paperConferences[$i] = $papers[$i]['pubtitle'];
         }
         return $paperConferences;
+    }
+
+    /* Get an array of pdf links from ACM library with given author name(s) */
+    public function getACMPapersFromAuthor($author) {
+    	echo getcwd();
+         // Run python script on terminal and retrieve csv content file
+        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --author=' . $author);
+        $array = array_map("str_getcsv", explode("\n", $execution));
+
+        $counter = 0;
+        $pdfLinks = array();
+
+        for($i = 1; $i<count($array); $i+=10) {
+            
+            $pURL = $array[$i][0];
+            $pURL = trim($pURL);
+
+            $tUArray = array();
+            $tUArray = explode(" ", $pURL);
+            $tURL = $tUArray[1];
+
+
+            $pdfLinks[$counter] = PaperController::getPDFFromHTML($tURL);
+
+            $counter++;
+        }
+
+        return $pdfLinks;
+
+    }
+    /* Get an array of pdf links from ACM library with given keyword(s) */
+    public function getACMPapersFromKeyword($keyword) {
+        // Run python script on terminal and retrieve csv content file
+        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --some=' . $keyword);
+        $array = array_map("str_getcsv", explode("\n", $execution));
+
+        $counter = 0;
+        $pdfLinks = array();
+
+        for($i = 1; $i<count($array); $i+=10) {
+            
+            $pURL = $array[$i][0];
+            $pURL = trim($pURL);
+
+            $tUArray = array();
+            $tUArray = explode(" ", $pURL);
+            $tURL = $tUArray[1];
+
+            $pdfLinks[$counter] = PaperController::getPDFFromHTML($tURL);
+
+            $counter++;
+        }
+
+        return $pdfLinks;
+
+    }
+
+    // Scrape html for pdf link
+    public function getPDFFromHTML($tURL) {
+        $html = file_get_html($tURL);
+        $pdfLink;
+        foreach($html->find('meta') as $element) {
+            if($element->name == "citation_pdf_url") {
+                $pdfLink = $element->content;
+            }
+        }
+        return $pdfLink;
     }
 
 
