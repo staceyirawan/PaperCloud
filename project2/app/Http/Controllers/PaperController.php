@@ -102,7 +102,7 @@ class PaperController extends Controller
 				} 
 			}
 
-			var_dump($papersThatContainWord);
+		//	var_dump($papersThatContainWord);
 			
 			$titleArr = $this->getPaperTitles($papersThatContainWord);
 			$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
@@ -116,7 +116,6 @@ class PaperController extends Controller
 		public function showPaperListFromName($lastName, $word){
 			$paperJSON = PaperController::getPapersFromName($lastName);
 			$papers = $paperJSON['document'];
-
 
 			$papersThatContainWord = array();
 			$frequencyArr = array();
@@ -148,7 +147,6 @@ class PaperController extends Controller
 			}	
 			return $paperDownloadLinks;
 		}
-
 
     public function getPaperTitles($papers) {
         $paperTitles = array();
