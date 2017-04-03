@@ -53,21 +53,34 @@ class PaperController extends Controller
 			return $wordList;
 		}
 
+		public function showWordCloudFromName($lastName){
+			$paperJSON = PaperController::getPapersFromAuthor($lastName);
+			$papers = $paperJSON['document'];
 
-    public function show($name) {
+			//var_dump($papers);
+
+			return $this->show($papers);
+		}
+
+		public function showWordCloudFromKeyword($keyword){
+    	$paperJSON = PaperController::getPapersFromKeywords($keyword);
+    	$papers = $paperJSON['document'];
+
+
+			//var_dump($papers);
+
+			return $this->show($papers);
+		}
+
+
+    public function show($papers) {
     	// $paper = PaperController::getPapersFromAuthor($name);
     	// return $paper;
-    	$paperJSON = PaperController::getPapersFromKeywords($name);
-    	$papers = $paperJSON['document'];
 
     	//for($i = 0; $i < count($papers); $i++) {
     	//	$paperTitle = $papers[$i]['title'];
     	//	echo $i . ' ' . $paperTitle;
 		//var_dump($papers[$i]);
-		//$pdfString = $papers[$i]['pdf'];
-		//$parser = new \Smalot\PdfParser\Parser();
-		//$pdf = $parser->parseFile(file_get_contents($pdfString));
-		//echo file_get_contents($pdfString);
 		//$text = $pdf->getText();
 		//echo $text;
     	//	echo '<br/>';

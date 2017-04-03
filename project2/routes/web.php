@@ -14,4 +14,7 @@
 Route::get('/', function () {
      return view('homepage');
  });
-Route::get('papers/{name}', 'PaperController@show')->name('papers.get');
+Route::get('papers/scholar/{lastName}', 'PaperController@showWordCloudFromName')->name('paperbyname.get');
+
+
+Route::get('papers/keyword/{keyword}', 'PaperController@showWordCloudFromKeyword')->name('paperbykeyword.get');
