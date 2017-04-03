@@ -104,7 +104,8 @@ class PaperController extends Controller
 			
 			$titleArr = $this->getPaperTitles($papersThatContainWord);
 			$authorArr = $this->separateAuthors(getPaperAuthors($papersThatContainWord));
-			$conferenceArr = $this->getPaperConferences($papersThatContainWord));
+			$conferenceArr = $this->getPaperConferences($papersThatContainWord);
+			$downloadArr = $this->getDownloadLinks($papersThatContainWord);
 
 			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr]);
 			}
@@ -115,6 +116,15 @@ class PaperController extends Controller
 		public function showPaperListFromName($lastName, $word){
 
 
+		}
+
+
+		public function getDownloadLinks($papers){
+			$paperDownloadLinks = array();
+			for ($i=0; $i < count($papers); $i++){
+				$paperDownloadLinks[$i] = $papers[$i]['pdf'];
+			}	
+			return $paperDownloadLinks;
 		}
 
 
