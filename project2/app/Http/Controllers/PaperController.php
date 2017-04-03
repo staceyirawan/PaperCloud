@@ -72,6 +72,43 @@ class PaperController extends Controller
 			return $this->show($papers);
 		}
 
+    public function getPaperTitles($papers) {
+        $paperTitles = array();
+        for($i = 0; $i < count($papers); $i++) {
+            $paperTitles[$i] = $papers[$i]['title'];
+        }
+        return $paperTitles;
+    }
+
+    public function getPaperAuthors($papers) {
+        $paperAuthors = array();
+        for($i = 0; $i < count($papers); $i++) {
+            $paperAuthors[$i] = $papers[$i]['authors'];
+        }
+        return $paperAuthors;
+    }
+
+    public function separateAuthors($authors) {
+        $subAuthors = array();
+        $overallAuthors = array();
+
+        for($i = 0; $i < count($authors) ; $i++) {
+            $authorString = $authors[$i];
+            $author = explode(";", $authorString);
+            $subAuthors = $author;
+            $overallAuthors[$i] = $subAuthors;
+        }
+        return $overallAuthors;
+    }
+
+    public function getPaperConferences($papers) {
+        $paperConferences = array();
+        for($i = 0 ; $i < count($papers); $i++) {
+            $paperConferences[$i] = $papers[$i]['pubtitle'];
+        }
+        return $paperConferences;
+    }
+
 
     public function show($papers) {
     	// $paper = PaperController::getPapersFromAuthor($name);
