@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
-include '../vendor/autoload.php';
+//include '../vendor/autoload.php';
 include_once 'simple_html_dom.php';
 
 class PaperController extends Controller
