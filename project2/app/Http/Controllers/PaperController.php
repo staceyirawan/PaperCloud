@@ -294,8 +294,19 @@ class PaperController extends Controller
 
 			//Get list of IEEE papers
 
-//			$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/'
+			$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 5.0]);
+			$xml = $client->get('ipsSearch.jsp?jn=' . $conferenceName);
+			$json = PaperController::getJSONFromXML($xml);
 
+			$papers = $json['document'];
+
+			for ($i=0; $i<count($papers); $i++){
+				$titles[$i] = $papers[$i]['title'];
+				$authors[$i] = $papers[$i]['authors'];
+			}
+
+
+			return view('conferencepage', ['titles' => $titles, 'authors' => $authors]);
 		}
 
 
