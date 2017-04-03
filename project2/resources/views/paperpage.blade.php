@@ -80,6 +80,17 @@ input[type = "text"] {
             echo "Abstract:";
             echo "</h3>";
             echo "<p>";
+
+            ?>
+            <script>
+            var instance = new Mark(document.querySelector("div.context"));
+                var word = "<?php echo $word ?>";
+                instance.mark(word, {
+                    accuracy: "exactly",
+                    limiters: ["(", ")"] 
+            };
+            </script>
+            <?php
             echo $abstract;
             echo "/p";
 

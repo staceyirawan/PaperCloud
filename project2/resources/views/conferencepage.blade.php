@@ -16,10 +16,10 @@
 
         <title> Conference List Page </title>
         
-        <?php echo $conference ?>
+        
 
         <body> 
-
+            <?php echo $authors[0][0]?>
             <table id='myTable' class='tablesorter'>
                 <thead> 
             <tr> 
@@ -137,7 +137,7 @@ html {
 }
 
 body {
-    background-color: #c5c8c4;
+    background-color: #126BBF;
     vertical-align: text-top;
     display: table-cell;
 
@@ -154,7 +154,7 @@ form{
 }
 
 input[type = "button"], input[type = "submit"], button {
-    background-color: #B345F1;
+    background-color: #126BBF;
     height: auto;
     width: 120px;
     font-size: 12px;
