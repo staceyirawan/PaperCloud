@@ -152,9 +152,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
-     * @Given I am on the homepage
+     * @Given the homepage
      */
-    public function iAmOnTheHomepage()
+    public function theHomepage()
     {
         // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
         // $session = new \Behat\Mink\Session($driver);

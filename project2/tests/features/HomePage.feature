@@ -25,7 +25,7 @@ Feature: HomePage Author Search
 
 	@javascript
 	Scenario: Accessing previous searches
-		Given I am on the homepage
+		Given the homepage
 		And that I have previously searched last names or keyterms
 		Then there should be a list of previous searches below the search bar
 
