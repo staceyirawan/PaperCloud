@@ -1,35 +1,84 @@
 <!DOCTYPE html>
+
+
+       
 <html lang="{{ config('app.locale') }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
        
-        <script type="text/javascript">
-            
-            
+        <script type="text/javascript">    </script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/jquery-latest.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/jquery.tablesorter.js') }}"></script> 
+        
 
-        </script>
         <title> Papers List Page </title>
         <body> 
-        <?php      
 
-            echo $titles[0];
-                        
-            /*
-            for($i = 0; $i < sizeOf($songs); $i++) {
-               if($songs[$tracks[$i]['track']['track_name']] > 0) {
-                    $track = $tracks[$i]['track']['track_name'];
-                    echo "<a href = '/api/lyrics/$track/$artistId/$word'>$track</a>";
-                    $frequency = $songs[$tracks[$i]['track']['track_name']];
-                    echo " ($frequency)";
-                    echo "<br>";
+            
+            <table id='myTable' class='tablesorter'>
+                <thead> 
+            <tr> 
+            <th>Title</th> 
+            <th>Author</th> 
+            <th>Conference</th> 
+            <th>Frequency</th> 
+            <th>PDF</th> 
+            <th>BibTex</th> 
+            </tr> 
+            </thead><tbody>
+        <?php              
+            
+            for($i = 0; $i < sizeOf($titles); $i++) {
+               if(sizeOf($titles) > 0) {
+                    
+                    echo "<tr>";
+                    echo "<td>";
+                    echo $titles[$i];
+                    echo "</td>";
+
+                    echo "<td>";
+                    for ($n = 0; $n < sizeof($authors); $n++){
+                    echo $authors[$i][$n];
+                    echo ", ";
+                    }
+                    echo "</td>";
+
+                    echo "<td>";
+                    echo $conferences[$i];
+                    echo "</td>";
+
+                    echo "<td>";
+                    echo $frequencies[$i];
+                    echo "</td>";
+
+                    echo "<td>";
+                    echo "PDF";
+                    echo "</td>";
+
+                    echo "<td>";
+                    echo "BibTex";
+                    echo "</td>";
                }
             }
-            */
+        
+
         ?>
+        </tbody></table>
+
         </body>
 
+<script type="text/javascript">
+        $(document).ready(function() 
+    { 
+        $("#myTable").tablesorter( {sortList: [[3,1], [1,0]]} ); 
+    } 
+); 
+    
+        
+</script>
 
 <style>
 #wrapper {
@@ -120,11 +169,13 @@ pageTitle {
 }
 </style>
 </head>
-<!-- <body>
-  <div id = "songList"> #Insert while loop for results
-      <br>
-      Song 1 (12)
-      <br>
-      Song 2 (10)
-  </div>
-</body> -->
+ <body>
+  
+      
+</body>
+
+
+
+
+
+
