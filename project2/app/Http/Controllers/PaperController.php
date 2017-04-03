@@ -40,7 +40,9 @@ class PaperController extends Controller
 			$allAbstractsText = "";
 
 			for ($i=0; $i < count($papers); $i++){
-				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
+				if (array_key_exists('abstract', $papers[$i])){
+					$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
+				}
 			}
 			$allAbstractsText = strtolower($allAbstractsText);
 			return $allAbstractsText;
@@ -96,6 +98,7 @@ class PaperController extends Controller
 			$frequencyArr = array();
 
 			for ($i=0; $i<count($papers); $i++){
+				if (!array_key_exists('abstract', $papers[$i])) continue;
 				$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
 				$wordsToSearch = strtolower($wordsToSearch);
 
@@ -125,6 +128,7 @@ class PaperController extends Controller
 			$frequencyArr = array();
 
 			for ($i=0; $i<count($papers); $i++){
+				if (!array_key_exists('abstract', $papers[$i])) continue;
 				$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
 				$wordsToSearch = strtolower($wordsToSearch);
 
