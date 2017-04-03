@@ -15,11 +15,9 @@
         
 
         <title> Conference List Page </title>
-        
-        
-
+    
         <body> 
-            <?php echo $authors[0][0]?>
+
             <table id='myTable' class='tablesorter'>
                 <thead> 
             <tr> 
@@ -39,7 +37,7 @@
 
                     echo "<td>";
                     for ($n = 0; $n < sizeof($authors[$i]); $n++){
-                    echo $authors[$i][$n];
+                    echo $authors[$i];
                     echo ", ";
                     }
                     echo "</td>";

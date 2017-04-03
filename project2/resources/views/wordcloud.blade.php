@@ -11,6 +11,7 @@
         
 	  function loadCloud(){
             var wordCloudString =  "<?php echo $wordCloudString?>";
+            
 	    document.getElementById("wordcloud").innerHTML= wordCloudString;
           }
         </script>
