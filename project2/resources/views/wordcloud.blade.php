@@ -31,29 +31,11 @@
 
 #searchCloud {
     position: fixed;
-    left: 10%;
+    left: 5%;
     top: 10%;
 
 }
 
-#songList {
-    position: fixed;
-    left: 40%;
-
-    text-align: left;
-}
-
-#squishit {
-    position: fixed;
-    left: 20%;
-    top: 10%;
-    max-width: 1080px;
-}
-
-#lyrics {
-    position: fixed;
-    left: 20%;
-    text-align: center;
 
 }
 

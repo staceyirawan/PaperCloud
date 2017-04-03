@@ -50,26 +50,7 @@
 
 }
 
-#searchCloud {
-    position: fixed;
-    left: 35%;
-    top: 70%;
 
-}
-
-#songList {
-    position: fixed;
-    left: 40%;
-
-    text-align: left;
-}
-
-#lyrics {
-    position: fixed;
-    left: 20%;
-    text-align: center;
-    max-width: 700px;
-}
 
 body {
     background-color: #c5c8c4;
@@ -115,8 +96,8 @@ pageTitle {
         <br>
         <input type="text" name="searchWord" value = "" size ="50" id="myText">
         <br><br>
-        <button onclick="goToCloudWithScholar()">Search by Scholar</button>
-        <button onclick="goToCloudWithKeyword()">Search by Keyword</button>
+        <button onclick="goToCloudWithScholar()" id = "scholarButton">Search by Scholar</button>
+        <button onclick="goToCloudWithKeyword()" id = "keywordButton">Search by Keyword</button>
         <br>
 
 </div>
