@@ -79,12 +79,43 @@ class PaperController extends Controller
 			$wordCloudString = $wcc->createWordCloudString($wordList, $keyword, "keyword");
 
 	    return view('wordcloud', ['wordCloudString' => $wordCloudString]);
-
-
 		}
 
 
 
+
+		public function showPaperListFromKeyword($keyword, $word){
+			$paperJSON = PaperController::getPapersFromKeywords($keyword);
+			$papers = $paperJSON['document'];
+
+
+			$papersThatContainWord = array();
+			$frequencyArr = array();
+
+			for ($i=0; $i<count($papers); $i++){
+				$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
+				$wordsToSearch = strtolower($wordsToSearch);
+
+	      $count = substr_count($wordsToSearch, " " . $word . " ");
+				if ($count != 0){
+					array_push($papersThatContainWord, $papers[$i]);
+					array_push($frequencyArr, $count);
+				} 
+			
+			$titleArr = $this->getPaperTitles($papersThatContainWord);
+			$authorArr = $this->separateAuthors(getPaperAuthors($papersThatContainWord));
+			$conferenceArr = $this->getPaperConferences($papersThatContainWord));
+
+			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr]);
+			}
+
+		}
+
+
+		public function showPaperListFromName($lastName, $word){
+
+
+		}
 
 
     public function getPaperTitles($papers) {
