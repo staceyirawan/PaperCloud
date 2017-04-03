@@ -18,8 +18,8 @@
                 var url = baseURL.concat(searchWord);
 
                 if (searchWord!=""){
-                window.location.href = "http://localhost:8000/papers/asdf";
-                //window.location.href = url;} FIX THIS!!!!!!!
+                
+                window.location.href = url;
                 }
             };
             function goToCloudWithKeyword(){
