@@ -35,16 +35,12 @@
                if(sizeOf($titles) > 0) {
                     
                     echo "<tr>";
-                    $title = $titles[$i];
-                    $url = urldecode("/abstract/$title/$word");
-                    echo "<td><a href = '/abstract/$title/$word'>";
-                    
-
+                    echo "<td>";
                     echo $titles[$i];
-                    echo "</a></td>";
+                    echo "</td>";
 
                     echo "<td>";
-                    for ($n = 0; $n < (sizeof($authors[$i])); $n++){
+                    for ($n = 0; $n < sizeof($authors[$i]); $n++){
                     echo $authors[$i][$n];
                     echo ", ";
                     }
