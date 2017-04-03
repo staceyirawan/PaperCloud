@@ -156,15 +156,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheHomepage()
     {
-        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://127.0.0.1:8000/');
-        $webString = "http://127.0.0.1:8000";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.");
-        }
+        // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        // $session = new \Behat\Mink\Session($driver);
+        // $session->start();
+        // $session->visit('http://127.0.0.1:8000/');
+        // $webString = "http://127.0.0.1:8000";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.");
+        // }
+        throw new PendingException();
     }
 
     /**
@@ -307,6 +308,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             throw new PendingException();
         }
+        $session->stop();
     }
 
     /**
