@@ -45,15 +45,15 @@
 }
 #search {
     position: fixed;
-    left: 35%;
-    top: 50%;
+    left: 30%;
+    top: 40%;
 
 }
 
 
 
 body {
-    background-color: #c5c8c4;
+    background-color: #126BBF;
 
 }
 
@@ -63,10 +63,11 @@ form{
 }
 
 input[type = "button"], input[type = "submit"], button {
-    background-color: #B345F1;
+    background-color:#D54A50;
     height: auto;
-    width: 120px;
-    font-size: 12px;
+    width: 100%;
+    font-size: 20px;
+    color: white;
     display: inline-block;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -78,6 +79,7 @@ input[type = "text"] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
+    font-size: 20px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -97,6 +99,7 @@ pageTitle {
         <input type="text" name="searchWord" value = "" size ="50" id="myText">
         <br><br>
         <button onclick="goToCloudWithScholar()" id = "scholarButton">Search by Scholar</button>
+        <br><br>
         <button onclick="goToCloudWithKeyword()" id = "keywordButton">Search by Keyword</button>
         <br>
 

@@ -38,10 +38,12 @@
 
 a{
   text-decoration: none;
+color: #f8f8f8; font-family: 'Raleway',sans-serif;
 }
 
+
 body {
-    background-color: #c5c8c4;
+    background-color: #126BBF;
 
 }
 
@@ -83,7 +85,7 @@ pageTitle {
  <body onload = "loadCloud()">
     <div id = "searchCloud">
 
-    <p id="wordcloud"> </p>
+    <a id="wordcloud"> </a>
 
          
 

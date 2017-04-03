@@ -14,7 +14,7 @@
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
 
 }
 #search {
@@ -31,17 +31,23 @@
 
 }
 
-#songList {
-    position: fixed;
-    left: 40%;
-    float:left;
-    text-align: left;
-}
+h1 { color: #ffffff; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 500; line-height: 50px; margin: 0 0 24px; text-align: center; text-transform: uppercase; }
+
+
+h2 { color: #ffffff; font-family: 'Raleway',sans-serif; font-size: 30px; font-weight: 800; line-height: 36px; margin: 0 0 24px; text-align: left; }
+
+h3 { color: #000000; font-family: 'Raleway',sans-serif; font-size: 25px; font-weight: 800; line-height: 20px; margin: 0 0 24px; text-align: left; }
+
+
+p { color: #f8f8f8; font-family: 'Raleway',sans-serif; font-size: 18px; font-weight: 500; line-height: 32px; margin: 0 0 24px; }
+
+
+a { color: #c8c8c8; text-decoration: underline; }
 
 
 
 body {
-    background-color: #c5c8c4;
+    background-color: #126BBF;
 	overflow-y: scroll;
 }
 
@@ -62,12 +68,22 @@ input[type = "text"] {
 
 </style>
 </head>
-
+<body>
 <div id = "wrapper">
-    <pageTitle></pageTitle>
+    
     <br><br>
     <div class = "context">
-        
+        <?php 
+            echo "<h2><a>";
+            echo $title;
+            echo "</a></h2><h3>";
+            echo "Abstract:";
+            echo "</h3>";
+            echo "<p>";
+            echo $abstract;
+            echo "/p";
+
+        ?>
     </div>
-    </body>
+</body>
 </div>

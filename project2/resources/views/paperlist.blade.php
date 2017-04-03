@@ -36,7 +36,7 @@
                     
                     echo "<tr>";
                     $title = $titles[$i];
-                    $url = urldecode("/abstract/$title/$word");
+                    
                     echo "<td><a href = '/abstract/$title/$word'>";
                     
 
@@ -50,7 +50,10 @@
                     }
                     echo "</td>";
 
+                    $conference = $conferences[$i];
+                    
                     echo "<td>";
+                    echo "<a href = '/conference/$conference'>";
                     echo $conferences[$i];
                     echo "</td>";
 
@@ -157,7 +160,7 @@ html {
 }
 
 body {
-    background-color: #c5c8c4;
+    background-color: #126BBF;;
     vertical-align: text-top;
     display: table-cell;
 

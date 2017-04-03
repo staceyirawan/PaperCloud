@@ -14,19 +14,17 @@
         <script type="text/javascript" src="{{ URL::asset('js/jquery.tablesorter.js') }}"></script> 
         
 
-        <title> Papers List Page </title>
+        <title> Conference List Page </title>
+        
+        <?php echo $conference ?>
+
         <body> 
 
-            
             <table id='myTable' class='tablesorter'>
                 <thead> 
             <tr> 
             <th>Title</th> 
             <th>Author</th> 
-            <th>Conference</th> 
-            <th>Frequency</th> 
-            <th>PDF</th> 
-            <th>BibTex</th> 
             </tr> 
             </thead><tbody>
         <?php              
@@ -46,21 +44,7 @@
                     }
                     echo "</td>";
 
-                    echo "<td>";
-                    echo $conferences[$i];
-                    echo "</td>";
-
-                    echo "<td>";
-                    echo $frequencies[$i];
-                    echo "</td>";
-
-                    echo "<td>";
-                    echo "PDF";
-                    echo "</td>";
-
-                    echo "<td>";
-                    echo "BibTex";
-                    echo "</td>";
+                    
                }
             }
         
