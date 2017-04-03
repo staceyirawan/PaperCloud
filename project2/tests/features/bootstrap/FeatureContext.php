@@ -5,6 +5,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Mink\Driver\Selenium3Driver;
 use Behat\MinkExtension\Context\MinkContext;
 
 /**
@@ -17,6 +18,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     private $paperListPageStatus;
     private $paperPageStatus;
     private $wordCloudStatus;
+    public $driver;
+    public $session;
+    public $page;
     /**
      * Initializes context.
      *
@@ -27,16 +31,28 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function __construct()
     {
         // $this->homePageStatus = new HomePageStatus();
+        //$session->executeScript('document.body.firstChild.innerHTML = "";');
+        // $driver = new \Behat\Mink\Driver\GoutteDriver();
+        // $session = new \Behat\Mink\Session($driver);
+        // $session->start();
+        // $session->visit('http://127.0.0.1:8000/');
+
     }
 
 
     /**
-     * @Given there is a :textbox in the homePage web page
+     * @Given there is a textbox in the homePage web page
      */
-    public function thereIsATextboxInTheHomepageWebPage($textbox)
+    public function thereIsATextboxInTheHomepageWebPage()
     {
-        if($textbox->live() == true){
-            return true;
+        $driver = new \Behat\Mink\Driver\GoutteDriver();
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");
+        if(null === $textbox){
+            throw new Exception('The element is not found');
         }
     }
 
@@ -95,7 +111,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function whenTheButtonIsClicked($button)
     {
-        
+        $driver = new \Behat\Mink\Driver\GoutteDriver();
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $button = $page->findButton('scholarButton');
+        if(null === $button){
+            throw new Exception('The element is not found');
+        }
+
     }
 
     /**
@@ -462,6 +487,38 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      * @Given that I am on the paper list page
      */
     public function thatIAmOnThePaperListPage2()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given that an invalid author is input in the search box
+     */
+    public function thatAnInvalidAuthorIsInputInTheSearchBox()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given the search button for author is pressed
+     */
+    public function theSearchButtonForAuthorIsPressed()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then a pop up box will display an error message
+     */
+    public function aPopUpBoxWillDisplayAnErrorMessage()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given that an invalid keyword is input in the search box
+     */
+    public function thatAnInvalidKeywordIsInputInTheSearchBox()
     {
         throw new PendingException();
     }
