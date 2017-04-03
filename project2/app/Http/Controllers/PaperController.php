@@ -107,15 +107,37 @@ class PaperController extends Controller
 			$conferenceArr = $this->getPaperConferences($papersThatContainWord);
 			$downloadArr = $this->getDownloadLinks($papersThatContainWord);
 
-			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr]);
+			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
 			}
 
 		}
 
 
 		public function showPaperListFromName($lastName, $word){
+			$paperJSON = PaperController::getPapersFromName($lastName);
+			$papers = $paperJSON['document'];
 
 
+			$papersThatContainWord = array();
+			$frequencyArr = array();
+
+			for ($i=0; $i<count($papers); $i++){
+				$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
+				$wordsToSearch = strtolower($wordsToSearch);
+
+	      $count = substr_count($wordsToSearch, " " . $word . " ");
+				if ($count != 0){
+					array_push($papersThatContainWord, $papers[$i]);
+					array_push($frequencyArr, $count);
+				}
+			} 
+			
+			$titleArr = $this->getPaperTitles($papersThatContainWord);
+			$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
+			$conferenceArr = $this->getPaperConferences($papersThatContainWord);
+			$downloadArr = $this->getDownloadLinks($papersThatContainWord);
+
+			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
 		}
 
 
