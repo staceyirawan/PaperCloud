@@ -4,8 +4,6 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="/js/mark.min.js"></script>
-
         <title>PaperPage</title>
         
 
@@ -30,6 +28,16 @@
     top: 70%;
 
 }
+
+span.highlight {
+    background-color: yellow;
+}
+
+#wrap{
+    width: screen.width; 
+    word-wrap: break-word;
+}
+
 
 h1 { color: #ffffff; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 500; line-height: 50px; margin: 0 0 24px; text-align: center; text-transform: uppercase; }
 
@@ -66,7 +74,7 @@ input[type = "text"] {
     box-sizing: border-box;
 }
 
-</style>
+</style>    
 </head>
 <body>
 <div id = "wrapper">
@@ -80,9 +88,18 @@ input[type = "text"] {
             echo "Abstract:";
             echo "</h3>";
             
-            echo $abstract;
-            echo "/p";
-
+            $words = explode(' ', $abstract);
+            $abstract = '';
+            foreach($words as $str){
+                if (strtolower($str) == $word) {
+                    $abstract = $abstract . "<span class='highlight'>$str</span>" . " ";
+                }
+                else
+                {
+                    $abstract = $abstract . $str . " ";
+                }
+            }
+            echo '<div id="wrap">'.$abstract.' </div>';
         ?>
     </div>
 </body>
