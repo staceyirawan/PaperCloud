@@ -1380,4 +1380,87 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //         throw new Exception ("There is no word: ".$wordClicked);
     //     } 
     // }
+
+    //almost u s   e   l ss ees 
+    // $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }// $pdfButton = $page->findById("pdf1");
+        // $pdfButton->mouseOver();
+        // $wordClicked->click();
+        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        //     // throw new PendingException();
+        // }
 }
