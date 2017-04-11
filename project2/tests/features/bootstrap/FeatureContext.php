@@ -45,8 +45,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thereIsATextboxInTheHomepageWebPage()
     {
-        $driver = new \Behat\Mink\Driver\GoutteDriver();
-        //$driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        // $driver = new \Behat\Mink\Driver\GoutteDriver();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver();
         $session = new \Behat\Mink\Session($driver);
         $session->start();
         $session->visit('http://127.0.0.1:8000/');
@@ -55,6 +55,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         if(null === $textbox){
             throw new Exception('The element is not found');
         }
+        $session->stop();
     }
 
     /**
@@ -62,8 +63,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAddIntoTheTextbox()
     {
-        $driver = new \Behat\Mink\Driver\GoutteDriver();
-        //$driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        // $driver = new \Behat\Mink\Driver\GoutteDriver();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver();
         $session = new \Behat\Mink\Session($driver);
         $session->start();
         $session->visit('http://127.0.0.1:8000/');

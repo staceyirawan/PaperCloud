@@ -14,7 +14,7 @@
 #           browser: chrome
 default:
   extensions:
-    # Laracasts\Behat:
+    # Laracasts\Behat: 
     #   env_path: .env.behat
     Behat\MinkExtension:
       base_url: http://127.0.0.1:8000/
