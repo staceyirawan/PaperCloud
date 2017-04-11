@@ -17,11 +17,11 @@ default:
     # Laracasts\Behat: 
     #   env_path: .env.behat
     Behat\MinkExtension:
-      base_url: http://127.0.0.1:8000/
+      base_url: http://127.0.0.1:7:8000/
       default_session: ~
       browser_name: firefox
       # laravel: ~
-      selenium2:
+      selenium2: 
         wd_host: http://192.168.178.26:4444/wd/hub
         capabilities:
           browser: firefox

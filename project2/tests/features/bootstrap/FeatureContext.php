@@ -21,6 +21,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public $driver;
     public $session;
     public $page;
+
     /**
      * Initializes context.
      *
@@ -45,11 +46,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thereIsATextboxInTheHomepageWebPage()
     {
+<<<<<<< HEAD
         // $driver = new \Behat\Mink\Driver\GoutteDriver();
         $driver = new \Behat\Mink\Driver\Selenium2Driver();
+=======
+        
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+>>>>>>> 196894c5b6873a985e2f00f2a0777dcafc2e24da
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/');
+        $session->visit('http://localhost:8000');
         $page = $session->getPage();
         $textbox = $page->findField("myText");
         if(null === $textbox){
@@ -63,17 +69,23 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAddIntoTheTextbox()
     {
+<<<<<<< HEAD
         // $driver = new \Behat\Mink\Driver\GoutteDriver();
         $driver = new \Behat\Mink\Driver\Selenium2Driver();
+=======
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+>>>>>>> 196894c5b6873a985e2f00f2a0777dcafc2e24da
         $session = new \Behat\Mink\Session($driver);
         $session->start();
         $session->visit('http://127.0.0.1:8000/');
         $page = $session->getPage();
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
+        echo $textbox->getValue();
         if($textbox->getValue() != "Halfond"){
             throw new Exception('The insertion was unsuccessful');
         }
+        $session->stop();
         
     }
 
@@ -124,16 +136,20 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function whenTheButtonIsClicked($button)
     {
-        // $driver = new \Behat\Mink\Driver\GoutteDriver();
-        // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
-        // $session = new \Behat\Mink\Session($driver);
-        // $session->start();
-        // $session->visit('http://127.0.0.1:8000/');
-        // $page = $session->getPage();
-        // $button = $page->findButton('scholarButton');
-        // if(null === $button){
-        //     throw new Exception('The element is not found');
-        // }
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        if(null === $button){
+            throw new Exception('The element is not found');
+        }
+        $session->stop();
 
     }
 
@@ -146,11 +162,20 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
-     * @Given I am on the homepage
+     * @Given the homepage
      */
-    public function iAmOnTheHomepage()
+    public function theHomepage()
     {
-        $this->homePageStatus->connectedThisPage();
+        // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        // $session = new \Behat\Mink\Session($driver);
+        // $session->start();
+        // $session->visit('http://127.0.0.1:8000/');
+        // $webString = "http://127.0.0.1:8000";
+        // if ($session->getCurrentUrl() != $webString) 
+        // {
+        //     throw new Exception ("The page is incorrect.");
+        // }
+        throw new PendingException();
     }
 
     /**
@@ -190,7 +215,29 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickedOnAWordFromTheWordCloud()
     {
-        throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            throw new PendingException();
+        }
+        // var_export($session->getCurrentUrl);
+        // $wordCloud = $page->find("wordcloud");
+        // if ()
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
     }
 
     /**
@@ -198,7 +245,35 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iShouldSeeAPageWithListsOfPapers()
     {
-        throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            throw new PendingException();
+        }
+        // var_export($session->getCurrentUrl);
+        // $wordCloud = $page->find("wordcloud");
+        // if ()
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            throw new PendingException();
+        }
     }
 
     /**
@@ -214,7 +289,36 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnThePaperlistPage()
     {
-        throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            throw new PendingException();
+        }
+        // var_export($session->getCurrentUrl);
+        // $wordCloud = $page->find("wordcloud");
+        // if ()
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            throw new PendingException();
+        }
+        $session->stop();
     }
 
     /**
@@ -318,7 +422,38 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnTheTitleOfAPaper()
     {
-        throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            throw new PendingException();
+        }
+        // var_export($session->getCurrentUrl);
+        // $wordCloud = $page->find("wordcloud");
+        // if ()
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            throw new PendingException();
+        }
+        $titleClicked = $page->findLink("Detecting");
+        $titleClicked->mouseOver();
+        $titleClicked->click();
     }
 
     /**

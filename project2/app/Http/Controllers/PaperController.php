@@ -70,8 +70,6 @@ class PaperController extends Controller
 			$wordCloudString = $wcc->createWordCloudString($wordList, $lastName, "scholar");
 
 	    return view('wordcloud', ['wordCloudString' => $wordCloudString]);
-
-
 		}
 
 		public function showWordCloudFromKeyword($keyword){
