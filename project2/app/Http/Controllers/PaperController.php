@@ -36,123 +36,131 @@ class PaperController extends Controller
     }
    
 
-		public function combineAbstractsFromIEEEPapers($papers){
-			$allAbstractsText = "";
+	public function combineAbstractsFromIEEEPapers($papers){
+		$allAbstractsText = "";
 
-			for ($i=0; $i < count($papers); $i++){
-				if (array_key_exists('abstract', $papers[$i])){
-					$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
-				}
+		for ($i=0; $i < count($papers); $i++){
+			if (array_key_exists('abstract', $papers[$i])){
+				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
 			}
-			$allAbstractsText = strtolower($allAbstractsText);
-			return $allAbstractsText;
-		} 
-
-
-		public function createWordListFromText($allText){
-			$wordList = explode(" ", $allText);
-			$wordList = array_filter($wordList);
-			$wordList = array_count_values($wordList);
-			arsort($wordList);
-			$wordList = array_slice($wordList, 0, 100, true);
-
-			return $wordList;
 		}
-
-		public function showWordCloudFromName($lastName){
-			$paperJSON = PaperController::getPapersFromAuthor($lastName);
-			$papers = $paperJSON['document'];
-
-			$allAbstracts = $this->combineAbstractsFromIEEEPapers($papers);
-			$wordList = $this->createWordListFromText($allAbstracts);
-
-			$wcc = new WordCloudController();
-			$wordCloudString = $wcc->createWordCloudString($wordList, $lastName, "scholar");
-
-	    return view('wordcloud', ['wordCloudString' => $wordCloudString]);
-		}
-
-		public function showWordCloudFromKeyword($keyword){
-    	$paperJSON = PaperController::getPapersFromKeywords($keyword);
-    	$papers = $paperJSON['document'];
-			
-			$allAbstracts = $this->combineAbstractsFromIEEEPapers($papers);
-			$wordList = $this->createWordListFromText($allAbstracts);
-
-			$wcc = new WordCloudController();
-			$wordCloudString = $wcc->createWordCloudString($wordList, $keyword, "keyword");
-
-	    return view('wordcloud', ['wordCloudString' => $wordCloudString]);
-		}
+		$allAbstractsText = strtolower($allAbstractsText);
+		return $allAbstractsText;
+	} 
 
 
+	public function createWordListFromText($allText){
+		$wordList = explode(" ", $allText);
+		$wordList = array_filter($wordList);
+		$wordList = array_count_values($wordList);
+		arsort($wordList);
+		$wordList = array_slice($wordList, 0, 100, true);
+
+		return $wordList;
+	}
 
 
-		public function showPaperListFromKeyword($keyword, $word){
-			$paperJSON = PaperController::getPapersFromKeywords($keyword);
-			$papers = $paperJSON['document'];
+	public function createWordCloudStringFromName($lastName, $X){
+		$paperJSON = PaperController::getPapersFromAuthor($lastName);
+		$papers = $paperJSON['document'];
 
-			$papersThatContainWord = array();
-			$frequencyArr = array();
+		$allAbstracts = $this->combineAbstractsFromIEEEPapers($papers);
+		$wordList = $this->createWordListFromText($allAbstracts);
 
-			for ($i=0; $i<count($papers); $i++){
-				if (!array_key_exists('abstract', $papers[$i])) continue;
-				$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
-				$wordsToSearch = strtolower($wordsToSearch);
+		$wcc = new WordCloudController();
+		$wordCloudString = $wcc->createWordCloudString($wordList, $lastName, "scholar");
 
-	      $count = substr_count($wordsToSearch, " " . $word . " ");
-				if ($count != 0){
-					array_push($papersThatContainWord, $papers[$i]);
-					array_push($frequencyArr, $count);
-				} 
-			}
+		return $wordCloudString;
+	}
 
-		//	var_dump($papersThatContainWord);
-			
-			$titleArr = $this->getPaperTitles($papersThatContainWord);
-			$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
-			$conferenceArr = $this->getPaperConferences($papersThatContainWord);
-			$downloadArr = $this->getDownloadLinks($papersThatContainWord);
-
-			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
-		}
+	public function showWordCloudFromName($lastName, $X){
+		$wordCloudString = $this->createWordCloudStringFromName($lastName);
+		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
+	}
 
 
-		public function showPaperListFromName($lastName, $word){
-			$paperJSON = $this->getPapersFromAuthor($lastName);
-			$papers = $paperJSON['document'];
+	public function createWordCloudStringFromKeyword($keyword, $X){
+		$paperJSON = PaperController::getPapersFromKeywords($keyword);
+		$papers = $paperJSON['document'];
+		
+		$allAbstracts = $this->combineAbstractsFromIEEEPapers($papers);
+		$wordList = $this->createWordListFromText($allAbstracts);
 
-			$papersThatContainWord = array();
-			$frequencyArr = array();
+		$wcc = new WordCloudController();
+		$wordCloudString = $wcc->createWordCloudString($wordList, $keyword, "keyword");
+		
+		return $wordCloudString;
+	}
 
-			for ($i=0; $i<count($papers); $i++){
-				if (!array_key_exists('abstract', $papers[$i])) continue;
-				$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
-				$wordsToSearch = strtolower($wordsToSearch);
+	public function showWordCloudFromKeyword($keyword, $X){
+		$wordCloudString = $this->createWordCloudStringFromKeyword($keyword);
+		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
+	}
 
-	      $count = substr_count($wordsToSearch, " " . $word . " ");
-				if ($count != 0){
-					array_push($papersThatContainWord, $papers[$i]);
-					array_push($frequencyArr, $count);
-				}
+
+	public function showPaperListFromKeyword($keyword, $word){
+		$paperJSON = PaperController::getPapersFromKeywords($keyword);
+		$papers = $paperJSON['document'];
+
+		$papersThatContainWord = array();
+		$frequencyArr = array();
+
+		for ($i=0; $i<count($papers); $i++){
+			if (!array_key_exists('abstract', $papers[$i])) continue;
+			$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
+			$wordsToSearch = strtolower($wordsToSearch);
+
+			$count = substr_count($wordsToSearch, " " . $word . " ");
+			if ($count != 0){
+				array_push($papersThatContainWord, $papers[$i]);
+				array_push($frequencyArr, $count);
 			} 
-			
-			$titleArr = $this->getPaperTitles($papersThatContainWord);
-			$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
-			$conferenceArr = $this->getPaperConferences($papersThatContainWord);
-			$downloadArr = $this->getDownloadLinks($papersThatContainWord);
-
-			return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
 		}
+		
+		$titleArr = $this->getPaperTitles($papersThatContainWord);
+		$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
+		$conferenceArr = $this->getPaperConferences($papersThatContainWord);
+		$downloadArr = $this->getDownloadLinks($papersThatContainWord);
+
+		return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
+	}
 
 
-		public function getDownloadLinks($papers){
-			$paperDownloadLinks = array();
-			for ($i=0; $i < count($papers); $i++){
-				$paperDownloadLinks[$i] = $papers[$i]['pdf'];
-			}	
-			return $paperDownloadLinks;
-		}
+	public function showPaperListFromName($lastName, $word){
+		$paperJSON = $this->getPapersFromAuthor($lastName);
+		$papers = $paperJSON['document'];
+
+		$papersThatContainWord = array();
+		$frequencyArr = array();
+
+		for ($i=0; $i<count($papers); $i++){
+			if (!array_key_exists('abstract', $papers[$i])) continue;
+			$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
+			$wordsToSearch = strtolower($wordsToSearch);
+
+	  		$count = substr_count($wordsToSearch, " " . $word . " ");
+			if ($count != 0){
+				array_push($papersThatContainWord, $papers[$i]);
+				array_push($frequencyArr, $count);
+			}
+		} 
+		
+		$titleArr = $this->getPaperTitles($papersThatContainWord);
+		$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
+		$conferenceArr = $this->getPaperConferences($papersThatContainWord);
+		$downloadArr = $this->getDownloadLinks($papersThatContainWord);
+
+		return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
+	}
+
+
+	public function getDownloadLinks($papers){
+		$paperDownloadLinks = array();
+		for ($i=0; $i < count($papers); $i++){
+			$paperDownloadLinks[$i] = $papers[$i]['pdf'];
+		}	
+		return $paperDownloadLinks;
+	}
 
     public function getPaperTitles($papers) {
         $paperTitles = array();
