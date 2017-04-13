@@ -16,7 +16,10 @@
                 var baseURL = "http://localhost:8000/papers/scholar/";
                 searchWord = document.getElementById("myText").value;
                 var url = baseURL.concat(searchWord);
-
+                var e = document.getElementById("ddlViewBy");
+                var numArticle = e.options[e.selectedIndex].value;
+                url = url.concat("/");
+                url = url.concat(numArticle);
                 if (searchWord!=""){
                 
                 window.location.href = url;
@@ -26,6 +29,10 @@
                 var baseURL = "http://localhost:8000/papers/keyword/";
                 searchWord = document.getElementById("myText").value;
                 var url = baseURL.concat(searchWord);
+                var e = document.getElementById("ddlViewBy");
+                var numArticle = e.options[e.selectedIndex].value;
+                url = url.concat("/");
+                url = url.concat(numArticle);
 
                 if (searchWord != "") {
                     window.location.href = url;
@@ -45,12 +52,24 @@
 }
 #search {
     position: fixed;
-    left: 30%;
+    left: 22%;
     top: 40%;
 
 }
 
+#firstLine {
+    float: left;
+}
+#firstLineB {
+    float: right;
 
+    
+   
+    min-width: 50px;
+   
+    padding: 20px 16px;
+    
+}
 
 body {
     background-color: #126BBF;
@@ -95,13 +114,31 @@ pageTitle {
 </head>
 <body onload = "getTextString()">
     <div id = "search">
-        <br>
+
+        <div id ="firstLine">
+        
         <input type="text" name="searchWord" value = "" size ="50" id="myText">
+        </div>
+
+        <div id = "firstLineB">
+        <select id="ddlViewBy">
+        <option value="5">5</option>
+        <option value="10" selected="selected">10</option>
+        <option value="15">15</option>
+         <option value="20">20</option>
+        </select><font color = "white" face = "Arial">
+        Top Articles
+    </font>
+        </div>
+        
+
+
         <br><br>
         <button onclick="goToCloudWithScholar()" id = "scholarButton">Search by Scholar</button>
         <br><br>
         <button onclick="goToCloudWithKeyword()" id = "keywordButton">Search by Keyword</button>
         <br>
+        
 
 </div>
     </div>
