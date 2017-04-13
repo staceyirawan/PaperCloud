@@ -6,14 +6,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>PaperCloud</title>
-	<br>
+        <br>
+        <script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
+
         <script type = "text/javascript">
-        
-	  function loadCloud(){
-            var wordCloudString =  "<?php echo $wordCloudString?>";
-            
-	    document.getElementById("wordcloud").innerHTML= wordCloudString;
-          }
+
+            //download word cloud             
+            function downloadCloud(){
+                html2canvas(document.body, {
+                    onrendered: function(canvas) {
+                        var saveData = (function () {
+                            var a = document.createElement("a");
+                            document.body.appendChild(a);
+                            a.style = "display: none";
+                            return function (data, fileName) {
+                                var url = window.URL.createObjectURL(blob);
+                                a.href = url;
+                                a.download = fileName;
+                                a.click();
+                                window.URL.revokeObjectURL(url);
+                            };
+                        }());
+                        var blob = dataURItoBlob(canvas.toDataURL());
+                        saveData(blob, "wordcloud.png");
+                    }
+                });
+            };
+
+            function dataURItoBlob(dataURI) {
+                var byteString = atob(dataURI.split(',')[1]);
+                var ab = new ArrayBuffer(byteString.length);
+                var ia = new Uint8Array(ab);
+                for (var i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                return new Blob([ab], {type: 'image/png'});
+            }
+
+            function loadCloud(){
+                var wordCloudString =  "<?php echo $wordCloudString?>";
+                document.getElementById("wordcloud").innerHTML= wordCloudString;
+            };
         </script>
 
 <style>
@@ -37,6 +70,12 @@
 
 }
 
+#screenshot {
+    left: 50%;
+    top: 85%;
+    text-align: center;
+}
+
 a{
   text-decoration: none;
 color: #f8f8f8; font-family: 'Raleway',sans-serif;
@@ -54,10 +93,11 @@ form{
 }
 
 input[type = "button"], input[type = "submit"], button {
-    background-color: #B345F1;
+    background-color: #D54A50;
     height: auto;
-    width: 300px;
-    font-size: 12px;
+    width: 200px;
+    color: white;
+    font-size: 16px;
     display: inline-block;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -65,6 +105,7 @@ input[type = "button"], input[type = "submit"], button {
     border: 1px solid rgba(0,0,0,0.3);
     border-bottom-width: 3px;
 }
+
 input[type = "text"] {
     width: 100%;
     padding: 12px 20px;
@@ -86,10 +127,12 @@ pageTitle {
  <body onload = "loadCloud()">
     <div id = "searchCloud">
 
-    <a id="wordcloud"> </a>
+        <a id="wordcloud"> </a>
+        <div id = "screenshot">
+        <br><br>
+        <button onclick="downloadCloud()" id = "downloadButton">Download</button>
+        </div>
 
-         
 
- 
 </div>
 </body>
