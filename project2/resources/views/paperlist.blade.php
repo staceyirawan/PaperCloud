@@ -45,7 +45,11 @@
 
                     echo "<td>";
                     for ($n = 0; $n < (sizeof($authors[$i])); $n++){
+                    $baseURL = "http://localhost:8000/papers/scholar/";
+                    $url = $baseURL.$authors[$i][$n]."/10";
+                    echo "<a href = '".$url."'>";
                     echo $authors[$i][$n];
+                    echo "</a>";
                     echo ", ";
                     }
                     echo "</td>";
