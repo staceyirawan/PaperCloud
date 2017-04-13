@@ -204,14 +204,14 @@ class PaperController extends Controller
         return $paperConferences;
     }
 
-    /* Get an array of pdf links from ACM library with given author name(s) */
+    /* Get ACM paper links from author */
     public function getACMPapersFromAuthor($author) {
          // Run python script on terminal and retrieve csv content file
-        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --author=' . $author);
+        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 2 --pub=ACM --author=' . $author);
         $array = array_map("str_getcsv", explode("\n", $execution));
 
         $counter = 0;
-        $pdfLinks = array();
+        $tURLs = array();
 
         for($i = 1; $i<count($array); $i+=10) {
             
@@ -220,25 +220,21 @@ class PaperController extends Controller
 
             $tUArray = array();
             $tUArray = explode(" ", $pURL);
-            $tURL = $tUArray[1];
-
-
-            $pdfLinks[$counter] = PaperController::getPDFFromHTML($tURL);
+            $tURLs[$counter] = $tUArray[1];
 
             $counter++;
+
         }
-
-        return $pdfLinks;
-
+        return $tURLs;
     }
-    /* Get an array of pdf links from ACM library with given keyword(s) */
+    /* Get ACM paper links from keyword */
     public function getACMPapersFromKeyword($keyword) {
         // Run python script on terminal and retrieve csv content file
         $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --some=' . $keyword);
         $array = array_map("str_getcsv", explode("\n", $execution));
 
         $counter = 0;
-        $pdfLinks = array();
+        $tURLs = array();
 
         for($i = 1; $i<count($array); $i+=10) {
             
@@ -247,18 +243,14 @@ class PaperController extends Controller
 
             $tUArray = array();
             $tUArray = explode(" ", $pURL);
-            $tURL = $tUArray[1];
-
-            $pdfLinks[$counter] = PaperController::getPDFFromHTML($tURL);
+            $tURLs[$counter] = $tUArray[1];
 
             $counter++;
         }
-
-        return $pdfLinks;
-
+    	return $tURLs;
     }
 
-    // Scrape html for pdf link
+    // Scrape ACM html for pdf links
     public function getPDFFromHTML($tURL) {
         $html = file_get_html($tURL);
         $pdfLink;
@@ -269,6 +261,32 @@ class PaperController extends Controller
         }
         return $pdfLink;
     }
+    // Scrape ACM html for authors 
+    public function getAuthorsFromHTML($tURL) {
+    	$html = file_get_html($tURL);
+    	$authors = array();
+    	foreach($html->find('meta') as $element) {
+    		if($element->name == "citation_authors") {
+    			$authorString = $element->content;
+    			$authors = explode(";", $authorString);
+    		}
+    	}
+    	return $authors;
+    } 
+
+    // Scrape ACM html for title
+    public function getTitleFromHTML($tURL) {
+    	$html = file_get_html($tURL);
+    	$title;
+    	foreach($html->find('meta') as $element) {
+    		if($element->name == 'citation_title') {
+    			$title = $element->content;
+    		}
+    	}
+    	return $title;
+    }
+
+
 
 
 
@@ -319,9 +337,6 @@ class PaperController extends Controller
 			$authors = str_replace(";", ",", $authors);
 			return view('conferencepage', ['titles' => $titles, 'authors' => $authors]);
 		}
-
-
-
 
 
 
