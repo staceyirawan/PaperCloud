@@ -39,10 +39,12 @@ class PaperController extends Controller
 
 	public function combineAbstractsFromIEEEPapers($papers){
 		$allAbstractsText = "";
-
+		//NOTE: in future, make this all acm papers as well, and make push into DB
 		for ($i=0; $i < count($papers); $i++){
 			if (array_key_exists('abstract', $papers[$i])){
 				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
+				//DB::insert into papers(id, title, conference, bibtex, pdf, authors) VALUES (?, ?, ?, ?, ?, ?), []);
+
 			}
 		}
 		$allAbstractsText = strtolower($allAbstractsText);
@@ -62,7 +64,8 @@ class PaperController extends Controller
 
 
 	public function createWordCloudStringFromName($lastName, $X){
-		DB::delete('delete from papers');
+		DB::delete('delete from x');
+		DB::insert('insert into x (x) values (?)', [$X]);
 
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
 		$papers = $paperJSON['document'];
@@ -77,6 +80,7 @@ class PaperController extends Controller
 	}
 
 	public function showWordCloudFromName($lastName, $X){
+//		DB::delete('delete from x');
 		//$papers = DB::table('papers')->where('id', 1)->first();
 		//var_dump($papers);
 		$wordCloudString = $this->createWordCloudStringFromName($lastName, $X);
@@ -85,6 +89,9 @@ class PaperController extends Controller
 
 
 	public function createWordCloudStringFromKeyword($keyword, $X){
+		DB::delete('delete from x');
+		DB::insert('insert into x (x) values (?)', [$X]);
+
 		$paperJSON = PaperController::getPapersFromKeywords($keyword);
 		$papers = $paperJSON['document'];
 		
@@ -100,6 +107,18 @@ class PaperController extends Controller
 	public function showWordCloudFromKeyword($keyword, $X){
 		$wordCloudString = $this->createWordCloudStringFromKeyword($keyword, $X);
 		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
+	}
+
+	public function createWordCloudStringFromFullName($fullname){
+		$xresults = DB::table('x')->get();
+		$X = $xresults[0]->x;
+
+	}
+
+	public function showWordCloudFromFullName($fullname){
+		$wordCloudString = $this->createWordCloudStringFromFullName($fullname);
+
+//		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
 	}
 
 
