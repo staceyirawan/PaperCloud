@@ -29,7 +29,8 @@
                         }());
                         var blob = dataURItoBlob(canvas.toDataURL());
                         saveData(blob, "wordcloud.png");
-                    }
+                    },
+					background: '#126bbf',
                 });
             };
 
