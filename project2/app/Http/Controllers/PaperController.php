@@ -74,7 +74,7 @@ class PaperController extends Controller
 	}
 
 	public function showWordCloudFromName($lastName, $X){
-		$wordCloudString = $this->createWordCloudStringFromName($lastName);
+		$wordCloudString = $this->createWordCloudStringFromName($lastName, $X);
 		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
 	}
 
@@ -93,7 +93,7 @@ class PaperController extends Controller
 	}
 
 	public function showWordCloudFromKeyword($keyword, $X){
-		$wordCloudString = $this->createWordCloudStringFromKeyword($keyword);
+		$wordCloudString = $this->createWordCloudStringFromKeyword($keyword, $X);
 		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
 	}
 
