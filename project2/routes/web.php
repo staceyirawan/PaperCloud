@@ -30,3 +30,6 @@ Route::get('abstract/{title}/{word}', 'PaperController@showAbstract')->name('abs
 
 
 Route::get('conference/{conferenceName}', 'PaperController@getPaperListFromConference')->name('conference.get');
+
+
+Route::get('papers/authorfull/{fullname}', 'PaperController@showWordCloudFromFullName')->name('paperbyfullname.get');
