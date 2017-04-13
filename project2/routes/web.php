@@ -14,10 +14,10 @@
 Route::get('/', function () {
      return view('homepage');
  });
-Route::get('papers/scholar/{lastName}', 'PaperController@showWordCloudFromName')->name('paperbyname.get');
+Route::get('papers/scholar/{lastName}/{X}', 'PaperController@showWordCloudFromName')->name('paperbyname.get');
 
 
-Route::get('papers/keyword/{keyword}', 'PaperController@showWordCloudFromKeyword')->name('paperbykeyword.get');
+Route::get('papers/keyword/{keyword}/{X}', 'PaperController@showWordCloudFromKeyword')->name('paperbykeyword.get');
 
 
 Route::get('list/scholar/{lastName}/{word}', 'PaperController@showPaperListFromName')->name('listbyname.get');
