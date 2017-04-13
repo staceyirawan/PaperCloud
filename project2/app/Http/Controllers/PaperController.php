@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 
 //include '../vendor/autoload.php';
@@ -61,6 +62,8 @@ class PaperController extends Controller
 
 
 	public function createWordCloudStringFromName($lastName, $X){
+		DB::delete('delete from papers');
+
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
 		$papers = $paperJSON['document'];
 
@@ -74,7 +77,9 @@ class PaperController extends Controller
 	}
 
 	public function showWordCloudFromName($lastName, $X){
-		$wordCloudString = $this->createWordCloudStringFromName($lastName);
+		//$papers = DB::table('papers')->where('id', 1)->first();
+		//var_dump($papers);
+		$wordCloudString = $this->createWordCloudStringFromName($lastName, $X);
 		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
 	}
 
@@ -93,7 +98,7 @@ class PaperController extends Controller
 	}
 
 	public function showWordCloudFromKeyword($keyword, $X){
-		$wordCloudString = $this->createWordCloudStringFromKeyword($keyword);
+		$wordCloudString = $this->createWordCloudStringFromKeyword($keyword, $X);
 		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
 	}
 
