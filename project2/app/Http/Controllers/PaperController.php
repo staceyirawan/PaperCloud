@@ -204,10 +204,11 @@ class PaperController extends Controller
         return $paperConferences;
     }
 
-    /* Get ACM paper links from author */
+    /* Get X (-c X) ACM paper links from author */
+    // Currently retrieving 1 paper
     public function getACMPapersFromAuthor($author) {
          // Run python script on terminal and retrieve csv content file
-        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 2 --pub=ACM --author=' . $author);
+        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 1 --pub=ACM --author=' . $author);
         $array = array_map("str_getcsv", explode("\n", $execution));
 
         $counter = 0;
@@ -225,12 +226,19 @@ class PaperController extends Controller
             $counter++;
 
         }
-        return $tURLs;
+        $abstracts = array();
+
+        for($i = 0; $i < count($tURLs) ; $i++) {
+        	$abstracts[$i] = $this->getAbstractFromHTML($tURLs[$i]);
+        }
+
+        return $abstracts;
     }
-    /* Get ACM paper links from keyword */
+    /* Get X (-c X) ACM paper links from keyword */
+    // Currently retrieving 1 paper 
     public function getACMPapersFromKeyword($keyword) {
         // Run python script on terminal and retrieve csv content file
-        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --some=' . $keyword);
+        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 1 --pub=ACM --some=' . $keyword);
         $array = array_map("str_getcsv", explode("\n", $execution));
 
         $counter = 0;
@@ -250,7 +258,7 @@ class PaperController extends Controller
     	return $tURLs;
     }
 
-    // Scrape ACM html for pdf links
+    // Scrape ACM html for 1 paper's pdf link
     public function getPDFFromHTML($tURL) {
         $html = file_get_html($tURL);
         $pdfLink;
@@ -261,7 +269,7 @@ class PaperController extends Controller
         }
         return $pdfLink;
     }
-    // Scrape ACM html for authors 
+    // Scrape ACM html for 1 paper's authors 
     public function getAuthorsFromHTML($tURL) {
     	$html = file_get_html($tURL);
     	$authors = array();
@@ -274,7 +282,7 @@ class PaperController extends Controller
     	return $authors;
     } 
 
-    // Scrape ACM html for title
+    // Scrape ACM html for 1 paper's title
     public function getTitleFromHTML($tURL) {
     	$html = file_get_html($tURL);
     	$title;
@@ -286,8 +294,11 @@ class PaperController extends Controller
     	return $title;
     }
 
-
-
+    // Scrape ACM html for 1 paper's abstract using python script
+    public function getAbstractFromHTML($tURL) {
+    	$abstract = shell_exec('python ../app/Http/Controllers/site-packages/getAbstract.py '. $tURL);
+    	return $abstract;
+    }
 
 
 	//ABSTRACT STUFF
