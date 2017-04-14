@@ -204,11 +204,16 @@ class PaperController extends Controller
         return $paperConferences;
     }
 
+    //  ************ ACM STUFF *********************
+    //  ************ ACM STUFF *********************
+    //  ************ ACM STUFF *********************
+    //  ************ ACM STUFF *********************
+
     /* Get X (-c X) ACM paper links from author */
     // Currently retrieving 1 paper
     public function getACMPapersFromAuthor($author) {
          // Run python script on terminal and retrieve csv content file
-        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 1 --pub=ACM --author=' . $author);
+        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --author=' . $author);
         $array = array_map("str_getcsv", explode("\n", $execution));
 
         $counter = 0;
@@ -226,14 +231,9 @@ class PaperController extends Controller
             $counter++;
 
         }
-        $abstracts = array();
-
-        for($i = 0; $i < count($tURLs) ; $i++) {
-        	$abstracts[$i] = $this->getAbstractFromHTML($tURLs[$i]);
-        }
-
-        return $abstracts;
+        return $tURLs;
     }
+
     /* Get X (-c X) ACM paper links from keyword */
     // Currently retrieving 1 paper 
     public function getACMPapersFromKeyword($keyword) {
@@ -269,6 +269,7 @@ class PaperController extends Controller
         }
         return $pdfLink;
     }
+
     // Scrape ACM html for 1 paper's authors 
     public function getAuthorsFromHTML($tURL) {
     	$html = file_get_html($tURL);
@@ -294,11 +295,34 @@ class PaperController extends Controller
     	return $title;
     }
 
-    // Scrape ACM html for 1 paper's abstract using python script
+    // Scrape ACM html for 1 paper's conference 
+    public function getConferenceFromHTML($tURL) {
+    	$html = file_get_html($tURL);
+    	$conference;
+    	foreach($html->find('meta') as $element) {
+    		if($element->name == 'citation_conference') {
+    			$conference = $element->content;
+    		}
+    		else if($element->name == 'citation_journal_title') {
+    			$conference = $element->content;
+    		}
+    	}
+    	return $conference;
+    }
+ 
+    // Scrape ACM html for 1 paper's abstract text using python script
     public function getAbstractFromHTML($tURL) {
     	$abstract = shell_exec('python ../app/Http/Controllers/site-packages/getAbstract.py '. $tURL);
     	return $abstract;
     }
+
+
+    //  ************ END ACM STUFF *********************
+    //  ************ END ACM STUFF *********************
+    //  ************ END ACM STUFF *********************
+    //  ************ END ACM STUFF *********************
+
+
 
 
 	//ABSTRACT STUFF
