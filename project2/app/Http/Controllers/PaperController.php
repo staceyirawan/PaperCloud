@@ -348,8 +348,12 @@ class PaperController extends Controller
 		for ($i=0; $i<count($ACMPaperUrls); $i++){
 			$tempObject = array();
 			$tempObject['title'] = PaperController::getTitleFromHTML($ACMPaperUrls[$i]);
+			$tempObject['pdf'] = PaperController::getPDFFromHTML($ACMPaperUrls[$i]);
+			$tempObject['abstract'] = PaperController::getAbstractFromHTML($ACMPaperUrls[$i]);
+			$tempObject['authors'] = PaperController::getAuthorsFromHTML($ACMpaperUrls[$i]);
+			$tempObject['publisher'] = PaperController::getConferenceFromHTML($ACMPaperUrls[$i]);
 
-			$ACMInfo.push($tempObject);
+			array_push($ACMInfo, $tempObject);
 				
 		}
 		var_dump($ACMInfo);
