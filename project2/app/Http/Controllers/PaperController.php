@@ -357,7 +357,6 @@ class PaperController extends Controller
 				
 		}
 		var_dump($ACMInfo);
-
 	}
 
 
