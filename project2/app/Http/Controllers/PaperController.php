@@ -342,7 +342,7 @@ class PaperController extends Controller
 
 
 	public function formatACMPapersFromURLSintoArray($ACMPaperUrls){
-		var_dump($ACMPaperUrls);
+		//var_dump($ACMPaperUrls);
 
 		$ACMInfo = array();
 		for ($i=0; $i<count($ACMPaperUrls) && $i < 5; $i++){
@@ -356,7 +356,8 @@ class PaperController extends Controller
 			array_push($ACMInfo, $tempObject);
 				
 		}
-		var_dump($ACMInfo);
+		return $ACMInfo;
+	//	var_dump($ACMInfo);
 	}
 
 
