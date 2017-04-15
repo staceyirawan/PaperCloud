@@ -552,7 +552,41 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theAbstractShouldBeDisplayed()
     {
-        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $titleClicked = $page->findLink("Detecting");
+        $titleClicked->mouseOver();
+        $titleClicked->click();
+
+        $webString = "http://localhost:8000/abstract/Detecting%20and%20Localizing%20Internationalization%20Presentation%20Failures%20in%20Web%20Applications/can";
+        if ($session->getCurrentUrl != webString)
+        {
+            throw new Execption("The Page is incorrect.".$session->getCurrentUrl());
+        }
     }
 
     /**
@@ -751,7 +785,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theSearchButtonForAuthorIsPressed()
     {
-        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
     }
 
     /**
