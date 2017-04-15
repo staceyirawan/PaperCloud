@@ -47,9 +47,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function thereIsATextboxInTheHomepageWebPage()
     {
         // $driver = new \Behat\Mink\Driver\GoutteDriver();
-        // $driver = new \Behat\Mink\Driver\Selenium2Driver();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver();
         
-        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
         $session = new \Behat\Mink\Session($driver);
         $session->start();
         $session->visit('http://localhost:8000');
@@ -64,11 +64,54 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @When I add :arg1 into the textbox
      */
-    public function iAddIntoTheTextbox()
+    public function iAddIntoTheTextbox($arg1)
     {
         // $driver = new \Behat\Mink\Driver\GoutteDriver();
         // $driver = new \Behat\Mink\Driver\Selenium2Driver();
+
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue($arg1);
+        echo $textbox->getValue();
+        if($textbox->getValue() != $arg1){
+            throw new Exception('The insertion was unsuccessful');
+        }
+        $session->stop();
         
+    }
+
+    // /**
+    //  * @Then I should see :suggestions in the :dropdown box
+    //  */
+    // public function iShouldSeeSuggestionsInTheDropdownBox($suggestions, $dropdown)
+    // {
+    //     $allSuggestionsAreHere = true;
+    //     for ($k = 0; $k< sizeof($suggestions); $k++) 
+    //     {   
+    //         $suggestionIsHere = false;
+    //         for ($j = 0; $j <sizeof($dropdown); $j++)
+    //         {
+    //             if($suggestions[$k] == $dropdown[$j])
+    //             {
+    //                 $suggestionIsHere = true;
+    //             }
+    //         }
+    //         if(!$suggestionIsHere)
+    //         {
+    //             $allSuggestionsAreHere = false;
+    //         }
+    //     }
+    // }
+
+    /**
+     * @Then I should see a word Cloud
+     */
+    public function iShouldSeeAWordCloud()
+    {
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
         $session = new \Behat\Mink\Session($driver);
         $session->start();
@@ -76,44 +119,60 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $page = $session->getPage();
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
-        echo $textbox->getValue();
-        if($textbox->getValue() != "Halfond"){
-            throw new Exception('The insertion was unsuccessful');
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+    }
+
+    /**
+     * @When I click the search by scholar button
+     */
+    public function iClickTheSearchByScholarButton()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        if(null === $button){
+            throw new Exception('The element is not found');
         }
         $session->stop();
-        
     }
 
     /**
-     * @Then I should see :suggestions in the :dropdown box
+     * @When I click search by keyword button
      */
-    public function iShouldSeeSuggestionsInTheDropdownBox($suggestions, $dropdown)
+    public function iClickSearchByKeywordButton()
     {
-        $allSuggestionsAreHere = true;
-        for ($k = 0; $k< sizeof($suggestions); $k++) 
-        {   
-            $suggestionIsHere = false;
-            for ($j = 0; $j <sizeof($dropdown); $j++)
-            {
-                if($suggestions[$k] == $dropdown[$j])
-                {
-                    $suggestionIsHere = true;
-                }
-            }
-            if(!$suggestionIsHere)
-            {
-                $allSuggestionsAreHere = false;
-            }
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Computer Science");
+        $button = $page->findButton('keywordButton');
+        $button->mouseOver();
+        $button->click();
+        if(null === $button){
+            throw new Exception('The element is not found');
         }
+        $session->stop();
     }
 
-    /**
-     * @Then I should have the ability to choose the paper from the cloud
-     */
-    public function iShouldHaveTheAbilityToChooseThePaperFromTheCloud()
-    {
-        throw new PendingException();
-    }
 
     /**
      * @Given a :keyword or :author is being searched
@@ -153,7 +212,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aProgressBarWillShowTheStatusOfTheCloudGeneration()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -161,16 +220,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theHomepage()
     {
-        // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
-        // $session = new \Behat\Mink\Session($driver);
-        // $session->start();
-        // $session->visit('http://127.0.0.1:8000/');
-        // $webString = "http://127.0.0.1:8000";
-        // if ($session->getCurrentUrl() != $webString) 
-        // {
-        //     throw new Exception ("The page is incorrect.");
-        // }
-        throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $webString = "http://127.0.0.1:8000";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.");
+        }
+        // throw new PendingException();
     }
 
     /**
@@ -178,7 +237,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIHavePreviouslySearchedLastNamesOrKeyterms()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -186,7 +245,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thereShouldBeAListOfPreviousSearchesBelowTheSearchBar()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -194,16 +253,34 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatAWordIsSearchedOnTheSearchBar()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
-     * @Then the top papers are papers that are most searched in the form of a word cloud
+     * @Then the words from the top papers that are most searched will be displayed in the form of a word cloud
      */
-    public function theTopPapersArePapersThatAreMostSearchedInTheFormOfAWordCloud()
+    public function theWordsFromTheTopPapersThatAreMostSearchedWillBeDisplayedInTheFormOfAWordCloud()
     {
-        throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+        }
+
+        //almost finished??? Don't know.
     }
+
 
     /**
      * @Given I clicked on a word from the word cloud
@@ -225,7 +302,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            throw new PendingException();
+            // throw new PendingException();
         }
         // var_export($session->getCurrentUrl);
         // $wordCloud = $page->find("wordcloud");
@@ -255,7 +332,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            throw new PendingException();
+            // throw new PendingException();
         }
         // var_export($session->getCurrentUrl);
         // $wordCloud = $page->find("wordcloud");
@@ -267,7 +344,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            throw new PendingException();
+            // throw new PendingException();
         }
     }
 
@@ -276,7 +353,29 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function columnHeadersAppropriatelyListed()
     {
-        throw new PendingException();
+        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $page = $session->getPage();
+
+
+
+
+        // This is almost done. ask Stacey for table stuff.
     }
 
     /**
@@ -299,7 +398,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            throw new PendingException();
+            // throw new PendingException();
         }
         // var_export($session->getCurrentUrl);
         // $wordCloud = $page->find("wordcloud");
@@ -311,7 +410,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            throw new PendingException();
+            // throw new PendingException();
         }
         $session->stop();
     }
@@ -321,7 +420,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickExportToPdf()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -329,7 +428,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aPdfFileWillBeDownloadedWithThePaperlist()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -337,7 +436,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickExportToPlainText()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -345,7 +444,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aPlainTextWillBeDownloadedWithThePaperlist()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -353,7 +452,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnAnotherAuthorsName()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -361,7 +460,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aNewSearchIsInitiatedOnThatAuthor()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -369,7 +468,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theUserIsNavigatedToTheNewWordCloudPage()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -377,7 +476,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iHaveClickedOnANewAuthorName()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -385,7 +484,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aNewSearchAndWordCloudIsGenerated()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -393,7 +492,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aProgressBarShouldRespectivelyDisplayTheGenerationOfTheWordCloud()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -401,7 +500,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnAConferenceName()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -409,7 +508,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iShouldSeeAListOfPapersFromThatConferenceClicked()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -432,11 +531,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            throw new PendingException();
+            // throw new PendingException();
         }
-        // var_export($session->getCurrentUrl);
-        // $wordCloud = $page->find("wordcloud");
-        // if ()
         $wordClicked = $page->findLink("can");
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -444,7 +540,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            throw new PendingException();
+            // throw new PendingException();
         }
         $titleClicked = $page->findLink("Detecting");
         $titleClicked->mouseOver();
@@ -456,7 +552,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theAbstractShouldBeDisplayed()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -464,7 +560,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thePreviousWordShouldBeHighlightedInTheAbstract()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -472,7 +568,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function youAreOnThePaperlistPage()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -480,7 +576,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnCheckboxesOfSpecificPapers()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -488,7 +584,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function clickOnAButtonGenerateANewWordcloud()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -496,7 +592,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aNewWordCloudShouldGenerateWithTheseSelectedPapers()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -504,7 +600,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIAmOnThePaperlistPage()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -512,7 +608,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnTheBackButton()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -520,7 +616,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iShouldGoBackToThePreviousPageWithTheWordcloud()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -528,7 +624,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnTheDownloadLinkOfAPaper()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -536,7 +632,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aFileIsDownloaded()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -544,7 +640,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIAmAtThePaperListPage()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -552,7 +648,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickToDownloadAPaper()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -560,7 +656,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iShouldHaveAPdfFileWithTheSpecifiedWordHighlighted()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -568,7 +664,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aWordIsClickedFromTheWordCloud()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -576,7 +672,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function papersShouldBeListedByWordFrequency()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -584,7 +680,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function titleAuthorsFrequencyConferenceAndDownloadLinksShouldBeAvailable()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -592,7 +688,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function clickingOnColumnHeadersSortTheColumn()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -600,7 +696,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIAmOnTheHomePageAndAWordcloudIsMade()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -608,7 +704,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnDownloadWordcloud()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -616,7 +712,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aImageFileShouldExistInMyDesignatedFolder()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -639,7 +735,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIAmOnThePaperListPage2()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -647,7 +743,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatAnInvalidAuthorIsInputInTheSearchBox()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -655,7 +751,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theSearchButtonForAuthorIsPressed()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -663,7 +759,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aPopUpBoxWillDisplayAnErrorMessage()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 
     /**
@@ -671,6 +767,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatAnInvalidKeywordIsInputInTheSearchBox()
     {
-        throw new PendingException();
+        // throw new PendingException();
     }
 }
