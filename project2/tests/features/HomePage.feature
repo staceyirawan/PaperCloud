@@ -8,14 +8,15 @@ Feature: HomePage Author Search
 	Scenario: Searching for Authors as a User
 		Given there is a textbox in the homePage web page
 		When I add "Halfond" into the textbox
-		Then I should see suggestions in the dropdown box
-		And I should have the ability to choose the paper from the cloud
+		And I click the search by scholar button
+		Then I should see a word Cloud
 
 	@javascript
 	Scenario: Searching for Keywords as a User
 		Given there is a textbox in the homePage web page
 		When I add "Computer Science" into the textbox
-		And I should have the ability to choose the paper from the cloud
+		And I click search by keyword button
+		Then I should see a word Cloud
 
 	@javascript
 	Scenario: Wordcloud generation progress bar
@@ -32,7 +33,7 @@ Feature: HomePage Author Search
 	@javascript
 	Scenario: Top pages displayed
 		Given that a word is searched on the search bar
-		Then the top papers are papers that are most searched in the form of a word cloud
+		Then the words from the top papers that are most searched will be displayed in the form of a word cloud
 
 	@javascript	
 	Scenario: Searching for invalid author
