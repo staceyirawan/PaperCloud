@@ -94,6 +94,11 @@ class PaperController extends Controller
 
 		$paperJSON = PaperController::getPapersFromKeywords($keyword);
 		$papers = $paperJSON['document'];
+
+		var_dump($papers);
+
+		$ACMPaperUrls = PaperController::getACMPapersFromKeyword($keyword);
+		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
 		
 		$allAbstracts = $this->combineAbstractsFromIEEEPapers($papers);
 		$wordList = $this->createWordListFromText($allAbstracts);
@@ -223,10 +228,10 @@ class PaperController extends Controller
         return $paperConferences;
     }
 
-    //  ************ ACM STUFF *********************
-    //  ************ ACM STUFF *********************
-    //  ************ ACM STUFF *********************
-    //  ************ ACM STUFF *********************
+    //  ************ ACM STUFF ************
+    //  ************ ACM STUFF ************
+    //  ************ ACM STUFF ************
+    //  ************ ACM STUFF ************
 
     /* Get X (-c X) ACM paper links from author */
     // Currently retrieving 1 paper
@@ -257,7 +262,7 @@ class PaperController extends Controller
     // Currently retrieving 1 paper 
     public function getACMPapersFromKeyword($keyword) {
         // Run python script on terminal and retrieve csv content file
-        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 1 --pub=ACM --some=' . $keyword);
+        $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --some=' . $keyword);
         $array = array_map("str_getcsv", explode("\n", $execution));
 
         $counter = 0;
@@ -334,6 +339,22 @@ class PaperController extends Controller
     	$abstract = shell_exec('python ../app/Http/Controllers/site-packages/getAbstract.py '. $tURL);
     	return $abstract;
     }
+
+
+	public function formatACMPapersFromURLSintoArray($ACMPaperUrls){
+		var_dump($ACMPaperUrls);
+
+		$ACMInfo = array();
+		for ($i=0; $i<count($ACMPaperUrls); $i++){
+			$tempObject = array();
+			$tempObject['title'] = PaperController::getTitleFromHTML($ACMPaperUrls[$i]);
+
+			$ACMInfo.push($tempObject);
+				
+		}
+		var_dump($ACMInfo);
+
+	}
 
 
     //  ************ END ACM STUFF *********************
