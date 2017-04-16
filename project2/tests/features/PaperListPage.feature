@@ -57,11 +57,5 @@ Feature: Paper Page Options
 		And click on a button generate a new wordcloud
 		Then a new word cloud should generate with these selected papers
 
-	@javascript
-	Scenario: Using Back buttons
-		Given that I am at the paperlist page
-		When I click on the back button
-		Then I should go back to the previous page with the wordcloud
-
 	@Javascript
 	Scenario: Added more tests

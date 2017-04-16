@@ -815,7 +815,35 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnAConferenceName()
     {
-        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $conferenceClicked = $page->findLink("2016 IEEE International Conference on Software Testing, Verification and Validation (ICST)");
+        $conferenceClicked->mouseOver();
+        $conferenceClicked->click();
     }
 
     /**
@@ -823,7 +851,41 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iShouldSeeAListOfPapersFromThatConferenceClicked()
     {
-        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $conferenceClicked = $page->findLink("2016 IEEE International Conference on Software Testing, Verification and Validation (ICST)");
+        $conferenceClicked->mouseOver();
+        $conferenceClicked->click();
+        $webString = "http://localhost:8000/conference/2016%20IEEE%20International%20Conference%20on%20Software%20Testing,%20Verification%20and%20Validation%20%28ICST%29";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
     }
 
     /**
@@ -917,7 +979,32 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function youAreOnThePaperlistPage()
     {
-        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
     }
 
     /**
@@ -940,30 +1027,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      * @Then a new word cloud should generate with these selected papers
      */
     public function aNewWordCloudShouldGenerateWithTheseSelectedPapers()
-    {
-        // throw new PendingException();
-    }
-
-    /**
-     * @Given that I am on the paperlist page
-     */
-    public function thatIAmOnThePaperlistPage()
-    {
-        // throw new PendingException();
-    }
-
-    /**
-     * @When I click on the back button
-     */
-    public function iClickOnTheBackButton()
-    {
-        // throw new PendingException();
-    }
-
-    /**
-     * @Then I should go back to the previous page with the wordcloud
-     */
-    public function iShouldGoBackToThePreviousPageWithTheWordcloud()
     {
         // throw new PendingException();
     }
@@ -1013,7 +1076,26 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function aWordIsClickedFromTheWordCloud()
     {
-        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
     }
 
     /**
@@ -1021,7 +1103,26 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function papersShouldBeListedByWordFrequency()
     {
-        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        $wordClicked->mouseOver();
+        $wordClicked->click();
     }
 
     /**
@@ -1045,7 +1146,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIAmOnTheHomePageAndAWordcloudIsMade()
     {
-        // throw new PendingException();
+        // throw new Exception ("the page is incorrect.");
     }
 
     /**

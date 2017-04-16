@@ -1,27 +1,27 @@
 # behat.yml
-# default:
-#   extensions:
-#     Laracasts\Behat: 
-#     Behat\MinkExtension:
-#       base_url: http://localhost:8000
-#       default_session: laravel
-#       browser_name: chrome
-#       laravel: ~
-#       goutte: ~
-#       selenium2:
-#         wd_host: http://192.168.178.26:4444/wd/hub
-#         capabilities:
-#           browser: chrome
 default:
   extensions:
-    # Laracasts\Behat: 
-    #   env_path: .env.behat
+    Laracasts\Behat: 
     Behat\MinkExtension:
-      base_url: http://127.0.0.1:7:8000/
-      default_session: ~
-      browser_name: firefox
-      # laravel: ~
-      selenium2: 
+      base_url: http://localhost:8000
+      default_session: laravel
+      browser_name: chrome
+      laravel: ~
+      goutte: ~
+      selenium2:
         wd_host: http://192.168.178.26:4444/wd/hub
         capabilities:
-          browser: firefox
+          browser: chrome
+# default:
+#   extensions:
+#     # Laracasts\Behat: 
+#     #   env_path: .env.behat
+#     Behat\MinkExtension:
+#       base_url: http://127.0.0.1:7:8000/
+#       default_session: ~
+#       browser_name: firefox
+#       # laravel: ~
+#       selenium2: 
+#         wd_host: http://192.168.178.26:4444/wd/hub
+#         capabilities:
+#           browser: firefox
