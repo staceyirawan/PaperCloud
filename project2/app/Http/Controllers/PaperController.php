@@ -37,9 +37,9 @@ class PaperController extends Controller
     }
    
 
-	public function combineAbstractsFromIEEEPapers($papers){
+	public function combineAbstractsFromPapers($papers, $ACMPapers){
+		echo "sammie";
 		$allAbstractsText = "";
-		//NOTE: in future, make this all acm papers as well, and make push into DB
 		for ($i=0; $i < count($papers); $i++){
 			if (array_key_exists('abstract', $papers[$i])){
 				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
@@ -47,7 +47,13 @@ class PaperController extends Controller
 
 			}
 		}
+
+		for ($i=0; $i < count($ACMPapers); $i++){
+			$allAbstractsText = $allAbstractsText . " " . $ACMPapers[$i]['abstract'];
+		}
 		$allAbstractsText = strtolower($allAbstractsText);
+		echo $allAbstractsText;
+
 		return $allAbstractsText;
 	} 
 
@@ -70,7 +76,10 @@ class PaperController extends Controller
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
 		$papers = $paperJSON['document'];
 
-		$allAbstracts = $this->combineAbstractsFromIEEEPapers($papers);
+		$ACMPaperUrls = PaperController::getACMPapersFromKeyword($keyword);
+		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
+
+		$allAbstracts = $this->combineAbstractsFromPapers($papers, $ACMPapers);
 		$wordList = $this->createWordListFromText($allAbstracts);
 
 		$wcc = new WordCloudController();
@@ -95,12 +104,12 @@ class PaperController extends Controller
 		$paperJSON = PaperController::getPapersFromKeywords($keyword);
 		$papers = $paperJSON['document'];
 
-		var_dump($papers);
+//		var_dump($papers);
 
 		$ACMPaperUrls = PaperController::getACMPapersFromKeyword($keyword);
 		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
 		
-		$allAbstracts = $this->combineAbstractsFromIEEEPapers($papers);
+		$allAbstracts = $this->combineAbstractsFromPapers($papers, $ACMPapers);
 		$wordList = $this->createWordListFromText($allAbstracts);
 
 		$wcc = new WordCloudController();
@@ -117,7 +126,7 @@ class PaperController extends Controller
 	public function createWordCloudStringFromFullName($fullname){
 		$xresults = DB::table('x')->get();
 		$X = $xresults[0]->x;
-
+		//TODO
 	}
 
 	public function showWordCloudFromFullName($fullname){
@@ -339,6 +348,36 @@ class PaperController extends Controller
     	$abstract = shell_exec('python ../app/Http/Controllers/site-packages/getAbstract.py '. $tURL);
     	return $abstract;
     }
+	
+	public function getAllInfoFromHTML($tURL){
+		$tempObject = array();
+    	$html = file_get_html($tURL);
+
+		foreach($html->find('meta') as $element) {
+    		if($element->name == 'citation_conference') {
+    			$tempObject['conference'] = $element->content;
+    		}
+    		else if($element->name == 'citation_journal_title') {
+    			$tempObject['conference']= $element->content;
+    		}
+    		else if($element->name == 'citation_title') {
+				$tempObject['title'] = $element->content;
+			}
+    		else if($element->name == "citation_authors") {
+    			$authorString = $element->content;
+    			$authors = explode(";", $authorString);
+				$tempObject['authors'] = $authors;
+				$tempObject['authorString'] = $authorString;
+    		}
+            else if($element->name == "citation_pdf_url") {
+				$tempObject['pdf'] = $element->content;
+			}
+    	}
+
+		$tempObject['abstract'] = PaperController::getAbstractFromHTML($tURL);
+		return $tempObject;
+
+	}
 
 
 	public function formatACMPapersFromURLSintoArray($ACMPaperUrls){
@@ -346,13 +385,16 @@ class PaperController extends Controller
 
 		$ACMInfo = array();
 		for ($i=0; $i<count($ACMPaperUrls) && $i < 5; $i++){
-			$tempObject = array();
+			/*$tempObject = array();
 			$tempObject['title'] = PaperController::getTitleFromHTML($ACMPaperUrls[$i]);
 			$tempObject['pdf'] = PaperController::getPDFFromHTML($ACMPaperUrls[$i]);
+			echo "beore";
 			$tempObject['abstract'] = PaperController::getAbstractFromHTML($ACMPaperUrls[$i]);
+			echo "after";
 			$tempObject['authors'] = PaperController::getAuthorsFromHTML($ACMPaperUrls[$i]);
 			$tempObject['publisher'] = PaperController::getConferenceFromHTML($ACMPaperUrls[$i]);
-
+			*/
+			$tempObject = PaperController::getAllInfoFromHTML($ACMPaperUrls[$i]);
 			array_push($ACMInfo, $tempObject);
 				
 		}
