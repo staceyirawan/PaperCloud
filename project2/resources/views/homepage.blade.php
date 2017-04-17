@@ -7,12 +7,71 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>PaperCloud</title>
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type = "text/javascript">
+
 
             var searchWord = "";
 
+            function hash(n){
+                var pos = n.charCodeAt(0) - 97;
+
+                switch (pos){
+                    case(pos<5):
+                        return 3000;
+                    
+                    case(pos<10):
+                        return 5000;
+
+                    case(pos<15):
+                        return 7000;
+                    
+                    case(pos<20):
+                        return 9000;
+                    
+                    default:
+                        return 10000;
+
+                }
+            };
+            
+            function startBar() {
+            var elem = document.getElementById("myBar"); 
+            var width = 0;
+            var max = 10;
+           
+            var fourth = hash(document.getElementById("myText").value);
+            
+
+            setTimeout(frame, 5000);
+            setTimeout(frame, 15000);
+            setTimeout(frame, 25000);
+            setTimeout(frameFinal, 25000+fourth);
+
+            function frame(){
+                if (width<100){
+                    var newNum = Math.floor(Math.random() * (max - width + 1)) + width;
+                    console.log(newNum);
+                    width+=newNum;
+                    console.log("width is " + width);
+                    max+=15;
+                    elem.style.width = width + '%';
+                }
+                else {}
+            }
+            function frameFinal(){
+                console.log(width);
+                elem.style.width = 100 + '%';
+            }
+            };
+            
+
             function goToCloudWithScholar(){
+                startBar();
+
+
                 var baseURL = "http://localhost:8000/papers/scholar/";
                 searchWord = document.getElementById("myText").value;
                 var url = baseURL.concat(searchWord);
@@ -25,7 +84,9 @@
                 window.location.href = url;
                 }
             };
+
             function goToCloudWithKeyword(){
+                startBar();
                 var baseURL = "http://localhost:8000/papers/keyword/";
                 searchWord = document.getElementById("myText").value;
                 var url = baseURL.concat(searchWord);
@@ -38,7 +99,6 @@
                     window.location.href = url;
                 }
             };
-
 
         </script>
 <!-- Style -->
@@ -137,9 +197,14 @@ pageTitle {
         <button onclick="goToCloudWithScholar()" id = "scholarButton">Search by Scholar</button>
         <br><br>
         <button onclick="goToCloudWithKeyword()" id = "keywordButton">Search by Keyword</button>
-        <br>
+        <br><br>
         
-
+<div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" id = "myBar" role="progressbar"
+  aria-valuemin="0" aria-valuemax="100" >
+    Generating Your PaperCloud
+  </div>
+</div>
 </div>
     </div>
 

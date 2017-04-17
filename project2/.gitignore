@@ -8,3 +8,4 @@ Homestead.json
 Homestead.yaml
 /app/Http/Controllers/site-packages
 *.pyc
+*.log
