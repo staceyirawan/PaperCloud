@@ -120,7 +120,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -305,7 +305,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // // $wordClicked->mouseOver();
         $wordClicked->click();
     }
 
@@ -335,7 +335,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // $wordCloud = $page->find("wordcloud");
         // if ()
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -364,7 +364,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         $page = $session->getPage();
@@ -401,7 +401,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // $wordCloud = $page->find("wordcloud");
         // if ()
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -435,7 +435,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -478,7 +478,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+//         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -520,7 +520,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     $textbox = $page->findField("myText");  
     //     $textbox->setValue("Halfond");
     //     $button = $page->findButton('scholarButton');
-    //     // $button->mouseOver();
+        // $button->mouseOver();
     //     $button->click();
     //     $page = $session->getPage();
     //     $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -530,7 +530,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //         // throw new PendingException();
     //     }
     //     $wordClicked = $page->findLink("can");
-    //     $wordClicked->mouseOver();
+        // // $wordClicked->mouseOver();
     //     $wordClicked->click();
     //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
     //     if ($session->getCurrentUrl() != $webString) 
@@ -539,7 +539,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //         // throw new PendingException();
     //     }
     //     $bibTexButton = $page->findLink("bibtex1");
-    //     $bibTexButton->mouseOver();
+        // $bibTexButton->mouseOver();
     //     $wordClicked->click();
     //     $webString = "http://localhost:8000/list/scholar/Halfond/can/bibtex1";
     //     if ($session->getCurrentUrl() != $webString) 
@@ -564,7 +564,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     $textbox = $page->findField("myText");  
     //     $textbox->setValue("Halfond");
     //     $button = $page->findButton('scholarButton');
-    //     // $button->mouseOver();
+        // $button->mouseOver();
     //     $button->click();
     //     $page = $session->getPage();
     //     $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -574,7 +574,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //         // throw new PendingException();
     //     }
     //     $wordClicked = $page->findLink("can");
-    //     $wordClicked->mouseOver();
+        // // $wordClicked->mouseOver();
     //     $wordClicked->click();
     //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
     //     if ($session->getCurrentUrl() != $webString) 
@@ -583,7 +583,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //         // throw new PendingException();
     //     }
     //     $bibTexButton = $page->findLink("bibtex1");
-    //     $bibTexButton->mouseOver();
+        // $bibTexButton->mouseOver();
     //     $wordClicked->click();
     //     $webString = "http://localhost:8000/list/scholar/Halfond/can/bibtex1";
     //     if ($session->getCurrentUrl() != $webString) 
@@ -620,7 +620,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -656,7 +656,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -699,7 +699,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -742,7 +742,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -785,7 +785,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -836,7 +836,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -872,7 +872,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -914,7 +914,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -950,7 +950,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
         if ($session->getCurrentUrl() != $webString) 
@@ -997,7 +997,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     $textbox = $page->findField("myText");  
     //     $textbox->setValue("Halfond");
     //     $button = $page->findButton('scholarButton');
-    //     // $button->mouseOver();
+        // $button->mouseOver();
     //     $button->click();
     //     $page = $session->getPage();
     //     $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -1007,7 +1007,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //         // throw new PendingException();
     //     }
     //     $wordClicked = $page->findLink("can");
-    //     $wordClicked->mouseOver();
+        // // $wordClicked->mouseOver();
     //     $wordClicked->click();
     //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
     //     if ($session->getCurrentUrl() != $webString) 
@@ -1104,7 +1104,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
     }
 
@@ -1131,7 +1131,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
+        // $wordClicked->mouseOver();
         $wordClicked->click();
     }
 
