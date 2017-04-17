@@ -44,7 +44,7 @@ class PaperController extends Controller
 		for ($i=0; $i < count($papers); $i++){
 			if (array_key_exists('abstract', $papers[$i])){
 				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
-				DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["IEEE", $id, $papers[$i]['title'], $papers[$i]['publisher'], $papers[$i]['pdf'], $papers[$i]['authors'], "bibtexIEEE", $papers[$i]['abstract']]);
+				DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["IEEE", $id, $papers[$i]['title'], $papers[$i]['pubtitle'], $papers[$i]['pdf'], $papers[$i]['authors'], "bibtexIEEE", $papers[$i]['abstract']]);
 				$id++;
 			}
 		}
