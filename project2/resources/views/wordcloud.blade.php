@@ -10,7 +10,7 @@
         <script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
 
         <script type = "text/javascript">
-
+        
             //download word cloud             
             function downloadCloud(){
                 html2canvas(document.body, {
@@ -44,10 +44,7 @@
                 return new Blob([ab], {type: 'image/png'});
             }
 
-            function loadCloud(){
-                var wordCloudString =  "<?php echo $wordCloudString?>";
-                document.getElementById("wordcloud").innerHTML= wordCloudString;
-            };
+            
         </script>
 
 <style>
@@ -125,7 +122,11 @@ pageTitle {
 
 
 
- <body onload = "loadCloud()">
+ <body>
+    <?php
+    echo $wordCloudString;
+    ?>
+    
     <div id = "searchCloud">
 
         <a id="wordcloud"> </a>

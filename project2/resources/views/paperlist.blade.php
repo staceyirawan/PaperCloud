@@ -37,7 +37,7 @@
                     
                     echo "<tr>";
                     echo "<td>";
-                    echo "<input type='checkbox' name='".$i. "'>";
+                    echo "<input type='checkbox' name='box".$i. "'>";
                     echo "</td>";
                     $title = $titles[$i];
                     
