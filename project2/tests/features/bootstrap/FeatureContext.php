@@ -120,7 +120,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        // $button->mouseOver();
+        $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -144,7 +144,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         if(null === $button){
             throw new Exception('The element is not found');
@@ -165,7 +165,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Computer Science");
         $button = $page->findButton('keywordButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         if(null === $button){
             throw new Exception('The element is not found');
@@ -198,7 +198,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         if(null === $button){
             throw new Exception('The element is not found');
@@ -269,7 +269,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -295,7 +295,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -322,7 +322,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -359,7 +359,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -388,7 +388,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -425,7 +425,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -468,7 +468,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -514,7 +514,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -558,7 +558,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -604,7 +604,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -640,7 +640,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -683,7 +683,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -726,7 +726,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -769,7 +769,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -820,7 +820,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -856,7 +856,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -898,7 +898,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -934,7 +934,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -984,7 +984,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -1081,7 +1081,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -1108,7 +1108,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
@@ -1206,7 +1206,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
     }
 
