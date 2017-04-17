@@ -446,7 +446,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        $pdfButton = $page->findLink("pdf1");
+        $pdfButton = $page->findById("pdf1");
         $pdfButton->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
