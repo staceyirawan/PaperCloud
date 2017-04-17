@@ -19,12 +19,6 @@ Feature: Paper Page Options
 		Then a PDF file will be downloaded with the paperlist
 
 	@javascript
-	Scenario: Downloading paperlist in plain text
-		Given I am on the paperlist page
-		When I click export to plain text
-		Then a plain text will be downloaded with the paperlist
-
-	@javascript
 	Scenario: When on paperlist page clicking new author
 		Given I am on the paperlist page
 		When I click on another authors name
@@ -49,13 +43,6 @@ Feature: Paper Page Options
 		When I click on the title of a paper
 		Then the abstract should be displayed
 		And the previous word should be highlighted in the abstract
-
-	@javascript
-	Scenario: Generating a subset wordcloud
-		Given you are on the paperlist page
-		When I click on checkboxes of specific papers
-		And click on a button generate a new wordcloud
-		Then a new word cloud should generate with these selected papers
 
 	@Javascript
 	Scenario: Added more tests

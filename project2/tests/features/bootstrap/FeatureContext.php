@@ -308,7 +308,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $wordClicked->mouseOver();
         $wordClicked->click();
     }
-    
+
     /**
      * @Then I should see a page with lists of papers
      */
@@ -501,95 +501,101 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $session->stop();
     }
 
-    /**
-     * @When I click export to plain text
-     */
-    public function iClickExportToPlainText()
-    {
-        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://127.0.0.1:8000/');
-        $page = $session->getPage();
-        $textbox = $page->findField("myText");  
-        $textbox->setValue("Halfond");
-        $button = $page->findButton('scholarButton');
-        // $button->mouseOver();
-        $button->click();
-        $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            // throw new PendingException();
-        }
-        $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
-        $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            // throw new PendingException();
-        }
-        $bibTexButton = $page->findLink("bibtex1");
-        $bibTexButton->mouseOver();
-        $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can/bibtex1";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            // throw new PendingException();
-        }
+    // @javascript
+    // Scenario: Downloading paperlist in plain text
+    //     Given I am on the paperlist page
+    //     When I click export to plain text
+    //     Then a plain text will be downloaded with the paperlist
 
-        $session->stop();
-    }
+    // /**
+    //  * @When I click export to plain text
+    //  */
+    // public function iClickExportToPlainText()
+    // {
+    //     $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    //     $session = new \Behat\Mink\Session($driver);
+    //     $session->start();
+    //     $session->visit('http://127.0.0.1:8000/');
+    //     $page = $session->getPage();
+    //     $textbox = $page->findField("myText");  
+    //     $textbox->setValue("Halfond");
+    //     $button = $page->findButton('scholarButton');
+    //     // $button->mouseOver();
+    //     $button->click();
+    //     $page = $session->getPage();
+    //     $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+    //     if ($session->getCurrentUrl() != $webString) 
+    //     {
+    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    //         // throw new PendingException();
+    //     }
+    //     $wordClicked = $page->findLink("can");
+    //     $wordClicked->mouseOver();
+    //     $wordClicked->click();
+    //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
+    //     if ($session->getCurrentUrl() != $webString) 
+    //     {
+    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    //         // throw new PendingException();
+    //     }
+    //     $bibTexButton = $page->findLink("bibtex1");
+    //     $bibTexButton->mouseOver();
+    //     $wordClicked->click();
+    //     $webString = "http://localhost:8000/list/scholar/Halfond/can/bibtex1";
+    //     if ($session->getCurrentUrl() != $webString) 
+    //     {
+    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    //         // throw new PendingException();
+    //     }
 
-    /**
-     * @Then a plain text will be downloaded with the paperlist
-     */
-    public function aPlainTextWillBeDownloadedWithThePaperlist()
-    {
-        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://127.0.0.1:8000/');
-        $page = $session->getPage();
-        $textbox = $page->findField("myText");  
-        $textbox->setValue("Halfond");
-        $button = $page->findButton('scholarButton');
-        // $button->mouseOver();
-        $button->click();
-        $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            // throw new PendingException();
-        }
-        $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
-        $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            // throw new PendingException();
-        }
-        $bibTexButton = $page->findLink("bibtex1");
-        $bibTexButton->mouseOver();
-        $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can/bibtex1";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            // throw new PendingException();
-        }
+    //     $session->stop();
+    // }
 
-        // try to look for some pop up
+    // *
+    //  * @Then a plain text will be downloaded with the paperlist
+     
+    // public function aPlainTextWillBeDownloadedWithThePaperlist()
+    // {
+    //     $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    //     $session = new \Behat\Mink\Session($driver);
+    //     $session->start();
+    //     $session->visit('http://127.0.0.1:8000/');
+    //     $page = $session->getPage();
+    //     $textbox = $page->findField("myText");  
+    //     $textbox->setValue("Halfond");
+    //     $button = $page->findButton('scholarButton');
+    //     // $button->mouseOver();
+    //     $button->click();
+    //     $page = $session->getPage();
+    //     $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+    //     if ($session->getCurrentUrl() != $webString) 
+    //     {
+    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    //         // throw new PendingException();
+    //     }
+    //     $wordClicked = $page->findLink("can");
+    //     $wordClicked->mouseOver();
+    //     $wordClicked->click();
+    //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
+    //     if ($session->getCurrentUrl() != $webString) 
+    //     {
+    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    //         // throw new PendingException();
+    //     }
+    //     $bibTexButton = $page->findLink("bibtex1");
+    //     $bibTexButton->mouseOver();
+    //     $wordClicked->click();
+    //     $webString = "http://localhost:8000/list/scholar/Halfond/can/bibtex1";
+    //     if ($session->getCurrentUrl() != $webString) 
+    //     {
+    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    //         // throw new PendingException();
+    //     }
 
-        $session->stop();
-    }
+    //     // try to look for some pop up
+
+    //     $session->stop();
+    // }
 
     /**
      * @When I click on another authors name
@@ -971,62 +977,69 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // throw new PendingException();
     }
 
-    /**
-     * @Given you are on the paperlist page
-     */
-    public function youAreOnThePaperlistPage()
-    {
-        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://127.0.0.1:8000/');
-        $page = $session->getPage();
-        $textbox = $page->findField("myText");  
-        $textbox->setValue("Halfond");
-        $button = $page->findButton('scholarButton');
-        // $button->mouseOver();
-        $button->click();
-        $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            // throw new PendingException();
-        }
-        $wordClicked = $page->findLink("can");
-        $wordClicked->mouseOver();
-        $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
-        if ($session->getCurrentUrl() != $webString) 
-        {
-            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-            // throw new PendingException();
-        }
-    }
+    // @javascript
+    // Scenario: Generating a subset wordcloud
+    //     Given you are on the paperlist page
+    //     When I click on checkboxes of specific papers
+    //     And click on a button generate a new wordcloud
+    //     Then a new word cloud should generate with these selected papers
 
-    /**
-     * @When I click on checkboxes of specific papers
-     */
-    public function iClickOnCheckboxesOfSpecificPapers()
-    {
-        // throw new PendingException();
-    }
+    // /**
+    //  * @Given you are on the paperlist page
+    //  */
+    // public function youAreOnThePaperlistPage()
+    // {
+    //     $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    //     $session = new \Behat\Mink\Session($driver);
+    //     $session->start();
+    //     $session->visit('http://127.0.0.1:8000/');
+    //     $page = $session->getPage();
+    //     $textbox = $page->findField("myText");  
+    //     $textbox->setValue("Halfond");
+    //     $button = $page->findButton('scholarButton');
+    //     // $button->mouseOver();
+    //     $button->click();
+    //     $page = $session->getPage();
+    //     $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+    //     if ($session->getCurrentUrl() != $webString) 
+    //     {
+    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    //         // throw new PendingException();
+    //     }
+    //     $wordClicked = $page->findLink("can");
+    //     $wordClicked->mouseOver();
+    //     $wordClicked->click();
+    //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
+    //     if ($session->getCurrentUrl() != $webString) 
+    //     {
+    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    //         // throw new PendingException();
+    //     }
+    // }
 
-    /**
-     * @When click on a button generate a new wordcloud
-     */
-    public function clickOnAButtonGenerateANewWordcloud()
-    {
-        // throw new PendingException();
-    }
+    // /**
+    //  * @When I click on checkboxes of specific papers
+    //  */
+    // public function iClickOnCheckboxesOfSpecificPapers()
+    // {
+    //     // throw new PendingException();
+    // }
 
-    /**
-     * @Then a new word cloud should generate with these selected papers
-     */
-    public function aNewWordCloudShouldGenerateWithTheseSelectedPapers()
-    {
-        // throw new PendingException();
-    }
+    // /**
+    //  * @When click on a button generate a new wordcloud
+    //  */
+    // public function clickOnAButtonGenerateANewWordcloud()
+    // {
+    //     // throw new PendingException();
+    // }
+
+    // /**
+    //  * @Then a new word cloud should generate with these selected papers
+    //  */
+    // public function aNewWordCloudShouldGenerateWithTheseSelectedPapers()
+    // {
+    //     // throw new PendingException();
+    // }
 
     /**
      * @When I click on the download link of a paper
