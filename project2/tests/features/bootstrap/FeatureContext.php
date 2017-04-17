@@ -939,6 +939,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $titleClicked = $page->findLink("Detecting");
+        checkIfNull($titleClicked);
         $titleClicked->mouseOver();
         $titleClicked->click();
     }
@@ -976,6 +977,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $titleClicked = $page->findLink("Detecting");
+        checkIfNull($titleClicked);
         $titleClicked->mouseOver();
         $titleClicked->click();
 
