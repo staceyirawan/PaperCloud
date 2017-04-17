@@ -304,14 +304,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        // var_export($session->getCurrentUrl);
-        // $wordCloud = $page->find("wordcloud");
-        // if ()
         $wordClicked = $page->findLink("can");
         $wordClicked->mouseOver();
         $wordClicked->click();
     }
-
+    
     /**
      * @Then I should see a page with lists of papers
      */
