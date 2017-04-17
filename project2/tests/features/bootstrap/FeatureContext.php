@@ -674,6 +674,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $authorName = $page->findLink("author");
+        if($authorName == null)
+        {
+            throw new Exception ("There is no word: ".$authorName);
+        }
         $authorName->mouseOver();
         $authorName->click();
     }
@@ -715,6 +719,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $authorName = $page->findLink("author");
+        if($authorName == null)
+        {
+            throw new Exception ("There is no word: ".$authorName);
+        }
         $authorName->mouseOver();
         $authorName->click();
         // THis is part of checking if it's on the right word Cloud.
@@ -763,6 +771,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $authorName = $page->findLink("author");
+        if($authorName == null)
+        {
+            throw new Exception ("There is no word: ".$authorName);
+        }
         $authorName->mouseOver();
         $authorName->click();
         // THis is part of checking if it's on the right word Cloud.
@@ -811,6 +823,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $authorName = $page->findLink("author");
+        if($authorName == null)
+        {
+            throw new Exception ("There is no word: ".$authorName);
+        }
         $authorName->mouseOver();
         $authorName->click();
         // THis is part of checking if it's on the right word Cloud.
@@ -859,6 +875,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $authorName = $page->findLink("author");
+        if($authorName == null)
+        {
+            throw new Exception ("There is no word: ".$authorName);
+        }
         $authorName->mouseOver();
         $authorName->click();
         // THis is part of checking if it's on the right word Cloud.
