@@ -301,8 +301,6 @@ class PaperController extends Controller
 
 
 	public function formatACMPapersFromURLSintoArray($ACMPaperUrls){
-		//var_dump($ACMPaperUrls);
-
 		$ACMInfo = array();
 		for ($i=0; $i<count($ACMPaperUrls) && $i < 1; $i++){ //TODO make this 5
 			$tempObject = PaperController::getAllInfoFromHTML($ACMPaperUrls[$i]);
@@ -310,7 +308,6 @@ class PaperController extends Controller
 			array_push($ACMInfo, $tempObject);
 				
 		}
-		//var_dump($ACMInfo);
 		return $ACMInfo;
 	}
 
@@ -368,7 +365,4 @@ class PaperController extends Controller
 			$authors = str_replace(";", ",", $authors);
 			return view('conferencepage', ['titles' => $titles, 'authors' => $authors]);
 		}
-
-
-
 } 
