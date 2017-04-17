@@ -92,15 +92,23 @@ class PaperController extends Controller
 		return $tempObject;	
 	}
 
+	public function getHashFromFirstLetter($firstLetter){
+		return 0;
+
+	}
 
 	public function createWordCloudStringFromName($lastName, $X){
+		$initialTime = time();
+		$totalTime = PaperController::getHashFromFirstLetter($lastName[0]);
+
+
 		DB::delete('delete from x');
 		DB::insert('insert into x (x) values (?)', [$X]);
 
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
 		$papers = $paperJSON['document'];
 
-		$ACMPaperUrls = PaperController::getACMPapersFromKeyword($keyword);
+		$ACMPaperUrls = PaperController::getACMPapersFromAuthor($lastName);
 		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
 
 		$paperSubset = PaperController::getSubsetBasedOnX($papers, $ACMPapers, $X);
@@ -110,6 +118,9 @@ class PaperController extends Controller
 
 		$wcc = new WordCloudController();
 		$wordCloudString = $wcc->createWordCloudString($wordList, $lastName, "scholar");
+
+		$finalTime = time();
+		
 
 		return $wordCloudString;
 	}

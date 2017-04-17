@@ -21,6 +21,7 @@
             <table id='myTable' class='tablesorter'>
                 <thead> 
             <tr> 
+            <th>Choose Subset</th>
             <th>Title</th> 
             <th>Author</th> 
             <th>Conference</th> 
@@ -35,6 +36,9 @@
                if(sizeOf($titles) > 0) {
                     
                     echo "<tr>";
+                    echo "<td>";
+                    echo "<input type='checkbox' name='".$i. "'>";
+                    echo "</td>";
                     $title = $titles[$i];
                     
                     echo "<td><a href = '/abstract/$title/$word'>";
