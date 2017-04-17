@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1492385160866	geckodriver	INFO	Listening on 127.0.0.1:50379
 1492385161858	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.zKxr4Vw01Kfr
 1492385161860	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
@@ -109,3 +110,5 @@
 1492388623199	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.28HJsLFfvqJZ
 1492388623200	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
 1492388623203	geckodriver::marionette	INFO	Connecting to Marionette on localhost:57222
+=======
+>>>>>>> b9cf77ec2ef5a4dce95c091304e16499dc4905c2
