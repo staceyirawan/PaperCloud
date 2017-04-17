@@ -123,7 +123,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -272,7 +272,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -298,7 +298,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -328,7 +328,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -365,7 +365,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         $wordClicked = $page->findLink("can");
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -394,7 +394,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -431,7 +431,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -474,7 +474,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -520,7 +520,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -564,7 +564,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -610,7 +610,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -646,7 +646,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -689,7 +689,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -732,7 +732,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -775,7 +775,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -826,7 +826,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -862,7 +862,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -904,7 +904,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -940,7 +940,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -990,7 +990,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1087,7 +1087,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1114,7 +1114,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $button->mouseOver();
         $button->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond";
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
