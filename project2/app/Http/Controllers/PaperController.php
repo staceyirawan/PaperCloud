@@ -38,25 +38,23 @@ class PaperController extends Controller
    
 
 	public function combineAbstractsFromPapers($papers, $ACMPapers){
+		DB::delete('delete from paperinfo');
 		$allAbstractsText = "";
+		$id = 1;
 		for ($i=0; $i < count($papers); $i++){
 			if (array_key_exists('abstract', $papers[$i])){
-				echo $papers[$i]['abstract'];
-				echo "()()()())()()()()()()()()()()()";
 				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
-				//DB::insert into papers(id, title, conference, bibtex, pdf, authors) VALUES (?, ?, ?, ?, ?, ?), []);
-
+				DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["IEEE", $id, $papers[$i]['title'], $papers[$i]['publisher'], $papers[$i]['pdf'], $papers[$i]['authors'], "bibtexIEEE", $papers[$i]['abstract']]);
+				$id++;
 			}
 		}
 
 		for ($i=0; $i < count($ACMPapers); $i++){
 			$allAbstractsText = $allAbstractsText . " " . $ACMPapers[$i]['abstract'];
-			echo $ACMPapers[$i]['abstract'];
-			echo "()()()()()()()()()()()()()()";
+			DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["ACM", $id, $ACMPapers[$i]['title'], $ACMPapers[$i]['publisher'], $ACMPapers[$i]['pdf'], $ACMPapers[$i]['authors'], "bibtexACM", $ACMPapers[$i]['abstract']]);
+			$id++;
 		}
 		$allAbstractsText = strtolower($allAbstractsText);
-		//echo $allAbstractsText;
-
 		return $allAbstractsText;
 	} 
 
@@ -101,7 +99,6 @@ class PaperController extends Controller
 		$initialTime = time();
 		$totalTime = PaperController::getHashFromFirstLetter($lastName[0]);
 
-
 		DB::delete('delete from x');
 		DB::insert('insert into x (x) values (?)', [$X]);
 
@@ -120,15 +117,12 @@ class PaperController extends Controller
 		$wordCloudString = $wcc->createWordCloudString($wordList, $lastName, "scholar");
 
 		$finalTime = time();
-		
+		//TODO wait	
 
 		return $wordCloudString;
 	}
 
 	public function showWordCloudFromName($lastName, $X){
-//		DB::delete('delete from x');
-		//$papers = DB::table('papers')->where('id', 1)->first();
-		//var_dump($papers);
 		$wordCloudString = $this->createWordCloudStringFromName($lastName, $X);
 		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
 	}
@@ -168,111 +162,56 @@ class PaperController extends Controller
 
 	public function showWordCloudFromFullName($fullname){
 		$wordCloudString = $this->createWordCloudStringFromFullName($fullname);
-
+		//TODO
 //		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
 	}
 
 
-	public function showPaperListFromKeyword($keyword, $word){
-		$paperJSON = PaperController::getPapersFromKeywords($keyword);
-		$papers = $paperJSON['document'];
+	public function getPaperListInformation($word){
+		$allRows = DB::select('select * from paperinfo');
+		//var_dump($allRows);
 
-		$papersThatContainWord = array();
-		$frequencyArr = array();
+		$titles = array();
+		$pdfs = array();
+		$conferences = array();
+		$authors = array();
+		//$bibtex = array();
+		$frequency = array();
 
-		for ($i=0; $i<count($papers); $i++){
-			if (!array_key_exists('abstract', $papers[$i])) continue;
-			$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
+		for ($i=0; $i<count($allRows); $i++){
+			$wordsToSearch = $allRows[$i]->abstract;
 			$wordsToSearch = strtolower($wordsToSearch);
-
 			$count = substr_count($wordsToSearch, " " . $word . " ");
 			if ($count != 0){
-				array_push($papersThatContainWord, $papers[$i]);
-				array_push($frequencyArr, $count);
+				array_push($titles, $allRows[$i]->title);
+				array_push($pdfs, $allRows[$i]->pdf);
+				array_push($conferences, $allRows[$i]->conference);
+				array_push($authors, explode(";", $allRows[$i]->authors));
+				array_push($frequency, $count);
 			} 
+			//TODO push into db.
 		}
-		
-		$titleArr = $this->getPaperTitles($papersThatContainWord);
-		$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
-		$conferenceArr = $this->getPaperConferences($papersThatContainWord);
-		$downloadArr = $this->getDownloadLinks($papersThatContainWord);
+		$obj = array();
+		$obj['titles'] = $titles;
+		$obj['pdfs'] = $pdfs;
+		$obj['conferences'] = $conferences;
+		$obj['authors'] = $authors;
+		$obj['frequency'] = $frequency;
+		//var_dump($obj);
+		return $obj;
+	}
 
-		return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
+
+	public function showPaperListFromKeyword($keyword, $word){
+		$allInfo = PaperController::getPaperListInformation($word);
+		return view('paperlist', ['frequencies' => $allInfo['frequency'], 'titles' => $allInfo['titles'], 'authors' => $allInfo['authors'], 'conferences' => $allInfo['conferences'], 'downloadLinks' => $allInfo['pdfs'], 'word' => $word]);
 	}
 
 
 	public function showPaperListFromName($lastName, $word){
-		$paperJSON = $this->getPapersFromAuthor($lastName);
-		$papers = $paperJSON['document'];
-
-		$papersThatContainWord = array();
-		$frequencyArr = array();
-
-		for ($i=0; $i<count($papers); $i++){
-			if (!array_key_exists('abstract', $papers[$i])) continue;
-			$wordsToSearch = " " . $papers[$i]['abstract'] . " ";
-			$wordsToSearch = strtolower($wordsToSearch);
-
-	  		$count = substr_count($wordsToSearch, " " . $word . " ");
-			if ($count != 0){
-				array_push($papersThatContainWord, $papers[$i]);
-				array_push($frequencyArr, $count);
-			}
-		} 
-		
-		$titleArr = $this->getPaperTitles($papersThatContainWord);
-		$authorArr = $this->separateAuthors($this->getPaperAuthors($papersThatContainWord));
-		$conferenceArr = $this->getPaperConferences($papersThatContainWord);
-		$downloadArr = $this->getDownloadLinks($papersThatContainWord);
-
-		return view('paperlist', ['frequencies' => $frequencyArr, 'titles' => $titleArr, 'authors' => $authorArr, 'conferences' => $conferenceArr, 'downloadLinks' => $downloadArr, 'word' => $word]);
+		$allInfo = PaperController::getPaperListInformation($word);
+		return view('paperlist', ['frequencies' => $allInfo['frequency'], 'titles' => $allInfo['titles'], 'authors' => $allInfo['authors'], 'conferences' => $allInfo['conferences'], 'downloadLinks' => $allInfo['pdfs'], 'word' => $word]);
 	}
-
-
-	public function getDownloadLinks($papers){
-		$paperDownloadLinks = array();
-		for ($i=0; $i < count($papers); $i++){
-			$paperDownloadLinks[$i] = $papers[$i]['pdf'];
-		}	
-		return $paperDownloadLinks;
-	}
-
-    public function getPaperTitles($papers) {
-        $paperTitles = array();
-        for($i = 0; $i < count($papers); $i++) {
-            $paperTitles[$i] = $papers[$i]['title'];
-        }
-        return $paperTitles;
-    }
-
-    public function getPaperAuthors($papers) {
-        $paperAuthors = array();
-        for($i = 0; $i < count($papers); $i++) {
-            $paperAuthors[$i] = $papers[$i]['authors'];
-        }
-        return $paperAuthors;
-    }
-
-    public function separateAuthors($authors) {
-        $subAuthors = array();
-        $overallAuthors = array();
-
-        for($i = 0; $i < count($authors) ; $i++) {
-            $authorString = $authors[$i];
-            $author = explode(";", $authorString);
-            $subAuthors = $author;
-            $overallAuthors[$i] = $subAuthors;
-        }
-        return $overallAuthors;
-    }
-
-    public function getPaperConferences($papers) {
-        $paperConferences = array();
-        for($i = 0 ; $i < count($papers); $i++) {
-            $paperConferences[$i] = $papers[$i]['pubtitle'];
-        }
-        return $paperConferences;
-    }
 
     //  ************ ACM STUFF ************
     //  ************ ACM STUFF ************
@@ -331,8 +270,6 @@ class PaperController extends Controller
     // Scrape ACM html for 1 paper's abstract text using python script
     public function getAbstractFromHTML($tURL) {
     	$abstract = shell_exec('python ../app/Http/Controllers/site-packages/getAbstract.py '. $tURL);
-		echo "ABSTRACT: ";
-		echo $abstract;
     	return $abstract;
     }
 	
@@ -342,26 +279,22 @@ class PaperController extends Controller
 
 		foreach($html->find('meta') as $element) {
     		if($element->name == 'citation_conference') {
-    			$tempObject['conference'] = $element->content;
+    			$tempObject['publisher'] = $element->content;
     		}
     		else if($element->name == 'citation_journal_title') {
-    			$tempObject['conference']= $element->content;
+    			$tempObject['publisher']= $element->content;
     		}
     		else if($element->name == 'citation_title') {
 				$tempObject['title'] = $element->content;
 			}
     		else if($element->name == "citation_authors") {
-    			$authorString = $element->content;
-    			$authors = explode(";", $authorString);
-				$tempObject['authors'] = $authors;
-				$tempObject['authorString'] = $authorString;
+    			$tempObject['authors'] = $element->content;
     		}
             else if($element->name == "citation_pdf_url") {
 				$tempObject['pdf'] = $element->content;
 			}
     	}
 
-		//$tempObject['abstract'] = PaperController::getAbstractFromHTML($tURL);
 		return $tempObject;
 
 	}
@@ -371,22 +304,13 @@ class PaperController extends Controller
 		//var_dump($ACMPaperUrls);
 
 		$ACMInfo = array();
-		for ($i=0; $i<count($ACMPaperUrls) && $i < 5; $i++){
-			/*$tempObject = array();
-			$tempObject['title'] = PaperController::getTitleFromHTML($ACMPaperUrls[$i]);
-			$tempObject['pdf'] = PaperController::getPDFFromHTML($ACMPaperUrls[$i]);
-			echo "beore";
-			$tempObject['abstract'] = PaperController::getAbstractFromHTML($ACMPaperUrls[$i]);
-			echo "after";
-			$tempObject['authors'] = PaperController::getAuthorsFromHTML($ACMPaperUrls[$i]);
-			$tempObject['publisher'] = PaperController::getConferenceFromHTML($ACMPaperUrls[$i]);
-			*/
+		for ($i=0; $i<count($ACMPaperUrls) && $i < 1; $i++){ //TODO make this 5
 			$tempObject = PaperController::getAllInfoFromHTML($ACMPaperUrls[$i]);
 			$tempObject['abstract'] = PaperController::getAbstractFromHTML($ACMPaperUrls[$i]);
 			array_push($ACMInfo, $tempObject);
 				
 		}
-		var_dump($ACMInfo);
+		//var_dump($ACMInfo);
 		return $ACMInfo;
 	}
 
@@ -409,7 +333,6 @@ class PaperController extends Controller
 			$abstract = $papers['abstract'];
 
 			return view('paperpage', ['abstract' => $abstract, 'word' => $word, 'title' => $title]);
-
 		}
 
 
@@ -424,7 +347,6 @@ class PaperController extends Controller
 
 	//CONFERNECE STUFF
 		public function getPaperListFromConference($conferenceName){
-
 			$titles = array();
 			$authors = array();
 

@@ -33,3 +33,6 @@ Route::get('conference/{conferenceName}', 'PaperController@getPaperListFromConfe
 
 
 Route::get('papers/authorfull/{fullname}', 'PaperController@showWordCloudFromFullName')->name('paperbyfullname.get');
+
+
+//Route::get('papers/subset/{TFString}', 'PaperController@showWordCloudFromSubset')->name('paperbysubset.get');
