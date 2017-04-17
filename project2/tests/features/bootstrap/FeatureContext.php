@@ -305,7 +305,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
     }
@@ -336,7 +340,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // $wordCloud = $page->find("wordcloud");
         // if ()
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -366,7 +374,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -404,7 +416,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // $wordCloud = $page->find("wordcloud");
         // if ()
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -439,7 +455,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -483,7 +503,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -537,6 +561,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     }
     //     $wordClicked = $page->findLink("can");
     // checkIfNull($wordClicked);
+    // if($object == null)
+    //     {
+    //         throw new Exception ("There is no word: ".$object);
+    //     }
         // $wordClicked->mouseOver();
     //     $wordClicked->click();
     //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -582,6 +610,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     }
     //     $wordClicked = $page->findLink("can");
     // checkIfNull($wordClicked);
+    // if($object == null)
+    //     {
+    //         throw new Exception ("There is no word: ".$object);
+    //     }
         // $wordClicked->mouseOver();
     //     $wordClicked->click();
     //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -628,7 +660,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -665,7 +701,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -709,7 +749,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -753,7 +797,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -797,7 +845,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -849,7 +901,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -886,7 +942,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -929,7 +989,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -939,7 +1003,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $titleClicked = $page->findLink("Detecting");
-        checkIfNull($titleClicked);
+        // checkIfNull($titleClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $titleClicked->mouseOver();
         $titleClicked->click();
     }
@@ -967,7 +1035,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
         $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -977,7 +1049,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $titleClicked = $page->findLink("Detecting");
-        checkIfNull($titleClicked);
+        // checkIfNull($titleClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $titleClicked->mouseOver();
         $titleClicked->click();
 
@@ -1027,6 +1103,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     }
     //     $wordClicked = $page->findLink("can");
     // checkIfNull($wordClicked);
+    // if($object == null)
+    //     {
+    //         throw new Exception ("There is no word: ".$object);
+    //     }
         // $wordClicked->mouseOver();
     //     $wordClicked->click();
     //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
@@ -1124,7 +1204,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
     }
@@ -1152,7 +1236,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             // throw new PendingException();
         }
         $wordClicked = $page->findLink("can");
-        checkIfNull($wordClicked);
+        // checkIfNull($wordClicked);
+        if($object == null)
+        {
+            throw new Exception ("There is no word: ".$object);
+        }
         $wordClicked->mouseOver();
         $wordClicked->click();
     }
@@ -1265,11 +1353,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     * This is just getting the function so less clutter.
     */
 
-    public function checkIfNull($object)
-    {
-        if($object == null)
-        {
-            throw new Exception ("There is no word: ".$object);
-        } 
-    }
+    // public function checkIfNull($object)
+    // {
+    //     if($object == null)
+    //     {
+    //         throw new Exception ("There is no word: ".$object);
+    //     } 
+    // }
 }
