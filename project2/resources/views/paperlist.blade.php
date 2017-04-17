@@ -69,9 +69,13 @@
                     echo $frequencies[$i];
                     echo "</td>";
 
-                    echo "<td>";
+                    echo "<td><a id = 'pdf";
+                    echo $i;
+                    echo "' href = '";
+                    echo $downloadLinks[$i];
+                    echo "'>";
                     echo "PDF";
-                    echo "</td>";
+                    echo "</a></td>";
 
                     echo "<td>";
                     echo "BibTex";
@@ -88,7 +92,7 @@
 <script type="text/javascript">
         $(document).ready(function() 
     { 
-        $("#myTable").tablesorter( {sortList: [[3,1]]} ); 
+        $("#myTable").tablesorter( {sortList: [[4,1]]} ); 
     } 
 ); 
     
