@@ -120,7 +120,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $textbox = $page->findField("myText");  
         $textbox->setValue("Halfond");
         $button = $page->findButton('scholarButton');
-        $button->mouseOver();
+        // $button->mouseOver();
         $button->click();
         $page = $session->getPage();
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
