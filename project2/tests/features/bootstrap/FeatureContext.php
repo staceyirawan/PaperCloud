@@ -306,9 +306,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -341,9 +341,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // if ()
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -375,9 +375,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $webString = "http://localhost:8000/papers/scholar/Halfond/10";
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -417,9 +417,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // if ()
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -456,9 +456,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -504,9 +504,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -561,9 +561,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     }
     //     $wordClicked = $page->findLink("can");
     // checkIfNull($wordClicked);
-    // if($object == null)
+    // if($wordClicked == null)
     //     {
-    //         throw new Exception ("There is no word: ".$object);
+    //         throw new Exception ("There is no word: ".$wordClicked);
     //     }
         // $wordClicked->mouseOver();
     //     $wordClicked->click();
@@ -610,9 +610,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     }
     //     $wordClicked = $page->findLink("can");
     // checkIfNull($wordClicked);
-    // if($object == null)
+    // if($wordClicked == null)
     //     {
-    //         throw new Exception ("There is no word: ".$object);
+    //         throw new Exception ("There is no word: ".$wordClicked);
     //     }
         // $wordClicked->mouseOver();
     //     $wordClicked->click();
@@ -661,9 +661,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -702,9 +702,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -750,9 +750,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -798,9 +798,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -846,9 +846,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -902,9 +902,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -943,9 +943,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -990,9 +990,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -1004,9 +1004,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $titleClicked = $page->findLink("Detecting");
         // checkIfNull($titleClicked);
-        if($object == null)
+        if($titleClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$titleClicked);
         }
         $titleClicked->mouseOver();
         $titleClicked->click();
@@ -1036,9 +1036,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -1050,9 +1050,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $titleClicked = $page->findLink("Detecting");
         // checkIfNull($titleClicked);
-        if($object == null)
+        if($titleClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$titleClicked);
         }
         $titleClicked->mouseOver();
         $titleClicked->click();
@@ -1103,9 +1103,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     }
     //     $wordClicked = $page->findLink("can");
     // checkIfNull($wordClicked);
-    // if($object == null)
+    // if($wordClicked == null)
     //     {
-    //         throw new Exception ("There is no word: ".$object);
+    //         throw new Exception ("There is no word: ".$wordClicked);
     //     }
         // $wordClicked->mouseOver();
     //     $wordClicked->click();
@@ -1205,9 +1205,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -1237,9 +1237,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked = $page->findLink("can");
         // checkIfNull($wordClicked);
-        if($object == null)
+        if($wordClicked == null)
         {
-            throw new Exception ("There is no word: ".$object);
+            throw new Exception ("There is no word: ".$wordClicked);
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
@@ -1353,11 +1353,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     * This is just getting the function so less clutter.
     */
 
-    // public function checkIfNull($object)
+    // public function checkIfNull($wordClicked)
     // {
-    //     if($object == null)
+    //     if($wordClicked == null)
     //     {
-    //         throw new Exception ("There is no word: ".$object);
+    //         throw new Exception ("There is no word: ".$wordClicked);
     //     } 
     // }
 }
