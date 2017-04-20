@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-     return view('homepage');
- });
+Route::get('/', 'PaperController@showHome')->name('homepage.get'); 
+
 Route::get('papers/scholar/{lastName}/{X}', 'PaperController@showWordCloudFromName')->name('paperbyname.get');
 
 
