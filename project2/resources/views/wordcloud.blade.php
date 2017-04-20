@@ -13,7 +13,7 @@
         
             //download word cloud             
             function downloadCloud(){
-                html2canvas(document.body, {
+                html2canvas($(#'myTable').first(), {
                     onrendered: function(canvas) {
                         var saveData = (function () {
                             var a = document.createElement("a");
