@@ -11,6 +11,23 @@ include_once 'simple_html_dom.php';
 
 class PaperController extends Controller
 {
+
+	public function showHome(){
+		$allHistory = DB::select('select * from history');
+		$previousSearches = array();
+		for ($i = count($allHistory)-1; $i >= 0; $i--){
+			$temp = array();
+			$temp['type'] = $allHistory[$i]->type;
+			$temp['query'] = $allHistory[$i]->query;
+			array_push($previousSearches, $temp);
+		}
+
+		var_dump($previousSearches);
+
+		return view('homepage', ['previousSearches' => $previousSearches]);
+
+	}
+
 	/* Convert XML data to JSON */
     public function getJSONFromXML($xml) {
     	$xml = new \SimpleXMLElement($xml->getBody());
@@ -102,7 +119,9 @@ class PaperController extends Controller
 
 		DB::delete('delete from x');
 		DB::insert('insert into x (x) values (?)', [$X]);
-
+		if (count(DB::select('select * from history where type = "scholar" and query = ?', [$lastName])) == 0){
+			DB::insert('insert into history (type, query) values (?, ?)', ["scholar", $keyword]);
+		}
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
 		$titleexample = PaperController::getPapersFromAuthor("Wang")['document'][0]['title'];
 		
@@ -134,6 +153,9 @@ class PaperController extends Controller
 	public function createWordCloudStringFromKeyword($keyword, $X){
 		DB::delete('delete from x');
 		DB::insert('insert into x (x) values (?)', [$X]);
+		if (count(DB::select('select * from history where type = "keyword" and query = ?', [$keyword])) == 0){
+			DB::insert('insert into history (type, query) values (?, ?)', ["keyword", $keyword]);
+		}
 
 		$paperJSON = PaperController::getPapersFromKeywords($keyword);
 		$papers = $paperJSON['document'];
@@ -252,9 +274,12 @@ class PaperController extends Controller
         // Run python script on terminal and retrieve csv content file
         $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 5 --pub=ACM --some=' . $keyword);
         $array = array_map("str_getcsv", explode("\n", $execution));
+		
 
+		//var_dump($array);
         $counter = 0;
         $tURLs = array();
+		$clusterIDs = array();
 
         for($i = 1; $i<count($array); $i+=10) {
             
@@ -264,6 +289,16 @@ class PaperController extends Controller
             $tUArray = array();
             $tUArray = explode(" ", $pURL);
             $tURLs[$counter] = $tUArray[1];
+
+			$cID = $array[$i+2][0];
+			$cID = trim($cID);
+
+			$cUArray = array();
+			$cUArray = explode(" ", $cID);
+			//var_dump($cUArray);
+			$clusterIDs[$counter] = $cUArray[1];
+
+			//echo $clusterIDs[$counter] . " ";
 
             $counter++;
         }
@@ -299,6 +334,19 @@ class PaperController extends Controller
 			}
     	}
 
+/*
+		foreach($html->find('li') as $element){
+//			if (array_key_exists('href', $element->attr))echo $element->attr['href'];
+			if ($element->attr['style'] == "list-style-image:url(img/binder_green.gif);margin-top:10px;"){
+				$child = $element->children[0];
+				$ul = $child->children[1];
+				$bibtex = $ul->children[0];
+				$a = $bibtex->children[0];
+				echo $a->attr['href'];;
+
+			} 
+		}
+*/
 		return $tempObject;
 
 	}
