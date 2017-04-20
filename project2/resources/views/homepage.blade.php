@@ -164,6 +164,10 @@ input[type = "text"] {
     border-radius: 4px;
     box-sizing: border-box;
 }
+a{
+  text-decoration: none;
+color: #f8f8f8; font-family: 'Raleway',sans-serif;
+}
 pageTitle {
     font-size: 20px;
 
@@ -174,7 +178,27 @@ pageTitle {
 </head>
 <body onload = "getTextString()">
     <div id = "search">
+        <div id = "a">
+        <?php
+        echo "<font color: white> Previous Searches:   </font>";
+        for ($i=0; $i<3; $i++){
+            if (!empty($previousSearches[$i])){
+            echo "<a href = 'http://localhost:8000/papers/";
+            echo $previousSearches[$i]['type'];
+            echo "/";
+            echo $previousSearches[$i]['query'];
+            echo "/10";
+            echo "'>";
+            echo $previousSearches[$i]['query'];
+            echo ",      ";
+            echo "</a>";
 
+
+            }
+        }
+        ?>
+    </div>
+        <br>
         <div id ="firstLine">
         
         <input type="text" name="searchWord" value = "" size ="50" id="myText">
