@@ -20,19 +20,19 @@
 
                 switch (pos){
                     case(pos<5):
-                        return 3000;
+                        return 30;
                     
                     case(pos<10):
-                        return 5000;
+                        return 50;
 
                     case(pos<15):
-                        return 7000;
+                        return 70;
                     
                     case(pos<20):
-                        return 9000;
+                        return 90;
                     
                     default:
-                        return 10000;
+                        return 100;
 
                 }
             };
@@ -45,10 +45,10 @@
             var fourth = hash(document.getElementById("myText").value);
             
 
-            setTimeout(frame, 5000);
-            setTimeout(frame, 15000);
-            setTimeout(frame, 25000);
-            setTimeout(frameFinal, 25000+fourth);
+            setTimeout(frame, 100);
+            setTimeout(frame, 200);
+            setTimeout(frame, 1000);
+            setTimeout(frameFinal, 5000+fourth);
 
             function frame(){
                 if (width<100){

@@ -70,7 +70,7 @@
 
 #screenshot {
     left: 50%;
-    top: 85%;
+    top: 90%;
     text-align: center;
 }
 
@@ -123,13 +123,13 @@ pageTitle {
 
 
  <body>
-    <?php
-    echo $wordCloudString;
-    ?>
+    
     
     <div id = "searchCloud">
-
-        <a id="wordcloud"> </a>
+<?php
+    echo $wordCloudString;
+    ?>
+        
         <div id = "screenshot">
         <br><br>
         <button onclick="downloadCloud()" id = "downloadButton">Download</button>

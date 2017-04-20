@@ -10,13 +10,37 @@
        
         <script type="text/javascript">    </script>
         <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
+        
         <script type="text/javascript" src="{{ URL::asset('js/jquery-latest.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/jquery.tablesorter.js') }}"></script> 
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+        <script>
+function demoFromHTML() {
+var doc = new jsPDF('p', 'in', 'letter');
+var source = $('#getpdf').first();
+var specialElementHandlers = {
+'#bypassme': function(element, renderer) {
+return true;
+}
+};
+ 
+doc.fromHTML(
+source, // HTML string or DOM elem ref.
+0.5, // x coord
+0.5, // y coord
+{
+'width': 7.5, // max width of content on PDF
+'elementHandlers': specialElementHandlers
+});
+ 
+doc.output('dataurl');
+}
+</script>
 
         <title> Papers List Page </title>
         <body> 
-
+            <div id = 'getpdf'>
             
             <table id='myTable' class='tablesorter'>
                 <thead> 
@@ -86,7 +110,7 @@
 
         ?>
         </tbody></table>
-
+</div>
         </body>
 
 <script type="text/javascript">
@@ -95,9 +119,8 @@
         $("#myTable").tablesorter( {sortList: [[4,1]]} ); 
     } 
 ); 
-    
-        
 </script>
+       
 
 <style>
 #wrapper {
@@ -211,7 +234,6 @@ input[type = "text"] {
 }
 pageTitle {
     font-size: 20px;
-
 }
 </style>
 </head>

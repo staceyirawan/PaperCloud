@@ -22,7 +22,7 @@ class PaperController extends Controller
 
     /* If user clicks on search by author, return JSON array of papers */
     public function getPapersFromAuthor($author) {
-    	$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 5.0]);
+    	$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 15.0]);
     	$xml = $client->get('ipsSearch.jsp?au=' . $author);
     	$json = PaperController::getJSONFromXML($xml);
     	return $json;
@@ -30,7 +30,7 @@ class PaperController extends Controller
 
     /* If user clicks on search by keywords, return JSON array of papers */
     public function getPapersFromKeywords($keywords) {
-    	$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 5.0]);
+    	$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 15.0]);
     	$xml = $client->get('ipsSearch.jsp?ab=' . $keywords);
     	$json = PaperController::getJSONFromXML($xml);
     	return $json;
@@ -55,6 +55,7 @@ class PaperController extends Controller
 			$id++;
 		}
 		$allAbstractsText = strtolower($allAbstractsText);
+
 		return $allAbstractsText;
 	} 
 
@@ -103,6 +104,8 @@ class PaperController extends Controller
 		DB::insert('insert into x (x) values (?)', [$X]);
 
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
+		$titleexample = PaperController::getPapersFromAuthor("Wang")['document'][0]['title'];
+		
 		$papers = $paperJSON['document'];
 
 		$ACMPaperUrls = PaperController::getACMPapersFromAuthor($lastName);
@@ -264,6 +267,7 @@ class PaperController extends Controller
 
             $counter++;
         }
+        
     	return $tURLs;
     }
  
@@ -334,7 +338,7 @@ class PaperController extends Controller
 
 
 		public function getIEEEPaperFromTitle($title) {
-    	$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 5.0]);
+    	$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 20.0]);
     	$xml = $client->get('ipsSearch.jsp?ti=' . $title);
     	$json = PaperController::getJSONFromXML($xml);
     	return $json;
@@ -351,7 +355,7 @@ class PaperController extends Controller
 
 			//Get list of IEEE papers
 
-			$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 5.0]);
+			$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 20.0]);
 			$xml = $client->get('ipsSearch.jsp?jn=' . $conferenceName);
 			$json = PaperController::getJSONFromXML($xml);
 
@@ -363,6 +367,7 @@ class PaperController extends Controller
 			}
 
 			$authors = str_replace(";", ",", $authors);
+
 			return view('conferencepage', ['titles' => $titles, 'authors' => $authors]);
 		}
 } 
