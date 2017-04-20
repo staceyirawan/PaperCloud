@@ -14,33 +14,43 @@
         
         <script type="text/javascript" src="{{ URL::asset('js/jquery-latest.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/jquery.tablesorter.js') }}"></script> 
+         <script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
+<script src="https://rawgit.com/someatoms/jsPDF-AutoTable/master/dist/jspdf.plugin.autotable.js"></script>
+
         <script>
-function demoFromHTML() {
-var doc = new jsPDF('p', 'in', 'letter');
-var source = $('#getpdf').first();
-var specialElementHandlers = {
-'#bypassme': function(element, renderer) {
-return true;
-}
-};
- 
-doc.fromHTML(
-source, // HTML string or DOM elem ref.
-0.5, // x coord
-0.5, // y coord
-{
-'width': 7.5, // max width of content on PDF
-'elementHandlers': specialElementHandlers
-});
- 
-doc.output('dataurl');
-}
+    
+
+
+
+
+       function createPDF() {
+
+  var pdfsize = 'a0';
+  var pdf = new jsPDF('l', 'pt', pdfsize);
+
+  var res = pdf.autoTableHtmlToJson(document.getElementById("myTable"));
+  pdf.autoTable(res.columns, res.data, {
+    startY: 60,
+    styles: {
+      overflow: 'linebreak',
+      fontSize: 12,
+      rowHeight: 20,
+      columnWidth: 'wrap'
+    },
+    columnStyles: {
+      1: {columnWidth: 'auto'}
+    }
+  });
+
+  pdf.save("table.pdf");
+  };
 </script>
 
         <title> Papers List Page </title>
         <body> 
-            <div id = 'getpdf'>
+            
             
             <table id='myTable' class='tablesorter'>
                 <thead> 
@@ -110,13 +120,16 @@ doc.output('dataurl');
 
         ?>
         </tbody></table>
-</div>
+
         </body>
 
 <script type="text/javascript">
         $(document).ready(function() 
     { 
         $("#myTable").tablesorter( {sortList: [[4,1]]} ); 
+
+                
+                
     } 
 ); 
 </script>
@@ -238,7 +251,7 @@ pageTitle {
 </style>
 </head>
  <body>
-  
+  <button onclick="createPDF()" id = "downloadButton">Download</button>
       
 </body>
 
