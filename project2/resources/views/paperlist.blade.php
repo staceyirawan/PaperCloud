@@ -46,6 +46,42 @@
 
   pdf.save("table.pdf");
   };
+
+
+  function createPlainText(){
+                html2canvas(document.body, {
+                    onrendered: function(canvas) {
+                        var saveData = (function () {
+                            var a = document.createElement("a");
+                            document.body.appendChild(a);
+                            a.style = "display: none";
+                            return function (data, fileName) {
+                                var url = window.URL.createObjectURL(blob);
+                                a.href = url;
+                                a.download = fileName;
+                                a.click();
+                                window.URL.revokeObjectURL(url);
+                            };
+                        }());
+                        var blob = dataURItoBlob(canvas.toDataURL());
+                        var textFile = window.URL.createObjectURL(blob);
+                        
+                    },
+                    background: '#126bbf',
+                });
+            };
+
+            function dataURItoBlob(dataURI) {
+                var byteString = atob(dataURI.split(',')[1]);
+                var ab = new ArrayBuffer(byteString.length);
+                var ia = new Uint8Array(ab);
+                for (var i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                return new Blob([ab], {type: 'text/plain'});
+            };
+
+
 </script>
 
         <title> Papers List Page </title>
@@ -251,7 +287,8 @@ pageTitle {
 </style>
 </head>
  <body>
-  <button onclick="createPDF()" id = "downloadButton">Download</button>
+  <button onclick="createPDF()" id = "downloadButton">Download PDF</button>
+  <button onclick="createPlainText()" id = "downloadButton">Download Plain Text</button>
       
 </body>
 
