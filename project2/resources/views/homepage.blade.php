@@ -53,9 +53,9 @@
             function frame(){
                 if (width<100){
                     var newNum = Math.floor(Math.random() * (max - width + 1)) + width;
-                    console.log(newNum);
+                    
                     width+=newNum;
-                    console.log("width is " + width);
+                  
                     max+=15;
                     elem.style.width = width + '%';
                 }

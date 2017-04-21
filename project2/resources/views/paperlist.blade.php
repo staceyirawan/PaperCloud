@@ -130,8 +130,7 @@
             text+=" ";
         }
         
-        console.log(authorLength);
-        console.log(author[i].length);
+        
         text+="|";
 
         text+=conference[i];
