@@ -46,41 +46,126 @@
 
   pdf.save("table.pdf");
   };
+  function findMaxLength(array){
+    var length=0;
+    for (var i=0; i <array.length; i++){
+        if (length<array[i].length){
+            length = array[i].length;
+        }
+    }
+    return length;
+
+  };
+  function findMaxLengthAuthor(array){
+    var length=0;
+    
+    for (var i=0; i <array.length; i++){
+        var oneArticleLength=0;
+        for (var x =0; x<array[i].length; x++){
+            oneArticleLength+=array[i][x].length;
+        }
+        if (oneArticleLength>length){
+            length = oneArticleLength;
+        }
+    }
+    return length;
+  }
 
 
-  function createPlainText(){
-                html2canvas(document.body, {
-                    onrendered: function(canvas) {
-                        var saveData = (function () {
-                            var a = document.createElement("a");
-                            document.body.appendChild(a);
-                            a.style = "display: none";
-                            return function (data, fileName) {
-                                var url = window.URL.createObjectURL(blob);
-                                a.href = url;
-                                a.download = fileName;
-                                a.click();
-                                window.URL.revokeObjectURL(url);
-                            };
-                        }());
-                        var blob = dataURItoBlob(canvas.toDataURL());
-                        var textFile = window.URL.createObjectURL(blob);
-                        
-                    },
-                    background: '#126bbf',
-                });
-            };
+  function createPlainText(filename, text){
+    var title = <?php echo json_encode($titles)?>;
+        var titleLength=findMaxLength(title);
 
-            function dataURItoBlob(dataURI) {
-                var byteString = atob(dataURI.split(',')[1]);
-                var ab = new ArrayBuffer(byteString.length);
-                var ia = new Uint8Array(ab);
-                for (var i = 0; i < byteString.length; i++) {
-                    ia[i] = byteString.charCodeAt(i);
-                }
-                return new Blob([ab], {type: 'text/plain'});
-            };
+    var author =<?php echo json_encode($authors)?>;
+        var authorLength=findMaxLengthAuthor(author);
 
+    var conference = <?php echo json_encode($conferences)?>;
+        var conferenceLength=findMaxLength(conference);
+
+    var frequency = <?php echo json_encode($frequencies) ?>;
+       
+
+    var sum = titleLength + authorLength + conferenceLength + 13;
+    var text="-";
+    for (var i=0; i<sum; i++){
+        text+="-";
+    }
+    text+="\r\n";
+    text+="|Title";
+    for (var i=0; i<titleLength-5; i++){
+        text+=" ";
+    }
+    text+="|Author";
+    for (var i=0; i<authorLength-6; i++){
+        text+=" ";
+    }
+    text+="|Conference";
+    for (var i=0; i<conferenceLength-10; i++){
+        text+=" ";
+    }
+    text+="|Frequency|";
+  
+    text+="\r\n";
+    for (var i=0; i<sum; i++){
+        text+="-";
+    }
+    
+    for (var i =0; i <title.length; i++){
+        text+=title[i];
+        var addSpaceTitle = titleLength-title[i].length;
+        for (var n =0; n<addSpaceTitle; n++){
+            text+=" ";
+        }
+        text+="|";
+
+        text+=author[i];
+        
+        var totAuthor=0;
+        for (var n=0; n<author[i].length; n++){
+            totAuthor+=author[i][n].length;
+        }
+        var addSpaceAuthor = authorLength-totAuthor;
+        
+        for (var n =0; n<addSpaceAuthor; n++){
+            text+=" ";
+        }
+        
+        console.log(authorLength);
+        console.log(author[i].length);
+        text+="|";
+
+        text+=conference[i];
+        var addSpaceConference = conferenceLength-conference[i].length;
+        for (var n =0; n<addSpaceConference; n++){
+            text+=" ";
+        }
+        text+="|";
+
+        text+=frequency[i];
+        var addSpaceFrequency = 9-frequency[i].length;
+        for (var n =0; n<addSpaceFrequency; n++){
+            text+=" ";
+        }
+        text+="|" + "\r\n";
+
+    }
+
+
+    var pom = document.createElement('a');
+    
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', 'table');
+        if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+    };
+
+           
 
 </script>
 

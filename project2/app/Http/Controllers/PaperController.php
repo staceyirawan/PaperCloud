@@ -22,7 +22,7 @@ class PaperController extends Controller
 			array_push($previousSearches, $temp);
 		}
 
-		var_dump($previousSearches);
+	
 
 		return view('homepage', ['previousSearches' => $previousSearches]);
 
