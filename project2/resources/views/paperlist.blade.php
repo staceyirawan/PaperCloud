@@ -71,6 +71,21 @@
     return length;
   }
 
+  function createSubset(){
+    var title = <?php echo sizeof($titles)?>;
+    var string="";
+    for (var i=0; i<title; i++){
+        if (document.getElementById('box' + i).checked){
+            string+="t";
+        }
+        else{
+            string+="f";
+        }
+    }
+    var baseURL = "http://localhost:8000/papers/subset/" + string;
+    window.location.href = baseURL;
+
+  };
 
   function createPlainText(filename, text){
     var title = <?php echo json_encode($titles)?>;
@@ -191,7 +206,7 @@
                     
                     echo "<tr>";
                     echo "<td>";
-                    echo "<input type='checkbox' name='box".$i. "'>";
+                    echo "<input type='checkbox' id='box".$i. "'>";
                     echo "</td>";
                     $title = $titles[$i];
                     
@@ -345,10 +360,11 @@ form{
 }
 
 input[type = "button"], input[type = "submit"], button {
-    background-color: #B345F1;
+    background-color: #D54A50;
     height: auto;
-    width: 120px;
-    font-size: 12px;
+    width: 200px;
+    color: white;
+    font-size: 16px;
     display: inline-block;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -368,12 +384,17 @@ input[type = "text"] {
 pageTitle {
     font-size: 20px;
 }
+#buttons{
+    text-align: center;
+}
 </style>
 </head>
  <body>
+    <div id = 'buttons'>
   <button onclick="createPDF()" id = "downloadButton">Download PDF</button>
   <button onclick="createPlainText()" id = "downloadButton">Download Plain Text</button>
-      
+  <button onclick="createSubset()" id = "downloadButton">Create New Cloud</button>
+      </div>
 </body>
 
 
