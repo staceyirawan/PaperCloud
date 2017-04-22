@@ -108,28 +108,16 @@ class PaperController extends Controller
 		return $tempObject;	
 	}
 
-	public function getHashFromFirstLetter($firstLetter){
-		return 0;
-
-	}
-
 	public function createWordCloudStringFromName($lastName, $X){
-		$initialTime = time();
-		$totalTime = PaperController::getHashFromFirstLetter($lastName[0]);
-
 		DB::delete('delete from x');
 		DB::insert('insert into x (x) values (?)', [$X]);
 		if (count(DB::select('select * from history where type = "scholar" and query = ?', [$lastName])) == 0){
-			DB::insert('insert into history (type, query) values (?, ?)', ["scholar", $keyword]);
+			DB::insert('insert into history (type, query) values (?, ?)', ["scholar", $lastName]);
 		}
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
-		$titleexample = PaperController::getPapersFromAuthor("Wang")['document'][0]['title'];
-		
 		$papers = $paperJSON['document'];
-
 		$ACMPaperUrls = PaperController::getACMPapersFromAuthor($lastName);
 		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
-
 		$paperSubset = PaperController::getSubsetBasedOnX($papers, $ACMPapers, $X);
 	
 		$allAbstracts = $this->combineAbstractsFromPapers($paperSubset['IEEE'], $paperSubset['ACM']);
@@ -137,9 +125,6 @@ class PaperController extends Controller
 
 		$wcc = new WordCloudController();
 		$wordCloudString = $wcc->createWordCloudString($wordList, $lastName, "scholar");
-
-		$finalTime = time();
-		//TODO wait	
 
 		return $wordCloudString;
 	}
@@ -194,7 +179,6 @@ class PaperController extends Controller
 
 	public function getPaperListInformation($word){
 		$allRows = DB::select('select * from paperinfo');
-		//var_dump($allRows);
 
 		$titles = array();
 		$pdfs = array();
@@ -202,6 +186,8 @@ class PaperController extends Controller
 		$authors = array();
 		//$bibtex = array();
 		$frequency = array();
+
+		$r = array();
 
 		for ($i=0; $i<count($allRows); $i++){
 			$wordsToSearch = $allRows[$i]->abstract;
@@ -213,8 +199,14 @@ class PaperController extends Controller
 				array_push($conferences, $allRows[$i]->conference);
 				array_push($authors, explode(";", $allRows[$i]->authors));
 				array_push($frequency, $count);
+				$pdfurl = str_replace("?", "^", $allRows[$i]->pdf);
+				DB::delete('delete from paperlist where id = ?', [count($titles)]);
+				DB::table('paperlist')->insert([
+					['id' => count($titles), 'title' => $allRows[$i]->title, 'libraryName' => $allRows[$i]->libraryName, 'conference' => $allRows[$i]->conference, 'authors' => $allRows[$i]->authors, 'pdf' => $pdfurl, 'bibtex' => $allRows[$i]->bibtex, 'abstract' => $allRows[$i]->abstract]
+				]);
+				//DB::insert('insert into paperlist (id) values (?)', [count($titles)]);
+				//array_push($r, ['id' => count($titles), 'title' => $allRows[$i]->title, 'libraryName' => $allRows[$i]->libraryName, 'conference' => $allRows[$i]->conference, 'authors' => $allRows[$i]->authors, 'pdf' => $pdfurl, 'bibtex' => $allRows[$i]->bibtex, 'abstract' => $allRows[$i]->abstract]);
 			} 
-			//TODO push into db.
 		}
 		$obj = array();
 		$obj['titles'] = $titles;
@@ -222,11 +214,10 @@ class PaperController extends Controller
 		$obj['conferences'] = $conferences;
 		$obj['authors'] = $authors;
 		$obj['frequency'] = $frequency;
-		//var_dump($obj);
 		return $obj;
 	}
 
-
+	//TODO: refactor into 1 function
 	public function showPaperListFromKeyword($keyword, $word){
 		$allInfo = PaperController::getPaperListInformation($word);
 		return view('paperlist', ['frequencies' => $allInfo['frequency'], 'titles' => $allInfo['titles'], 'authors' => $allInfo['authors'], 'conferences' => $allInfo['conferences'], 'downloadLinks' => $allInfo['pdfs'], 'word' => $word]);

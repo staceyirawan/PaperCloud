@@ -34,3 +34,23 @@
 1492733791158	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.uIizvcVL5Pto
 1492733791159	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
 1492733791162	geckodriver::marionette	INFO	Connecting to Marionette on localhost:65312
+1492668028063	geckodriver	INFO	Listening on 127.0.0.1:56331
+1492668029048	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.cEOkgbiAxFtZ
+1492668029051	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1492668029064	geckodriver::marionette	INFO	Connecting to Marionette on localhost:42313
+1492668032348	Marionette	INFO	Listening on port 42313
+1492668033854	Marionette	WARN	TLS certificate errors will be ignored for this session
+1492668056089	Marionette	INFO	New connections will no longer be accepted
+[Child 6585] WARNING: pipe error (18): Connection reset by peer: file /build/firefox-9s80jb/firefox-52.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 322
+[Child 6585] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-9s80jb/firefox-52.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 322
+[Child 6585] ###!!! ABORT: Aborting on channel error.: file /build/firefox-9s80jb/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
+[Child 6585] ###!!! ABORT: Aborting on channel error.: file /build/firefox-9s80jb/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
+1492668215369	geckodriver	INFO	Listening on 127.0.0.1:45717
+1492668216356	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.LjJk2hevJiVc
+1492668216358	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1492668216369	geckodriver::marionette	INFO	Connecting to Marionette on localhost:33903
+1492668218971	Marionette	INFO	Listening on port 33903
+1492668220115	Marionette	WARN	TLS certificate errors will be ignored for this session
+1492668234252	Marionette	INFO	New connections will no longer be accepted
+[Child 6721] ###!!! ABORT: Aborting on channel error.: file /build/firefox-9s80jb/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
+[Child 6721] ###!!! ABORT: Aborting on channel error.: file /build/firefox-9s80jb/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
