@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -168,6 +167,10 @@ a{
   text-decoration: none;
 color: #f8f8f8; font-family: 'Raleway',sans-serif;
 }
+title{
+    color: white; font-family: 'Raleway', bold;
+    font-size: 80px;
+}
 pageTitle {
     font-size: 20px;
 
@@ -175,8 +178,12 @@ pageTitle {
 
 </style>
 
+
 </head>
+ 
+
 <body onload = "getTextString()">
+   
     <div id = "search">
         <div id = "a">
         <?php
@@ -200,7 +207,7 @@ pageTitle {
     </div>
         <br>
         <div id ="firstLine">
-        
+       
         <input type="text" name="searchWord" value = "" size ="50" id="myText">
         </div>
 
