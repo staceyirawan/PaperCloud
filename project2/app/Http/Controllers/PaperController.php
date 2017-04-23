@@ -59,15 +59,17 @@ class PaperController extends Controller
 		$allAbstractsText = "";
 		$id = 1;
 		for ($i=0; $i < count($papers); $i++){
+
 			if (array_key_exists('abstract', $papers[$i])){
+				$papers[$i]['pdf'] = str_replace("?", "^", $papers[$i]['pdf']);
 				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
-				//TODO: change this into the other insertion format
 				DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["IEEE", $id, $papers[$i]['title'], $papers[$i]['pubtitle'], $papers[$i]['pdf'], $papers[$i]['authors'], "bibtexIEEE", $papers[$i]['abstract']]);
 				$id++;
 			}
 		}
 
 		for ($i=0; $i < count($ACMPapers); $i++){
+			$ACMPapers[$i]['pdf'] = str_replace("?", "^", $papers[$i]['pdf']);
 			$allAbstractsText = $allAbstractsText . " " . $ACMPapers[$i]['abstract'];
 			DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["ACM", $id, $ACMPapers[$i]['title'], $ACMPapers[$i]['publisher'], $ACMPapers[$i]['pdf'], $ACMPapers[$i]['authors'], "bibtexACM", $ACMPapers[$i]['abstract']]);
 			$id++;
@@ -136,7 +138,6 @@ class PaperController extends Controller
 
 	public function createWordCloudStringFromSubset($TFString){
 		$paperSubset = $this->createPaperSubsetFromTFString($TFString);
-		var_dump($paperSubset);
 
 		$allAbstracts = $this->combineAbstractsFromPapers($paperSubset[0], $paperSubset[1]);
 		$wordList = $this->createWordListFromText($allAbstracts);
@@ -153,6 +154,7 @@ class PaperController extends Controller
 
 
 	public function createWordCloudStringFromName($lastName, $X){
+		$lastName = trim($lastName);
 		DB::delete('delete from x');
 		DB::insert('insert into x (x) values (?)', [$X]);
 		if (count(DB::select('select * from history where type = "scholar" and query = ?', [$lastName])) == 0){
@@ -160,6 +162,8 @@ class PaperController extends Controller
 		}
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
 		$papers = $paperJSON['document'];
+		if (array_key_exists('rank', $papers)) $papers = [$papers];
+
 		$ACMPaperUrls = PaperController::getACMPapersFromAuthor($lastName);
 		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
 		$paperSubset = PaperController::getSubsetBasedOnX($papers, $ACMPapers, $X);
@@ -188,6 +192,7 @@ class PaperController extends Controller
 
 		$paperJSON = PaperController::getPapersFromKeywords($keyword);
 		$papers = $paperJSON['document'];
+		if (array_key_exists('rank', $papers)) $papers = [$papers];
 
 		$ACMPaperUrls = PaperController::getACMPapersFromKeyword($keyword);
 		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
@@ -208,19 +213,6 @@ class PaperController extends Controller
 		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
 	}
 
-	public function createWordCloudStringFromFullName($fullname){
-		$xresults = DB::table('x')->get();
-		$X = $xresults[0]->x;
-		//TODO
-	}
-
-	public function showWordCloudFromFullName($fullname){
-		$wordCloudString = $this->createWordCloudStringFromFullName($fullname);
-		//TODO
-//		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
-	}
-
-
 	public function getPaperListInformation($word){
 		$allRows = DB::select('select * from paperinfo');
 
@@ -238,15 +230,15 @@ class PaperController extends Controller
 			$wordsToSearch = strtolower($wordsToSearch);
 			$count = substr_count($wordsToSearch, " " . $word . " ");
 			if ($count != 0){
+				$pdfurl = str_replace("^", "?", $allRows[$i]->pdf);
 				array_push($titles, $allRows[$i]->title);
-				array_push($pdfs, $allRows[$i]->pdf);
+				array_push($pdfs, $pdfurl);
 				array_push($conferences, $allRows[$i]->conference);
 				array_push($authors, explode(";", $allRows[$i]->authors));
 				array_push($frequency, $count);
-				$pdfurl = str_replace("?", "^", $allRows[$i]->pdf);
 				DB::delete('delete from paperlist where id = ?', [count($titles)]);
 				DB::table('paperlist')->insert([
-					['id' => count($titles), 'title' => $allRows[$i]->title, 'libraryName' => $allRows[$i]->libraryName, 'conference' => $allRows[$i]->conference, 'authors' => $allRows[$i]->authors, 'pdf' => $pdfurl, 'bibtex' => $allRows[$i]->bibtex, 'abstract' => $allRows[$i]->abstract]
+					['id' => count($titles), 'title' => $allRows[$i]->title, 'libraryName' => $allRows[$i]->libraryName, 'conference' => $allRows[$i]->conference, 'authors' => $allRows[$i]->authors, 'pdf' => $allRows[$i]->pdf, 'bibtex' => $allRows[$i]->bibtex, 'abstract' => $allRows[$i]->abstract]
 				]);
 			} 
 		}
@@ -302,8 +294,6 @@ class PaperController extends Controller
         $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 5 --pub=ACM --some=' . $keyword);
         $array = array_map("str_getcsv", explode("\n", $execution));
 		
-
-		//var_dump($array);
         $counter = 0;
         $tURLs = array();
 		$clusterIDs = array();
@@ -322,7 +312,6 @@ class PaperController extends Controller
 
 			$cUArray = array();
 			$cUArray = explode(" ", $cID);
-			//var_dump($cUArray);
 			$clusterIDs[$counter] = $cUArray[1];
 
 			//echo $clusterIDs[$counter] . " ";
@@ -338,7 +327,6 @@ class PaperController extends Controller
     	$abstract = shell_exec('python ../app/Http/Controllers/site-packages/getAbstract.py '. $tURL);
     	return $abstract;
     }
-	
 	public function getAllInfoFromHTML($tURL){
 		$tempObject = array();
     	$html = file_get_html($tURL);
@@ -401,34 +389,16 @@ class PaperController extends Controller
 
 	//ABSTRACT STUFF
 		public function showAbstract($title, $word){
-			//NOTE: once we implement ACM stuff, need to search both databases for the paper
-			
-			$paperJSON = PaperController::getIEEEPaperFromTitle($title);
-			$papers = $paperJSON['document'];
+			$paper = DB::select('select * from paperlist where title = ?', [$title]);
 
-			$abstract = $papers['abstract'];
-
-			return view('paperpage', ['abstract' => $abstract, 'word' => $word, 'title' => $title]);
+			return view('paperpage', ['abstract' => $paper[0]->abstract, 'word' => $word, 'title' => $title]);
 		}
-
-
-		public function getIEEEPaperFromTitle($title) {
-    	$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 20.0]);
-    	$xml = $client->get('ipsSearch.jsp?ti=' . $title);
-    	$json = PaperController::getJSONFromXML($xml);
-    	return $json;
-    }
-
 
 
 	//CONFERNECE STUFF
 		public function getPaperListFromConference($conferenceName){
 			$titles = array();
 			$authors = array();
-
-			//Get list of ACM papers
-
-			//Get list of IEEE papers
 
 			$client = new Client(['base_uri' => 'http://ieeexplore.ieee.org/gateway/', 'timeout' => 20.0]);
 			$xml = $client->get('ipsSearch.jsp?jn=' . $conferenceName);
