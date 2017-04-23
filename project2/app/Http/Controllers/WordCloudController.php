@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 class WordCloudController extends Controller
 {
  
-  public function createWordCloudString($wordList, $searchTerm, $scholarOrKeyword){
+  public function createWordCloudString($wordList){
     $wordCloudString = "";
     $startingATag = "<a style='color:";
     $fontSizeString = "; font-size:";
-    $linkString = "px;' href='http://localhost:8000/list/" . $scholarOrKeyword . "/";
+    $linkString = "px;' href='http://localhost:8000/list/"; 
     $colors = array("red", "blue", "green", "purple", "yellow", "black", "orange", "gray", "brown", "magenta", "skyblue", "forestgreen", "aliceblue", "salmon");
     $idTagString = "' id='word";
 
@@ -30,7 +30,7 @@ class WordCloudController extends Controller
       $fontSize = $value * 6;
       if ($fontSize > 40) $fontSize = 40;
       if ($fontSize < 12) $fontSize = 10;
-      $toAdd = $startingATag . $color . $fontSizeString . $fontSize . $linkString . $searchTerm. "/" . $key . $idTagString . $i . "'> " . $key . " </a>";
+      $toAdd = $startingATag . $color . $fontSizeString . $fontSize . $linkString . $key . $idTagString . $i . "'> " . $key . " </a>";
       $wordCloudString = $wordCloudString . $toAdd;
     }
 

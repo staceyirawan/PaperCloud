@@ -19,10 +19,7 @@ Route::get('papers/scholar/{lastName}/{X}', 'PaperController@showWordCloudFromNa
 Route::get('papers/keyword/{keyword}/{X}', 'PaperController@showWordCloudFromKeyword')->name('paperbykeyword.get');
 
 
-Route::get('list/scholar/{lastName}/{word}', 'PaperController@showPaperListFromName')->name('listbyname.get');
-
-
-Route::get('list/keyword/{keyword}/{word}', 'PaperController@showPaperListFromKeyword')->name('listbykeyword.get');
+Route::get('list/{word}', 'PaperController@showPaperList')->name('paperlist.get');
 
 
 Route::get('abstract/{title}/{word}', 'PaperController@showAbstract')->name('abstract.get');
@@ -34,4 +31,4 @@ Route::get('conference/{conferenceName}', 'PaperController@getPaperListFromConfe
 Route::get('papers/authorfull/{fullname}', 'PaperController@showWordCloudFromFullName')->name('paperbyfullname.get');
 
 
-//Route::get('papers/subset/{TFString}', 'PaperController@showWordCloudFromSubset')->name('paperbysubset.get');
+Route::get('papers/subset/{TFString}', 'PaperController@showWordCloudFromSubset')->name('paperbysubset.get');

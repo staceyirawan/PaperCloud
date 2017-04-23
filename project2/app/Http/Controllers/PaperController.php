@@ -61,6 +61,7 @@ class PaperController extends Controller
 		for ($i=0; $i < count($papers); $i++){
 			if (array_key_exists('abstract', $papers[$i])){
 				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
+				//TODO: change this into the other insertion format
 				DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["IEEE", $id, $papers[$i]['title'], $papers[$i]['pubtitle'], $papers[$i]['pdf'], $papers[$i]['authors'], "bibtexIEEE", $papers[$i]['abstract']]);
 				$id++;
 			}
@@ -108,6 +109,49 @@ class PaperController extends Controller
 		return $tempObject;	
 	}
 
+
+	public function createPaperSubsetFromTFString($TFString){
+		$allRows = DB::select('select * from paperlist order by id');
+
+		$papers = array();
+		$ACMPapers = array();
+		for ($i=0; $i<strlen($TFString); $i++){
+			if ($TFString[$i] == 'f') continue;
+			$curP = $allRows[$i];
+			$temp = array();
+
+			$temp['title'] = $curP->title;	
+			$temp['pdf'] = $curP->pdf;
+			$temp['authors'] = $curP->authors;
+			$temp['abstract'] = $curP->abstract;
+			if ($curP->libraryName == "IEEE") $temp['pubtitle'] = $curP->conference;
+			else $temp['publisher'] = $curP->conference;
+
+			if ($curP->libraryName == "IEEE") array_push($papers, $temp);
+			else array_push($ACMPapers, $temp);
+		}
+
+		return [$papers, $ACMPapers];
+	}
+
+	public function createWordCloudStringFromSubset($TFString){
+		$paperSubset = $this->createPaperSubsetFromTFString($TFString);
+		var_dump($paperSubset);
+
+		$allAbstracts = $this->combineAbstractsFromPapers($paperSubset[0], $paperSubset[1]);
+		$wordList = $this->createWordListFromText($allAbstracts);
+
+		$wcc = new WordCloudController();
+		$wordCloudString = $wcc->createWordCloudString($wordList);
+		return $wordCloudString;
+	}
+
+	public function showWordCloudFromSubset($TFString){
+		$wordCloudString = $this->createWordCloudStringFromSubset($TFString);
+		return view('wordcloud', ['wordCloudString' => $wordCloudString]);
+	}
+
+
 	public function createWordCloudStringFromName($lastName, $X){
 		DB::delete('delete from x');
 		DB::insert('insert into x (x) values (?)', [$X]);
@@ -154,7 +198,7 @@ class PaperController extends Controller
 		$wordList = $this->createWordListFromText($allAbstracts);
 
 		$wcc = new WordCloudController();
-		$wordCloudString = $wcc->createWordCloudString($wordList, $keyword, "keyword");
+		$wordCloudString = $wcc->createWordCloudString($wordList);
 		
 		return $wordCloudString;
 	}
@@ -204,8 +248,6 @@ class PaperController extends Controller
 				DB::table('paperlist')->insert([
 					['id' => count($titles), 'title' => $allRows[$i]->title, 'libraryName' => $allRows[$i]->libraryName, 'conference' => $allRows[$i]->conference, 'authors' => $allRows[$i]->authors, 'pdf' => $pdfurl, 'bibtex' => $allRows[$i]->bibtex, 'abstract' => $allRows[$i]->abstract]
 				]);
-				//DB::insert('insert into paperlist (id) values (?)', [count($titles)]);
-				//array_push($r, ['id' => count($titles), 'title' => $allRows[$i]->title, 'libraryName' => $allRows[$i]->libraryName, 'conference' => $allRows[$i]->conference, 'authors' => $allRows[$i]->authors, 'pdf' => $pdfurl, 'bibtex' => $allRows[$i]->bibtex, 'abstract' => $allRows[$i]->abstract]);
 			} 
 		}
 		$obj = array();
@@ -217,17 +259,11 @@ class PaperController extends Controller
 		return $obj;
 	}
 
-	//TODO: refactor into 1 function
-	public function showPaperListFromKeyword($keyword, $word){
+	public function showPaperList($word){
 		$allInfo = PaperController::getPaperListInformation($word);
 		return view('paperlist', ['frequencies' => $allInfo['frequency'], 'titles' => $allInfo['titles'], 'authors' => $allInfo['authors'], 'conferences' => $allInfo['conferences'], 'downloadLinks' => $allInfo['pdfs'], 'word' => $word]);
 	}
 
-
-	public function showPaperListFromName($lastName, $word){
-		$allInfo = PaperController::getPaperListInformation($word);
-		return view('paperlist', ['frequencies' => $allInfo['frequency'], 'titles' => $allInfo['titles'], 'authors' => $allInfo['authors'], 'conferences' => $allInfo['conferences'], 'downloadLinks' => $allInfo['pdfs'], 'word' => $word]);
-	}
 
     //  ************ ACM STUFF ************
     //  ************ ACM STUFF ************
