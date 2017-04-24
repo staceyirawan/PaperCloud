@@ -119,3 +119,17 @@
 1493085971461	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.Pupvq5iTLz8X
 1493085971463	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
 1493085971466	geckodriver::marionette	INFO	Connecting to Marionette on localhost:49537
+1492995492537	geckodriver	INFO	Listening on 127.0.0.1:59777
+1492995493530	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.mUBXjTxGx9Kk
+1492995493532	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1492995493542	geckodriver::marionette	INFO	Connecting to Marionette on localhost:38539
+1492995503543	Marionette	INFO	Listening on port 38539
+1492995504274	Marionette	WARN	TLS certificate errors will be ignored for this session
+1492995519666	Marionette	INFO	New connections will no longer be accepted
+1492995661529	geckodriver	INFO	Listening on 127.0.0.1:42347
+1492995662523	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.N4cmHUOnVVs1
+1492995662527	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1492995662535	geckodriver::marionette	INFO	Connecting to Marionette on localhost:41279
+1492995673487	Marionette	INFO	Listening on port 41279
+1492995674584	Marionette	WARN	TLS certificate errors will be ignored for this session
+1492995690548	Marionette	INFO	New connections will no longer be accepted

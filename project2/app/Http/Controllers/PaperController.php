@@ -69,7 +69,7 @@ class PaperController extends Controller
 		}
 
 		for ($i=0; $i < count($ACMPapers); $i++){
-			$ACMPapers[$i]['pdf'] = str_replace("?", "^", $papers[$i]['pdf']);
+			$ACMPapers[$i]['pdf'] = str_replace("?", "^", $ACMPapers[$i]['pdf']);
 			$allAbstractsText = $allAbstractsText . " " . $ACMPapers[$i]['abstract'];
 			DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["ACM", $id, $ACMPapers[$i]['title'], $ACMPapers[$i]['publisher'], $ACMPapers[$i]['pdf'], $ACMPapers[$i]['authors'], "bibtexACM", $ACMPapers[$i]['abstract']]);
 			$id++;
@@ -390,8 +390,9 @@ class PaperController extends Controller
 	//ABSTRACT STUFF
 		public function showAbstract($title, $word){
 			$paper = DB::select('select * from paperlist where title = ?', [$title]);
+			$pdf = str_replace('?', '^', $paper[0]->pdf);
 
-			return view('paperpage', ['abstract' => $paper[0]->abstract, 'word' => $word, 'title' => $title]);
+			return view('paperpage', ['pdf' => $pdf, 'abstract' => $paper[0]->abstract, 'word' => $word, 'title' => $title]);
 		}
 
 
