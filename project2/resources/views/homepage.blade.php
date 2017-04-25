@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type = "text/javascript">
-
+            
 
             var searchWord = "";
 
@@ -97,6 +97,20 @@
                 if (searchWord != "") {
                     window.location.href = url;
                 }
+            };
+            function prevSearch(num){
+                startBar();
+                var url = "http://localhost:8000/papers/";
+                var prevSearchArray = <?php echo json_encode($previousSearches) ?>;
+                if (prevSearchArray[num][0] = "keyword"){
+                    url = url.concat("keyword/");
+
+                } else {
+                    url = url.concat("scholar/");
+                }
+                url = url.concat(prevSearchArray[num]['query']);
+                url = url.concat("/10");
+                window.location.href = url;
             };
 
         </script>
@@ -190,13 +204,12 @@ pageTitle {
         echo "<font color: white> Previous Searches:   </font>";
         for ($i=0; $i<3; $i++){
             if (!empty($previousSearches[$i])){
-            echo "<a href = 'http://localhost:8000/papers/";
-            echo $previousSearches[$i]['type'];
-            echo "/";
-            echo $previousSearches[$i]['query'];
-            echo "/10";
-            echo "'>";
-            echo $previousSearches[$i]['query'];
+            $type = $previousSearches[$i]['type'];
+            $query = $previousSearches[$i]['query'];
+            echo "<a href = '#' onclick='prevSearch(";
+            echo json_decode($i);
+            echo ")'>";
+            echo $query;
             echo ",      ";
             echo "</a>";
 

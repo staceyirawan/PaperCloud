@@ -111,3 +111,11 @@
 1492916704836	Marionette	INFO	Listening on port 36247
 1492916705263	Marionette	WARN	TLS certificate errors will be ignored for this session
 1492916717836	Marionette	INFO	New connections will no longer be accepted
+1493085934697	geckodriver	INFO	Listening on 127.0.0.1:49313
+1493085935686	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.P1L8WDxZaQz2
+1493085935687	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493085935715	geckodriver::marionette	INFO	Connecting to Marionette on localhost:49326
+1493085970467	geckodriver	INFO	Listening on 127.0.0.1:49524
+1493085971461	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.Pupvq5iTLz8X
+1493085971463	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493085971466	geckodriver::marionette	INFO	Connecting to Marionette on localhost:49537
