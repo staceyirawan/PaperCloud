@@ -5,6 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>PaperPage</title>
+        <script> 
+            function downloadPDF() 
+            {
+                
+            }
+        </script>
         
 
 <style>
@@ -36,6 +42,20 @@ span.highlight {
 #wrap{
     width: screen.width; 
     word-wrap: break-word;
+}
+
+input[type = "button"], input[type = "submit"], button {
+    background-color: #D54A50;
+    height: auto;
+    width: 300px;
+    color: white;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-bottom-width: 3px;
 }
 
 
@@ -101,6 +121,8 @@ input[type = "text"] {
             }
             echo '<div id="wrap">'.$abstract.' </div>';
         ?>
+        <br>
+        <button onclick="downloadPDF()" id = "pdfButton">Download PDF</button>
     </div>
 </body>
 </div>
