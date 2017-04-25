@@ -248,7 +248,10 @@
                     echo "PDF";
                     echo "</a></td>";
 
+                    $title = $titles[$i];
+                    $pub = $pubs[$i];
                     echo "<td>";
+                    echo "<a href = '/bibtex/$title/$pub'>";
                     echo "BibTex";
                     echo "</td>";
                }
