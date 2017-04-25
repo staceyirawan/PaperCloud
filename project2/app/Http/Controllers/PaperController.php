@@ -63,7 +63,7 @@ class PaperController extends Controller
 			if (array_key_exists('abstract', $papers[$i])){
 				$papers[$i]['pdf'] = str_replace("?", "^", $papers[$i]['pdf']);
 				$allAbstractsText = $allAbstractsText . " " . $papers[$i]['abstract'];
-				DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["IEEE", $id, $papers[$i]['title'], $papers[$i]['pubtitle'], $papers[$i]['pdf'], $papers[$i]['authors'], "bibtexIEEE", $papers[$i]['abstract']]);
+				DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', ["IEEE", $id, $papers[$i]['title'], $papers[$i]['pubtitle'], $papers[$i]['pdf'], $papers[$i]['authors'], "bibtexIEEE", $papers[$i]['abstract'], $papers[$i]['mdurl']]);
 				$id++;
 			}
 		}
@@ -71,7 +71,7 @@ class PaperController extends Controller
 		for ($i=0; $i < count($ACMPapers); $i++){
 			$ACMPapers[$i]['pdf'] = str_replace("?", "^", $ACMPapers[$i]['pdf']);
 			$allAbstractsText = $allAbstractsText . " " . $ACMPapers[$i]['abstract'];
-			DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ["ACM", $id, $ACMPapers[$i]['title'], $ACMPapers[$i]['publisher'], $ACMPapers[$i]['pdf'], $ACMPapers[$i]['authors'], "bibtexACM", $ACMPapers[$i]['abstract']]);
+			DB::insert('insert into paperinfo (libraryName, id, title, conference, pdf, authors, bibtex, abstract, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', ["ACM", $id, $ACMPapers[$i]['title'], $ACMPapers[$i]['publisher'], $ACMPapers[$i]['pdf'], $ACMPapers[$i]['authors'], "bibtexACM", $ACMPapers[$i]['abstract'], $ACMPapers[$i]['url']]);
 			$id++;
 		}
 		$allAbstractsText = strtolower($allAbstractsText);
@@ -222,7 +222,8 @@ class PaperController extends Controller
 		$authors = array();
 		//$bibtex = array();
 		$frequency = array();
-
+		$urls = array();
+		$pubs = array();
 		$r = array();
 
 		for ($i=0; $i<count($allRows); $i++){
@@ -236,9 +237,11 @@ class PaperController extends Controller
 				array_push($conferences, $allRows[$i]->conference);
 				array_push($authors, explode(";", $allRows[$i]->authors));
 				array_push($frequency, $count);
+				array_push($urls, $allRows[$i]->url);
+				array_push($pubs, $allRows[$i]->libraryName);
 				DB::delete('delete from paperlist where id = ?', [count($titles)]);
 				DB::table('paperlist')->insert([
-					['id' => count($titles), 'title' => $allRows[$i]->title, 'libraryName' => $allRows[$i]->libraryName, 'conference' => $allRows[$i]->conference, 'authors' => $allRows[$i]->authors, 'pdf' => $allRows[$i]->pdf, 'bibtex' => $allRows[$i]->bibtex, 'abstract' => $allRows[$i]->abstract]
+					['id' => count($titles), 'title' => $allRows[$i]->title, 'libraryName' => $allRows[$i]->libraryName, 'conference' => $allRows[$i]->conference, 'authors' => $allRows[$i]->authors, 'pdf' => $allRows[$i]->pdf, 'bibtex' => $allRows[$i]->bibtex, 'abstract' => $allRows[$i]->abstract, 'url' => $allRows[$i]->url]
 				]);
 			} 
 		}
@@ -248,12 +251,14 @@ class PaperController extends Controller
 		$obj['conferences'] = $conferences;
 		$obj['authors'] = $authors;
 		$obj['frequency'] = $frequency;
+		$obj['urls'] = $urls;
+		$obj['libraryName'] = $pubs;
 		return $obj;
 	}
 
 	public function showPaperList($word){
 		$allInfo = PaperController::getPaperListInformation($word);
-		return view('paperlist', ['frequencies' => $allInfo['frequency'], 'titles' => $allInfo['titles'], 'authors' => $allInfo['authors'], 'conferences' => $allInfo['conferences'], 'downloadLinks' => $allInfo['pdfs'], 'word' => $word]);
+		return view('paperlist', ['frequencies' => $allInfo['frequency'], 'titles' => $allInfo['titles'], 'authors' => $allInfo['authors'], 'conferences' => $allInfo['conferences'], 'downloadLinks' => $allInfo['pdfs'], 'word' => $word, 'pubs' => $allInfo['libraryName']]);
 	}
 
 
@@ -372,6 +377,7 @@ class PaperController extends Controller
 		for ($i=0; $i<count($ACMPaperUrls) && $i < 1; $i++){ //TODO make this 5
 			$tempObject = PaperController::getAllInfoFromHTML($ACMPaperUrls[$i]);
 			$tempObject['abstract'] = PaperController::getAbstractFromHTML($ACMPaperUrls[$i]);
+			$tempObject['url'] = $ACMPaperUrls[$i];
 			array_push($ACMInfo, $tempObject);
 				
 		}
@@ -418,8 +424,11 @@ class PaperController extends Controller
 		}
 
 		//BIBTEX
-		public function getBibtex($tURL, $pub) {
+		public function getBibtex($title, $pub) {
+			$paper = DB::select('select * from paperlist where title = ?', [$title]);
+			$tURL = $paper[0]->url;
 			$script = (strtolower(trim($pub)) == "acm" ? "getACMBibTeX.py " : "getIEEEBibTeX.py ");
-			return shell_exec("python ../app/Http/Controllers/site-packages/" . $script . escapeshellarg($tURL));
+			$bibtex = shell_exec("python ../app/Http/Controllers/site-packages/" . $script . escapeshellarg($tURL));
+			return str_replace("\n", "<br>", $bibtex);
 		}
 } 
