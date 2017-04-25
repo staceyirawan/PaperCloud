@@ -391,9 +391,9 @@ pageTitle {
 </head>
  <body>
     <div id = 'buttons'>
-  <button onclick="createPDF()" id = "downloadButton">Download PDF</button>
-  <button onclick="createPlainText()" id = "downloadButton">Download Plain Text</button>
-  <button onclick="createSubset()" id = "downloadButton">Create New Cloud</button>
+  <button onclick="createPDF()" id = "downloadButton0">Download PDF</button>
+  <button onclick="createPlainText()" id = "downloadButton1">Download Plain Text</button>
+  <button onclick="createSubset()" id = "downloadButton2">Create New Cloud</button>
       </div>
 </body>
 
