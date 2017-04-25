@@ -234,7 +234,9 @@
                     echo $conferences[$i];
                     echo "</td>";
 
-                    echo "<td>";
+                    echo "<td id = 'freq";
+                    echo $i;
+                    echo "'>";
                     echo $frequencies[$i];
                     echo "</td>";
 
