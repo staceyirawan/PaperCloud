@@ -415,4 +415,10 @@ class PaperController extends Controller
 
 			return view('conferencepage', ['titles' => $titles, 'authors' => $authors]);
 		}
+
+		//BIBTEX
+		public function getBibtex($tURL, $pub) {
+			$script = (strtolower(trim($pub)) == "acm" ? "getACMBibTeX.py " : "getIEEEBibTeX.py ");
+			return shell_exec("python ../app/Http/Controllers/site-packages/" . $script . escapeshellarg($tURL));
+		}
 } 
