@@ -82,15 +82,17 @@ class PaperController extends Controller
 
 	public function createWordListFromText($allText){
 		$wordList = explode(" ", $allText);
+
 		$wordList = array_filter($wordList);
 		$wordList = array_count_values($wordList);
 		arsort($wordList);
 		$wordList = array_slice($wordList, 0, 100, true);
-
+		
 		return $wordList;
 	}
 
 	public function getSubsetBasedOnX($papers, $ACMPapers, $X){
+
 		$IEEEsubset = array();
 		$ACMsubset = array();
 		$count = 0;
@@ -108,6 +110,7 @@ class PaperController extends Controller
 		$tempObject = array();
 		$tempObject['IEEE'] = $IEEEsubset;
 		$tempObject['ACM'] = $ACMsubset;
+
 		return $tempObject;	
 	}
 
@@ -140,8 +143,8 @@ class PaperController extends Controller
 		$paperSubset = $this->createPaperSubsetFromTFString($TFString);
 
 		$allAbstracts = $this->combineAbstractsFromPapers($paperSubset[0], $paperSubset[1]);
+		
 		$wordList = $this->createWordListFromText($allAbstracts);
-
 		$wcc = new WordCloudController();
 		$wordCloudString = $wcc->createWordCloudString($wordList);
 		return $wordCloudString;
@@ -161,19 +164,21 @@ class PaperController extends Controller
 			DB::insert('insert into history (type, query) values (?, ?)', ["scholar", $lastName]);
 		}
 		$paperJSON = PaperController::getPapersFromAuthor($lastName);
+		
 		$papers = $paperJSON['document'];
 		if (array_key_exists('rank', $papers)) $papers = [$papers];
 
 		$ACMPaperUrls = PaperController::getACMPapersFromAuthor($lastName);
 		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
+		
 		$paperSubset = PaperController::getSubsetBasedOnX($papers, $ACMPapers, $X);
 	
 		$allAbstracts = $this->combineAbstractsFromPapers($paperSubset['IEEE'], $paperSubset['ACM']);
 		$wordList = $this->createWordListFromText($allAbstracts);
-
+		
 		$wcc = new WordCloudController();
 		$wordCloudString = $wcc->createWordCloudString($wordList, $lastName, "scholar");
-
+		
 		return $wordCloudString;
 	}
 
@@ -198,7 +203,7 @@ class PaperController extends Controller
 		$ACMPapers = PaperController::formatACMPapersFromURLSintoArray($ACMPaperUrls);
 		
 		$paperSubset = PaperController::getSubsetBasedOnX($papers, $ACMPapers, $X);
-	
+		
 		$allAbstracts = $this->combineAbstractsFromPapers($paperSubset['IEEE'], $paperSubset['ACM']);
 		$wordList = $this->createWordListFromText($allAbstracts);
 
@@ -267,6 +272,7 @@ class PaperController extends Controller
     public function getACMPapersFromAuthor($author) {
          // Run python script on terminal and retrieve csv content file
         $execution = shell_exec('python ../app/Http/Controllers/site-packages/scholar.py -c 10 --pub=ACM --author=' . $author);
+      
         $array = array_map("str_getcsv", explode("\n", $execution));
 
         $counter = 0;
@@ -284,6 +290,7 @@ class PaperController extends Controller
             $counter++;
 
         }
+       
         return $tURLs;
     }
 
@@ -361,7 +368,7 @@ class PaperController extends Controller
 
 			} 
 		}
-*/
+*/	
 		return $tempObject;
 
 	}
