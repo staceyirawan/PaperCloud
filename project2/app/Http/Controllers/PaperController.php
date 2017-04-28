@@ -75,7 +75,12 @@ class PaperController extends Controller
 			$id++;
 		}
 		$allAbstractsText = strtolower($allAbstractsText);
+		$commonEnglishWords = array(" an ", " a ", " i ", " i'm ", " it's ", " do ", " am ", " the ", " to ", " in ", " at ", " is ", " it ", " was ", " are ", " that ", " of ", " be ", " at ", " or ", " by ", " this ", " and ", " you ", " me ", " some ", " how ", " my ", " on ", " they ", " get ", " we ", " so ", " but ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"); 
+		$allAbstractsText = str_replace($commonEnglishWords, " ", $allAbstractsText);
+		$toReplace = array(".", ")", "(", "\"", "]", "[", "\n", ',', '-', '%', '<', '>', '&', '/', '#', ';', ':');
+		$allAbstractsText = str_replace($toReplace, " ", $allAbstractsText);
 
+	
 		return $allAbstractsText;
 	} 
 
@@ -115,9 +120,7 @@ class PaperController extends Controller
 	}
 
 
-	public function createPaperSubsetFromTFString($TFString){
-		$allRows = DB::select('select * from paperlist order by id');
-
+	public function createPaperSubsetFromTFString($TFString, $allRows){
 		$papers = array();
 		$ACMPapers = array();
 		for ($i=0; $i<strlen($TFString); $i++){
@@ -129,8 +132,14 @@ class PaperController extends Controller
 			$temp['pdf'] = $curP->pdf;
 			$temp['authors'] = $curP->authors;
 			$temp['abstract'] = $curP->abstract;
-			if ($curP->libraryName == "IEEE") $temp['pubtitle'] = $curP->conference;
-			else $temp['publisher'] = $curP->conference;
+			if ($curP->libraryName == "IEEE"){
+				$temp['pubtitle'] = $curP->conference;
+				$temp['mdurl'] = $curP->url;
+			}
+			else{
+				$temp['publisher'] = $curP->conference;
+				$temp['url'] = $curP->url;
+			}
 
 			if ($curP->libraryName == "IEEE") array_push($papers, $temp);
 			else array_push($ACMPapers, $temp);
@@ -140,7 +149,8 @@ class PaperController extends Controller
 	}
 
 	public function createWordCloudStringFromSubset($TFString){
-		$paperSubset = $this->createPaperSubsetFromTFString($TFString);
+		$allRows = DB::select('select * from paperlist order by id');
+		$paperSubset = $this->createPaperSubsetFromTFString($TFString, $allRows);
 
 		$allAbstracts = $this->combineAbstractsFromPapers($paperSubset[0], $paperSubset[1]);
 		
@@ -403,14 +413,14 @@ class PaperController extends Controller
 	//ABSTRACT STUFF
 		public function showAbstract($title, $word){
 			$paper = DB::select('select * from paperlist where title = ?', [$title]);
-			$pdf = str_replace('?', '^', $paper[0]->pdf);
+			$pdf = str_replace('^', '?', $paper[0]->pdf);
 
 			return view('paperpage', ['pdf' => $pdf, 'abstract' => $paper[0]->abstract, 'word' => $word, 'title' => $title]);
 		}
 
 
 	//CONFERNECE STUFF
-		public function getPaperListFromConference($conferenceName){
+		public function getAuthorsAndTitlesOfConferencePapers($conferenceName){
 			$titles = array();
 			$authors = array();
 
@@ -426,8 +436,12 @@ class PaperController extends Controller
 			}
 
 			$authors = str_replace(";", ",", $authors);
+			return [$titles, $authors];
+		}
 
-			return view('conferencepage', ['titles' => $titles, 'authors' => $authors]);
+		public function getPaperListFromConference($conferenceName){
+			$conferenceInfo = $this->getAuthorsAndTitlesOfConferencePapers($conferenceName);
+			return view('conferencepage', ['titles' => $conferenceInfo[0], 'authors' => $conferenceInfo[1]]);
 		}
 
 		//BIBTEX
