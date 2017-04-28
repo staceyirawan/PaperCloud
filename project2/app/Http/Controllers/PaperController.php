@@ -30,6 +30,7 @@ class PaperController extends Controller
 
 	/* Convert XML data to JSON */
     public function getJSONFromXML($xml) {
+    	
     	$xml = new \SimpleXMLElement($xml->getBody());
     	$xml = simplexml_load_string($xml->asXML(), 'SimpleXMLElement', LIBXML_NOCDATA);
     	$json = json_encode($xml);
@@ -300,8 +301,14 @@ class PaperController extends Controller
 
             $tUArray = array();
             $tUArray = explode(" ", $pURL);
+            if(!empty($tUArray[1])){
             $tURLs[$counter] = $tUArray[1];
-
+        	}
+        	else {
+        		return $newArray = array(
+        			"title" => ""	
+        			);
+        	}
             $counter++;
 
         }

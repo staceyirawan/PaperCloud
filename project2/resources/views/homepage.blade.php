@@ -208,7 +208,9 @@ pageTitle {
             $query = $previousSearches[$i]['query'];
             echo "<a href = '#' onclick='prevSearch(";
             echo json_decode($i);
-            echo ")'>";
+            echo ")' id = 'prev";
+            echo $i;
+            echo "'>";
             echo $query;
             echo ",      ";
             echo "</a>";

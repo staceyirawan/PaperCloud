@@ -1,12 +1,12 @@
 
 
 Code Coverage Report:      
-  2017-04-28 06:42:38      
+  2017-04-28 07:09:48      
                            
  Summary:                  
   Classes:  0.00% (0/16)   
-  Methods:  5.77% (6/104)  
-  Lines:    7.27% (92/1266)
+  Methods:  12.5% (13/104)  
+  Lines:    11.01% (140/1271)
 
 \App\Http\Controllers::PaperController
-  Methods:  24.00% ( 6/25)   Lines:  35.38% ( 92/260)
+  Methods:  52.00% ( 13/25)   Lines:  52.83% ( 140/265)

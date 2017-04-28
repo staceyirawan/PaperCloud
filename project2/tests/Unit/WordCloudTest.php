@@ -38,10 +38,12 @@ class WordCloudTest extends TestCase
      * 
      * @covers App\Http\Controllers\PaperController::getPapersFromKeywords
      * @covers App\Http\Controllers\PaperController::getSubsetBasedOnX
+     * @covers App\Http\Controllers\PaperController::getJSONFromXML
      */
     //NEED TO REFACTOR Req 3: Clicking on a word in the cloud should return a list of papers that mention that word. Each entry in the list should include the name of the paper, the list of authors, the conference name, and the frequency of the word.
     public function testGetPaperListWithWord() {
         $controller = new PaperController();
+        
         $paperJSON = $controller->getPapersFromKeywords('asdf');
         $papers = $paperJSON['document'];
 
@@ -60,6 +62,7 @@ class WordCloudTest extends TestCase
 
         $this->assertArrayHasKey('IEEE', $result);
         $this->assertArrayHasKey('ACM', $result);
+
 
         
     }
@@ -86,11 +89,15 @@ class WordCloudTest extends TestCase
 
     /**
      * 
-     * @covers App\Http\Controllers\PaperController:: 
+     * @covers App\Http\Controllers\PaperController::getAllInfoFromHTML
      */
     //Req 6: Show a status bar for current progress in generating the word cloud. This bar should be a rectangle that fills up, and should accurately reflect the generation process.
     public function testGetStatusBar() {
-        $this->assertEquals(5, 5);
+        $controller = new PaperController();
+        $result = $controller->getAllInfoFromHTML('http://dl.acm.org/citation.cfm?id=1348248');
+        $this->assertArrayHasKey('publisher', $result);
+        $this->assertArrayHasKey('pdf', $result);
+        $this->assertArrayHasKey('authors', $result);
     }
 
 
@@ -105,6 +112,7 @@ class WordCloudTest extends TestCase
         $papers = $controller->getPapersFromAuthor('Wang');
         $papers2 = $controller->getACMPapersFromAuthor('Wang');
         $this -> assertArrayHasKey('title', $papers['document'][0]);
+        $this-> assertArrayHasKey('title', $papers2);
     }
 
     /**
