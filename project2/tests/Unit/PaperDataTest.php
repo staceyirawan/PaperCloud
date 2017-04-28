@@ -43,6 +43,7 @@ class PaperDataTest extends TestCase
 		for ($i=0; $i<count($papers); $i++){
 			$papers[$i]['libraryName'] = "IEEE";
 			$papers[$i]['conference'] = $papers[$i]['publisher'];
+			$papers[$i]['url'] = $papers[$i]['mdurl'];
 			array_push($paperObjects, (object)$papers[$i]);
 		}
 		$TFString = "tftt";
@@ -84,7 +85,6 @@ class PaperDataTest extends TestCase
 		$papers = $controller->getPapersFromAuthor($previousSearches[1]->query);
 		$papers = $papers['document'];
 		$this->assertEquals(25, count($papers));
-
 	}
 	
 
