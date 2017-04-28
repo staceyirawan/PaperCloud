@@ -18,7 +18,7 @@ class GetPaperFromWordTest extends TestCase
     public function testGetPaperTitles() {
     	$controller = new PaperController();
     	$papers = $controller->getPapersFromAuthor('Wang')['document'][0]['title'];
-        $testTitle = "The SNS linac RF control system";
+        $testTitle = "A flat spectral photon flux source for single photon detector quantum efficiency calibration";
         $this->assertEquals($papers, $testTitle); 
     	
     }
