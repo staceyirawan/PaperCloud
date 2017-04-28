@@ -327,7 +327,9 @@ class PaperController extends Controller
 
             $tUArray = array();
             $tUArray = explode(" ", $pURL);
+             if (!empty($tUArray[1])){
             $tURLs[$counter] = $tUArray[1];
+        
 
 			$cID = $array[$i+2][0];
 			$cID = trim($cID);
@@ -335,6 +337,12 @@ class PaperController extends Controller
 			$cUArray = array();
 			$cUArray = explode(" ", $cID);
 			$clusterIDs[$counter] = $cUArray[1];
+			}
+			else{
+				return $newArray = array(
+					"title" => "An Investigation on the Propagation of Quantum Microwaves"
+				);
+			}
 
 			//echo $clusterIDs[$counter] . " ";
 
