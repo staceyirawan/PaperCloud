@@ -242,11 +242,14 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $session->start();
         $session->visit('http://127.0.0.1:8000/');
         $page = $session->getPage();
-        $previousWord = $page->findLink("");  
+        $previousWord = $page->findById("prev2");  
+        if ($previousWord == null) {
+            throw new Exception("There is no previous word found");
+        }
         $previousWord->mouseOver();
         $previousWord->click();
         $page = $session->getPage();
-        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+        $webString = "http://localhost:8000/papers/keyword/Halfond/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());

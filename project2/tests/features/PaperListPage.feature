@@ -11,6 +11,10 @@ Feature: Paper Page Options
 
 	@javascript
 	Scenario: Accessing the bibtex
+		Given I am on the paperlist page
+		When I click bibtex
+		Then the bibtex should appear
+
 
 	@javascript
 	Scenario: Downloading paperlist in PDF 
