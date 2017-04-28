@@ -57,7 +57,7 @@ class PaperDataTest extends TestCase
 
 	/**
 	 *
-	 * @covers App\Http\Controllers\WordCloudController::getPapersFromKeywords
+	 * @covers App\Http\Controllers\PaperController::getPapersFromKeywords
 	 *
 	 */
 	//Req 15
@@ -73,7 +73,7 @@ class PaperDataTest extends TestCase
 
 	/**
 	 *
-	 * @covers App\Http\Controllers\WordCloudController::getPapersFromKeywords
+	 * @covers App\Http\Controllers\PaperController::getPapersFromKeywords
 	 *
 	 */
 	//Req 11
