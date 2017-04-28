@@ -332,3 +332,91 @@
 1492995674584	Marionette	WARN	TLS certificate errors will be ignored for this session
 1492995690548	Marionette	INFO	New connections will no longer be accepted
 >>>>>>> b1b3f27b9823dbd26d3abe5f07d6cd4c9d87ad0f
+1493349357785	geckodriver	INFO	Listening on 127.0.0.1:49501
+1493349358772	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.LG8LDO67yCWx
+1493349358773	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349358777	geckodriver::marionette	INFO	Connecting to Marionette on localhost:49514
+1493349369748	geckodriver	INFO	Listening on 127.0.0.1:49592
+1493349370751	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.gGrm5i6it0CG
+1493349370753	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349370755	geckodriver::marionette	INFO	Connecting to Marionette on localhost:49605
+1493349392150	geckodriver	INFO	Listening on 127.0.0.1:49731
+1493349393158	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.QM9lbQUPZFow
+1493349393159	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349393162	geckodriver::marionette	INFO	Connecting to Marionette on localhost:49744
+1493349426091	geckodriver	INFO	Listening on 127.0.0.1:49919
+1493349427100	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.tFKXOdFjDuK0
+1493349427101	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349427104	geckodriver::marionette	INFO	Connecting to Marionette on localhost:49932
+1493349456795	geckodriver	INFO	Listening on 127.0.0.1:50099
+1493349457791	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.oiz6jZSrg9JD
+1493349457792	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349457798	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50114
+1493349468535	geckodriver	INFO	Listening on 127.0.0.1:50191
+1493349469539	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.0gfGFFAHsOBt
+1493349469540	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349469544	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50204
+1493349521288	geckodriver	INFO	Listening on 127.0.0.1:50458
+1493349522294	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.k00v7usfPUKH
+1493349522295	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349522298	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50471
+1493349628634	geckodriver	INFO	Listening on 127.0.0.1:50886
+1493349629638	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.aky6ninOajHe
+1493349629640	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349629645	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50899
+1493349635770	geckodriver	INFO	Listening on 127.0.0.1:50967
+1493349636770	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.aSDmrnlcRx6z
+1493349636776	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493349636779	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50980
+1493349637021	addons.manager	DEBUG	Application has been upgraded
+1493349637030	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/XPIProvider.jsm: ["XPIProvider"]
+1493349637031	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/LightweightThemeManager.jsm: ["LightweightThemeManager"]
+1493349637033	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/GMPProvider.jsm
+1493349637035	addons.manager	DEBUG	Loaded provider scope for resource://gre/modules/addons/PluginProvider.jsm
+1493349637035	addons.manager	DEBUG	Starting provider: XPIProvider
+1493349637035	addons.xpi	DEBUG	startup
+1493349637036	addons.xpi	INFO	Mapping {972ce4c6-7e08-4474-a285-3208198ce6fd} to /Applications/Firefox.app/Contents/Resources/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}
+1493349637036	addons.xpi	DEBUG	checkForChanges
+1493349637036	addons.xpi	DEBUG	Loaded add-on state from prefs: {}
+1493349637037	addons.xpi	DEBUG	New add-on {972ce4c6-7e08-4474-a285-3208198ce6fd} in app-global
+1493349637037	addons.xpi	DEBUG	getModTime: Recursive scan of {972ce4c6-7e08-4474-a285-3208198ce6fd}
+1493349637037	addons.xpi	DEBUG	getInstallState changed: true, state: {"app-global":{"{972ce4c6-7e08-4474-a285-3208198ce6fd}":{"d":"/Applications/Firefox.app/Contents/Resources/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}","st":1435710511000,"mt":1435707841000}}}
+1493349637041	addons.xpi-utils	DEBUG	Opening XPI database /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.aSDmrnlcRx6z/extensions.json
+1493349637041	addons.xpi	DEBUG	New add-on {972ce4c6-7e08-4474-a285-3208198ce6fd} installed in app-global
+1493349637052	addons.xpi-utils	DEBUG	Make addon app-global:{972ce4c6-7e08-4474-a285-3208198ce6fd} visible
+1493349637053	DeferredSave.extensions.json	DEBUG	Save changes
+1493349637053	DeferredSave.extensions.json	DEBUG	Save changes
+1493349637054	addons.xpi	DEBUG	Updating XPIState for {"id":"{972ce4c6-7e08-4474-a285-3208198ce6fd}","syncGUID":"h6y2zvvfMN8F","location":"app-global","version":"39.0","type":"theme","internalName":"classic/1.0","updateURL":null,"updateKey":null,"optionsURL":null,"optionsType":null,"aboutURL":null,"iconURL":null,"icon64URL":null,"defaultLocale":{"name":"Default","description":"The default theme.","creator":"Mozilla","homepageURL":null,"contributors":["Mozilla Contributors"]},"visible":true,"active":true,"userDisabled":false,"appDisabled":false,"descriptor":"/Applications/Firefox.app/Contents/Resources/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}","installDate":1435710511000,"updateDate":1435710511000,"applyBackgroundUpdates":1,"skinnable":true,"size":3169,"sourceURI":null,"releaseNotesURI":null,"softDisabled":false,"foreignInstall":false,"hasBinaryComponents":false,"strictCompatibility":true,"locales":[],"targetApplications":[{"id":"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}","minVersion":"39.0","maxVersion":"39.0"}],"targetPlatforms":[]}
+1493349637054	addons.xpi	DEBUG	getModTime: Recursive scan of {972ce4c6-7e08-4474-a285-3208198ce6fd}
+1493349637054	addons.xpi	DEBUG	Updating database with changes to installed add-ons
+1493349637054	addons.xpi-utils	DEBUG	Updating add-on states
+1493349637055	addons.xpi-utils	DEBUG	Writing add-ons list
+1493349637058	addons.manager	DEBUG	Registering shutdown blocker for XPIProvider
+1493349637058	addons.manager	DEBUG	Provider finished startup: XPIProvider
+1493349637058	addons.manager	DEBUG	Starting provider: LightweightThemeManager
+1493349637058	addons.manager	DEBUG	Registering shutdown blocker for LightweightThemeManager
+1493349637059	addons.manager	DEBUG	Provider finished startup: LightweightThemeManager
+1493349637059	addons.manager	DEBUG	Starting provider: GMPProvider
+1493349637062	addons.manager	DEBUG	Registering shutdown blocker for GMPProvider
+1493349637063	addons.manager	DEBUG	Provider finished startup: GMPProvider
+1493349637063	addons.manager	DEBUG	Starting provider: PluginProvider
+1493349637063	addons.manager	DEBUG	Registering shutdown blocker for PluginProvider
+1493349637063	addons.manager	DEBUG	Provider finished startup: PluginProvider
+1493349637064	addons.manager	DEBUG	Completed startup sequence
+1493349637320	addons.manager	DEBUG	Starting provider: <unnamed-provider>
+1493349637320	addons.manager	DEBUG	Registering shutdown blocker for <unnamed-provider>
+1493349637320	addons.manager	DEBUG	Provider finished startup: <unnamed-provider>
+1493349637414	DeferredSave.extensions.json	DEBUG	Starting timer
+*** Blocklist::_loadBlocklistFromFile: blocklist is disabled
+1493349637450	DeferredSave.extensions.json	DEBUG	Starting write
+1493349637772	DeferredSave.extensions.json	DEBUG	Write succeeded
+1493349637775	addons.xpi-utils	DEBUG	XPI Database saved, setting schema version preference to 16
+1493350267488	addons.manager	INFO	Skipping background update check
+1493352952293	geckodriver	INFO	Listening on 127.0.0.1:60172
+1493352953286	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.gm6Zyx9c3gTO
+1493352953290	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493352953296	geckodriver::marionette	INFO	Connecting to Marionette on localhost:60187
+1493353526785	geckodriver	INFO	Listening on 127.0.0.1:61992
+1493353527776	mozprofile::profile	INFO	Using profile path /var/folders/qc/ln93mhqx1js3czcm6b5mk1jw0000gn/T/rust_mozprofile.lcRXO8hyAfQO
+1493353527777	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin
+1493353527792	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62001
