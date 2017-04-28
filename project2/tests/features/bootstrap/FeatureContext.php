@@ -223,11 +223,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/');
-        $webString = "http://127.0.0.1:8000";
+        $session->visit('http://127.0.0.1:8000');
+        $webString = "http://127.0.0.1:8000/";
         if ($session->getCurrentUrl() != $webString) 
         {
-            throw new Exception ("The page is incorrect.");
+            throw new Exception ("The page is incorrect. :".$session->getCurrentUrl() );
         }
         // throw new PendingException();
     }
@@ -347,7 +347,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -381,7 +381,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         $page = $session->getPage();
 
 
@@ -423,7 +423,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -462,7 +462,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -471,7 +471,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -510,7 +510,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -519,7 +519,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -567,7 +567,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     }
         // $wordClicked->mouseOver();
     //     $wordClicked->click();
-    //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
+    //     $webString = "http://localhost:8000/list/can";
     //     if ($session->getCurrentUrl() != $webString) 
     //     {
     //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -576,7 +576,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     $bibTexButton = $page->findLink("bibtex1");
         // $bibTexButton->mouseOver();
     //     $wordClicked->click();
-    //     $webString = "http://localhost:8000/list/scholar/Halfond/can/bibtex1";
+    //     $webString = "http://localhost:8000/list/can/bibtex1";
     //     if ($session->getCurrentUrl() != $webString) 
     //     {
     //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -616,7 +616,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     }
         // $wordClicked->mouseOver();
     //     $wordClicked->click();
-    //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
+    //     $webString = "http://localhost:8000/list/can";
     //     if ($session->getCurrentUrl() != $webString) 
     //     {
     //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -625,7 +625,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //     $bibTexButton = $page->findLink("bibtex1");
         // $bibTexButton->mouseOver();
     //     $wordClicked->click();
-    //     $webString = "http://localhost:8000/list/scholar/Halfond/can/bibtex1";
+    //     $webString = "http://localhost:8000/list/can/bibtex1";
     //     if ($session->getCurrentUrl() != $webString) 
     //     {
     //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -667,16 +667,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        $authorName = $page->findLink("author");
+        $authorName = $page->findLink("Alex Orso");
         if($authorName == null)
         {
-            throw new Exception ("There is no word: ".$authorName);
+            throw new Exception ("There is no author: ".$authorName);
         }
         $authorName->mouseOver();
         $authorName->click();
@@ -712,21 +712,21 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        $authorName = $page->findLink("author");
+        $authorName = $page->findLink("Alex Orso");
         if($authorName == null)
         {
-            throw new Exception ("There is no word: ".$authorName);
+            throw new Exception ("There is no author: ".$authorName);
         }
         $authorName->mouseOver();
         $authorName->click();
         // THis is part of checking if it's on the right word Cloud.
-        $webString = "http://localhost:8000/papers/scholar/author";
+        $webString = "http://localhost:8000/papers/scholar/%20%20Alex%20Orso/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -764,21 +764,21 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        $authorName = $page->findLink("author");
+        $authorName = $page->findLink("Alex Orso");
         if($authorName == null)
         {
-            throw new Exception ("There is no word: ".$authorName);
+            throw new Exception ("There is no author: ".$authorName);
         }
         $authorName->mouseOver();
         $authorName->click();
         // THis is part of checking if it's on the right word Cloud.
-        $webString = "http://localhost:8000/papers/scholar/author";
+        $webString = "http://localhost:8000/papers/scholar/%20%20Alex%20Orso/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -816,21 +816,21 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        $authorName = $page->findLink("author");
+        $authorName = $page->findLink("Alex Orso");
         if($authorName == null)
         {
-            throw new Exception ("There is no word: ".$authorName);
+            throw new Exception ("There is no author: ".$authorName);
         }
         $authorName->mouseOver();
         $authorName->click();
         // THis is part of checking if it's on the right word Cloud.
-        $webString = "http://localhost:8000/papers/scholar/author";
+        $webString = "http://localhost:8000/papers/scholar/%20%20Alex%20Orso/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -868,21 +868,21 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        $authorName = $page->findLink("author");
+        $authorName = $page->findLink("Alex Orso");
         if($authorName == null)
         {
-            throw new Exception ("There is no word: ".$authorName);
+            throw new Exception ("There is no author: ".$authorName);
         }
         $authorName->mouseOver();
         $authorName->click();
         // THis is part of checking if it's on the right word Cloud.
-        $webString = "http://localhost:8000/papers/scholar/author";
+        $webString = "http://localhost:8000/papers/scholar/%20%20Alex%20Orso/10";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -928,13 +928,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        $conferenceClicked = $page->findLink("2016 IEEE International Conference on Software Testing, Verification and Validation (ICST)");
+        $conferenceClicked = $page->findLink("2016 IEEE International Conference on Software Maintenance and Evolution (ICSME)");
+        if($conferenceClicked == null)
+        {
+            throw new Exception ("There is no conference access");
+        }
         $conferenceClicked->mouseOver();
         $conferenceClicked->click();
     }
@@ -969,16 +973,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
             // throw new PendingException();
         }
-        $conferenceClicked = $page->findLink("2016 IEEE International Conference on Software Testing, Verification and Validation (ICST)");
+        $conferenceClicked = $page->findLink("2016 IEEE International Conference on Software Maintenance and Evolution (ICSME)");
         $conferenceClicked->mouseOver();
         $conferenceClicked->click();
-        $webString = "http://localhost:8000/conference/2016%20IEEE%20International%20Conference%20on%20Software%20Testing,%20Verification%20and%20Validation%20%28ICST%29";
+        $webString = "http://localhost:8000/conference/2016%20IEEE%20International%20Conference%20on%20Software%20Maintenance%20and%20Evolution%20(ICSME)";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1016,7 +1020,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1062,7 +1066,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
         $wordClicked->mouseOver();
         $wordClicked->click();
-        $webString = "http://localhost:8000/list/scholar/Halfond/can";
+        $webString = "http://localhost:8000/list/can";
         if ($session->getCurrentUrl() != $webString) 
         {
             throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1077,10 +1081,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $titleClicked->mouseOver();
         $titleClicked->click();
 
-        $webString = "http://localhost:8000/abstract/Detecting%20and%20Localizing%20Internationalization%20Presentation%20Failures%20in%20Web%20Applications/can";
-        if ($session->getCurrentUrl != webString)
+        $webString = "http://localhost:8000/abstract/Detecting%20and%20Localizing%20Visual%20Inconsistencies%20in%20Web%20Applications/can";
+        if ($session->getCurrentUrl() != $webString)
         {
-            throw new Execption("The Page is incorrect.".$session->getCurrentUrl());
+            throw new Execption("The page is incorrect.".$session->getCurrentUrl());
         }
     }
 
@@ -1092,74 +1096,147 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // throw new PendingException();
     }
 
-    // @javascript
-    // Scenario: Generating a subset wordcloud
-    //     Given you are on the paperlist page
-    //     When I click on checkboxes of specific papers
-    //     And click on a button generate a new wordcloud
-    //     Then a new word cloud should generate with these selected papers
+    
 
-    // /**
-    //  * @Given you are on the paperlist page
-    //  */
-    // public function youAreOnThePaperlistPage()
-    // {
-    //     $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
-    //     $session = new \Behat\Mink\Session($driver);
-    //     $session->start();
-    //     $session->visit('http://127.0.0.1:8000/');
-    //     $page = $session->getPage();
-    //     $textbox = $page->findField("myText");  
-    //     $textbox->setValue("Halfond");
-    //     $button = $page->findButton('scholarButton');
-        // $button->mouseOver();
-    //     $button->click();
-    //     $page = $session->getPage();
-    //     $webString = "http://localhost:8000/papers/scholar/Halfond/10";
-    //     if ($session->getCurrentUrl() != $webString) 
-    //     {
-    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-    //         // throw new PendingException();
-    //     }
-    //     $wordClicked = $page->findLink("can");
-    // checkIfNull($wordClicked);
-    // if($wordClicked == null)
-    //     {
-    //         throw new Exception ("There is no word: ".$wordClicked);
-    //     }
-        // $wordClicked->mouseOver();
-    //     $wordClicked->click();
-    //     $webString = "http://localhost:8000/list/scholar/Halfond/can";
-    //     if ($session->getCurrentUrl() != $webString) 
-    //     {
-    //         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
-    //         // throw new PendingException();
-    //     }
-    // }
+    /**
+     * @Given you are on the paperlist page
+     */
+    public function youAreOnThePaperlistPage()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        if($wordClicked == null)
+        {
+            throw new Exception ("There is no word: ".$wordClicked);
+        }
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+    }
 
-    // /**
-    //  * @When I click on checkboxes of specific papers
-    //  */
-    // public function iClickOnCheckboxesOfSpecificPapers()
-    // {
-    //     // throw new PendingException();
-    // }
+    /**
+     * @When I click on checkboxes of specific papers
+     */
+    public function iClickOnCheckboxesOfSpecificPapers()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        if($wordClicked == null)
+        {
+            throw new Exception ("There is no word: ".$wordClicked);
+        }
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        for($i=1;$i<=3;$i++)
+        {  
+            $currentCheckBox = $page->findById("box".$i);
+            if($wordClicked == null) {
+                throw new Exception("There is no checkbox:".$currentCheckBox);
+            }
+            $currentCheckBox->mouseOver();
+            $currentCheckBox->click();
+        }
+        
+    }
 
-    // /**
-    //  * @When click on a button generate a new wordcloud
-    //  */
-    // public function clickOnAButtonGenerateANewWordcloud()
-    // {
-    //     // throw new PendingException();
-    // }
+    /**
+     * @When click on a button generate a new wordcloud
+     */
+    public function clickOnAButtonGenerateANewWordcloud()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        if($wordClicked == null)
+        {
+            throw new Exception ("There is no word: ".$wordClicked);
+        }
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        for($i=1;$i<=3;$i++)
+        {  
+            $currentCheckBox = $page->findById("box".$i);
+            if($wordClicked == null) {
+                throw new Exception("There is no checkbox:".$currentCheckBox);
+            }
+            $currentCheckBox->mouseOver();
+            $currentCheckBox->click();
+        }
+        $buttonClicked = $page->findById("downloadButton2");
 
-    // /**
-    //  * @Then a new word cloud should generate with these selected papers
-    //  */
-    // public function aNewWordCloudShouldGenerateWithTheseSelectedPapers()
-    // {
-    //     // throw new PendingException();
-    // }
+    }
+
+    /**
+     * @Then a new word cloud should generate with these selected papers
+     */
+    public function aNewWordCloudShouldGenerateWithTheseSelectedPapers()
+    {
+        // throw new PendingException();
+    }
 
     /**
      * @When I click on the download link of a paper
@@ -1385,7 +1462,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     // $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1393,7 +1470,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1401,7 +1478,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1409,7 +1486,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1417,7 +1494,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1425,7 +1502,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1433,7 +1510,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1441,7 +1518,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1449,7 +1526,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -1457,7 +1534,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // }// $pdfButton = $page->findById("pdf1");
         // $pdfButton->mouseOver();
         // $wordClicked->click();
-        // $webString = "http://localhost:8000/list/scholar/Halfond/can/pdfDowload";
+        // $webString = "http://localhost:8000/list/can/pdfDowload";
         // if ($session->getCurrentUrl() != $webString) 
         // {
         //     throw new Exception ("The page is incorrect.".$session->getCurrentUrl());

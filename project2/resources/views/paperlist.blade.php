@@ -234,7 +234,9 @@
                     echo $conferences[$i];
                     echo "</td>";
 
-                    echo "<td>";
+                    echo "<td id = 'freq";
+                    echo $i;
+                    echo "'>";
                     echo $frequencies[$i];
                     echo "</td>";
 
@@ -246,7 +248,10 @@
                     echo "PDF";
                     echo "</a></td>";
 
+                    $title = $titles[$i];
+                    $pub = $pubs[$i];
                     echo "<td>";
+                    echo "<a href = '/bibtex/$title/$pub'>";
                     echo "BibTex";
                     echo "</td>";
                }
@@ -391,9 +396,9 @@ pageTitle {
 </head>
  <body>
     <div id = 'buttons'>
-  <button onclick="createPDF()" id = "downloadButton">Download PDF</button>
-  <button onclick="createPlainText()" id = "downloadButton">Download Plain Text</button>
-  <button onclick="createSubset()" id = "downloadButton">Create New Cloud</button>
+  <button onclick="createPDF()" id = "downloadButton0">Download PDF</button>
+  <button onclick="createPlainText()" id = "downloadButton1">Download Plain Text</button>
+  <button onclick="createSubset()" id = "downloadButton2">Create New Cloud</button>
       </div>
 </body>
 

@@ -32,3 +32,6 @@ Route::get('conference/{conferenceName}', 'PaperController@getPaperListFromConfe
 
 
 Route::get('papers/subset/{TFString}', 'PaperController@showWordCloudFromSubset')->name('paperbysubset.get');
+
+
+Route::get('bibtex/{title}/{pub}', 'PaperController@getBibtex')->name('bibtex.get');
