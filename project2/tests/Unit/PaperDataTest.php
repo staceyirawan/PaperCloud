@@ -31,6 +31,7 @@ class PaperDataTest extends TestCase
 
     /**
      * 
+	 * @covers App\Http\Controllers\PaperController::getPapersFromKeywords
      * @covers App\Http\Controllers\PaperController::createPaperSubsetFromTFString
      *
      */
