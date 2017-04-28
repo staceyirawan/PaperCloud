@@ -5,10 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>PaperPage</title>
+
         <script> 
             function downloadPDF() 
             {
-                
+                window.location.href = <?php echo json_encode($pdf) ?>;
             }
         </script>
         
