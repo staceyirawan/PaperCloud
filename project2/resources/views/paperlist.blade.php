@@ -251,7 +251,9 @@
                     $title = $titles[$i];
                     $pub = $pubs[$i];
                     echo "<td>";
-                    echo "<a href = '/bibtex/$title/$pub'>";
+                    echo "<a id = 'bibtex";
+                    echo $i;
+                    echo "' href = '/bibtex/$title/$pub'>";
                     echo "BibTex";
                     echo "</td>";
                }
