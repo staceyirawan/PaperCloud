@@ -237,7 +237,21 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thatIHavePreviouslySearchedLastNamesOrKeyterms()
     {
-        // throw new PendingException();
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $previousWord = $page->findLink("");  
+        $previousWord->mouseOver();
+        $previousWord->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
     }
 
     /**
@@ -1591,6 +1605,101 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $buttonClicked->mouseOver();
         $buttonClicked->click();
         
+    }
+
+    /**
+     * @When I click bibtex
+     */
+    public function iClickBibtex()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        if($wordClicked == null)
+        {
+            throw new Exception ("There is no word: ".$wordClicked);
+        }
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $page = $session->getPage();
+        $bibtexClick = $page->findById("bibtex1");
+        $bibtexClick->mouseOver();
+        $bibtexClick->click();
+        $session->stop();
+    }
+
+    /**
+     * @Then the bibtex should appear
+     */
+    public function theBibtexShouldAppear()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage();
+        $textbox = $page->findField("myText");  
+        $textbox->setValue("Halfond");
+        $button = $page->findButton('scholarButton');
+        $button->mouseOver();
+        $button->click();
+        $page = $session->getPage();
+        $webString = "http://localhost:8000/papers/scholar/Halfond/10";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $wordClicked = $page->findLink("can");
+        if($wordClicked == null)
+        {
+            throw new Exception ("There is no word: ".$wordClicked);
+        }
+        $wordClicked->mouseOver();
+        $wordClicked->click();
+        $webString = "http://localhost:8000/list/can";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $page = $session->getPage();
+
+        $bibtexClick = $page->findById("bibtex1");
+        if($bibtexClick == null)
+        {
+            throw new Exception ("There is no word: ".$wordClicked);
+        }
+        $bibtexClick->mouseOver();
+        $bibtexClick->click();
+        $webString = "http://localhost:8000/bibtex/WASP:%20Protecting%20Web%20Applications%20Using%20Positive%20Tainting%20and%20Syntax-Aware%20Evaluation/IEEE";
+        if ($session->getCurrentUrl() != $webString) 
+        {
+            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+            // throw new PendingException();
+        }
+        $session->stop();
     }
 
     /**
